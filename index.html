@@ -1,0 +1,544 @@
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href='https://fonts.googleapis.com/css?family=Jost' rel='stylesheet'>
+      <link href='https://fonts.googleapis.com/css?family=Kodchasan' rel='stylesheet'>
+      <title>Atul Tharkar | Portfolio</title>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Major+Mono+Display&family=Share+Tech+Mono&family=Teko:wght@500;600;700&display=swap"
+      />
+      <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+      <header class="site-header">
+        <div class="container top-bar">
+          <img src="./src/Group 7.svg" alt="" aria-hidden="true" class="header-frame-line" />
+          <a href="#home" class="brand-wrap">
+            <img src="./src/avatar.png" alt="Atul Tharkar" class="avatar" />
+            <span class="brand-text">Atul Tharkar</span>
+            <span class="tagline">// CYBERSECURITY ENTHUSIAST</span>
+          </a>
+          <nav aria-label="Main navigation">
+            <ul class="nav-links">
+              <li><a href="#about">_ABOUT</a></li>
+              <li><a href="#projects">_PROJECTS</a></li>
+              <li><a href="#skills">_SKILLS</a></li>
+              <li><a href="#contact">_CONTACT</a></li>
+            </ul>
+          </nav>
+          <a href="https://github.com/tharkaratul?tab=repositories" class="github-pill" href="#" aria-label="GitHub profile" >
+            <img src="./src/GitHub_Invertocat_White.svg" alt="GitHub" class="github-image"/>
+          </a>
+        </div>
+      </header>
+
+      <main id="home" class="container">
+        <section class="hero-grid">
+          <div class="panel_terminal" id="about">
+            <div class="terminal-window" aria-label="Animated terminal introduction">
+              <img src="./src/Group 14.svg" alt="" class="terminal_panel"/>
+              <pre class="terminal-screen" id="terminal-screen"></pre>
+            </div>
+          </div>
+          
+          <div class="panel panel-skills" id="skills">
+            <img src="./src/Rectangle 3.svg" alt="Skills scanner panel" />
+            <h2 class="skills-title">SKILLS SCANNER</h2>
+            <img src="./src/Line 2.svg" alt="" aria-hidden="true" class="skills-divider" />
+            <button class="skills-search" type="button" data-view="search">
+              <img src="./src/search (1).svg" alt="" aria-hidden="true" class="skills-search-bg" />
+            </button>
+            <div class="skills-buttons" aria-label="Skills scanner filters">
+              <button class="skills-filter-button is-active" type="button" data-view="technical">
+                <img src="./src/Group 15.svg" alt="" aria-hidden="true" />
+              </button>
+              <button class="skills-filter-button" type="button" data-view="non-technical">
+                <img src="./src/Group 16.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <section class="skills-scanner-content" aria-label="Technical skills scan results">
+              <img
+                src="./src/Rectangle 7.svg"
+                alt=""
+                aria-hidden="true"
+                class="skills-scanner-bg"
+              />
+              <pre class="skills-scanner-ascii">  ______ _     _ _ _           ______                                     
+ / _____) |   (_) | |         / _____)                                    
+( (____ | |  _ _| | |  ___   ( (____   ____ _____ ____  ____  _____  ____ 
+ \____ \| |_/ ) | | | /___)   \____ \ / ___|____ |  _ \|  _ \| ___ |/ ___)
+ _____) )  _ (| | | ||___ |   _____) | (___/ ___ | | | | | | | ____| |    
+(______/|_| \_)_|\_)_|___/   (______/ \____)_____|_| |_|_| |_|_____)_|    
+                                                                          </pre>
+
+              <div class="scanner-groups" id="scanner-groups"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="projects" class="projects-title-wrap">
+          <div class="projects-title" aria-label="Projects title">
+            <img src="./src/projects-bg.svg" alt="" class="projects-bg" />
+            <img src="./src/projects-text.svg" alt="Projects" class="projects-text" />
+          </div>
+          <div class="Github_block">
+          <a
+            class="github-ascii-card"
+            href="https://github.com/tharkaratul?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open GitHub profile"
+          >
+            <pre class="github-ascii">
+    /$$$$$$  /$$   /$$     /$$   /$$           /$$             /$$  /$$
+  /$$__  $$|__/  | $$    | $$  | $$          | $$            |  $$|  $$
+  | $$  \__/ /$$ /$$$$$$  | $$  | $$ /$$   /$$| $$$$$$$        \  $$\  $$
+  | $$ /$$$$| $$|_  $$_/  | $$$$$$$$| $$  | $$| $$__  $$ /$$$$$$\  $$\  $$
+  | $$|_  $$| $$  | $$    | $$__  $$| $$  | $$| $$  \ $$|______/ /$$/ /$$/
+  | $$  \ $$| $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$        /$$/ /$$/
+  |  $$$$$$/| $$  |  $$$$/| $$  | $$|  $$$$$$/| $$$$$$$/       /$$/ /$$/
+  \______/ |__/   \___/  |__/  |__/ \______/ |_______/       |__/ |__/</pre>
+            
+          </a>
+          </div>
+        </section>
+
+        <section class="cards-grid" id="">
+          <article class="project-card">
+            <img src="./src/Group 5.svg" alt="Web-Vulnerability-Scanner" class="project-card-image" />
+            <a class="project-view-link" href="https://github.com/tharkaratul/Web-Vulnerability-Scanner" target="_blank" rel="noreferrer">View</a>
+          </article>
+          <article class="project-card">
+            <img
+              src="./src/Group 6.svg"
+              alt="IP Look-Up project panel panel"
+              class="project-card-image"
+            />
+            <a class="project-view-link" href="https://github.com/tharkaratul/IP-Location-Look-Up" target="_blank" rel="noreferrer">View</a>
+          </article>
+          <article class="project-card">
+            <img src="./src/Group 11.svg" alt="SOC Dashboard project panel" class="project-card-image" />
+            <a class="project-view-link" onclick="alert('Work in Progress')";return false; href="" target="_blank" rel="noreferrer">View</a>
+          </article>
+        </section>
+
+        <section class="certificates-section" aria-labelledby="certificates-title">
+          <img src="./src/Group 12.svg" alt="" aria-hidden="true" class="certificates-frame" />
+          <div class="certificates-copy">
+            <h2 id="certificates-title" class="certificates-title">Certificates</h2>
+            <ul class="certificates-list">
+              <li>
+                <button
+                  class="certificate-link is-active"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/cehv12.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="cehv12.pdf"
+                >
+                  Certified Ethical Hacking(v12) - LearnkartS
+                </button>
+              </li>
+              <li>
+                <button
+                  class="certificate-link "
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/Coursera 34S3XPJH5AR4.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="Coursera 34S3XPJH5AR4.pdf"
+                >
+                  Ethical Hacking with Kali Linux
+                </button>
+              </li>
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/certiport.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
+                >
+                  Cisco Certified Support Technician Cybersecurity (CCST Cybersecurity) - Cisco
+                </button>
+              </li>
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/NetworkingBasicsUpdate.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="C:\\dummy\\certificates\\networking-basics-cisco.pdf"
+                >
+                  Networking Basics - Cisco
+                </button>
+              </li>
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/CyberThreatManagementUpdate20250905-31-41xlsn.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
+                >
+                  Cyber Threat Management - Cisco
+                </button>
+              </li>  
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/google certificate.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
+                >
+                  Foundations of Cybersecurity - Google
+                </button>
+              </li>              
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/SIEM.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
+                >
+                  Introduction to SIEM (Splunk)
+                </button>
+              </li>              
+
+
+              <li>
+                <button
+                  class="certificate-link"
+                  type="button"
+                  data-preview-type="pdf"
+                  data-preview-src="./certificate/Hands-On.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                  data-file-label="Hands-On.pdf"
+                >
+                  Hands-on Introduction to Linux Commands and Shell Scripting - IBM
+                </button> 
+              </li>
+            </ul>
+          </div>
+        <aside class="certificate-preview">
+          <iframe
+            class="certificate-pdf-viewer"
+            title="Certificate PDF preview"
+          ></iframe>
+          <div class ="certificate-dummy-view">
+            <p class="certificate-dummy-title">Preview uvailable</p>
+            <p class="certificate-dummy-path" id="certificate-dummy-path"></p>
+          </div>
+        </aside>
+        </section>
+
+        <section class="achievements-contact-section" aria-label="Achievements and contact">
+          <img src="./src/Group 9.svg" alt="" aria-hidden="true" class="achievements-frame" />
+          <div class="achievements-column">
+            <ul class="achievements-list">
+              <li>
+                Best Project Award at MIT ADT IdeaSpark'24 for innovative project development and
+                creative problem-solving among competing student teams
+              </li>
+              <li>
+                2 nd Place, Badminton 47th and 50th Foundation Day, Dr. Balasaheb Sawant Konkan
+                Krushi Vidyapeeth, Dapoli
+              </li>
+              <li>
+                Disciplinary Co-Head, MIT ADT ACES Club: Led event discipline, managed teams, and
+                ensured seamless execution of large-scale college activities.
+              </li>
+            </ul>
+
+            <div class="contact-block" id="contact">
+              <h2 class="contact-title-large">Contact</h2>
+              <div class="contact-details">
+                <p>Atul Tharkar</p>
+                <p>Mobile/Whatsapp No : +91-9765939243</p>
+                <p>E-mail : <a style="color: white;" href="mailto:atultharkar2004@gmail.com"> atultharkar2004@gmail.com</a></p>
+                <p>GitHub: <a style="color:white;" href="https://github.com/tharkaratul?tab=repositories">https://github.com/tharkaratul</a></p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="contact-side-card" aria-hidden="true">
+            <div class="contact-side-card-inner">
+              <pre>
+________ __________                
+\_____  \\______   \ ____   ____   
+ /   |   \|     ___// __ \ /    \  
+/    |    \    |   \  ___/|   |  \ 
+\_______  /____|    \___  >___|  / 
+        \/              \/     \/  
+          ___________              
+          \__    ___/___           
+            |    | /  _ \          
+            |    |(  <_> )         
+            |____| \____/          
+                                   
+ __      __     __________ __      
+/  \    /  \____\______   \  | __  
+\   \/\/   /  _ \|       _/  |/ /  
+ \        (  <_> )    |   \    <   
+  \__/\  / \____/|____|_  /__|_ \  
+       \/               \/     \/  
+              </pre>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <script>
+        const terminalScreen = document.getElementById("terminal-screen");
+        const certificatePreview = document.querySelector(".certificate-preview");
+        const certificatePdfViewer = document.querySelector(".certificate-pdf-viewer");
+        const certificateDummyPath = document.getElementById("certificate-dummy-path");
+        const certificateLinks = document.querySelectorAll(".certificate-link");
+        const scannerGroups = document.getElementById("scanner-groups");
+        const filterButtons = document.querySelectorAll(".skills-filter-button");
+        const searchButton = document.querySelector(".skills-search");
+
+        const terminalPromptTop = "┌──(atul㉿atul)-[~]";
+        const terminalPromptBottom = "└─$ ";
+        const terminalCommand = "whoami";
+        const terminalOutput = "Cyber Security Enthusiast | Problem Solver";
+        const terminal2Command ="cat intrduction.txt";
+        const terminal2Output = "I am a final-year Computer Science student specializing in Cybersecurity with practical experience in penetration testing, vulnerability assessment, and security monitoring. I have worked with tools like Splunk and Wireshark for log analysis and network traffic inspection, and have experience identifying indicators of compromise through CTF challenges and hands-on projects.I am particularly interested in applying my knowledge of identifying vulnerabilities, analyzing security events, and understanding attack methodologies to contribute to improving overall security posture. I am eager to work in dynamic cybersecurity environments where I can continuously learn, adapt, and strengthen my practical skills.";
+
+        const renderTerminal = (content, showCursor = false) => {
+          if (!terminalScreen) {
+            return;
+          }
+
+          terminalScreen.textContent = content;
+          if (showCursor) {
+            const cursor = document.createElement("span");
+            cursor.className = "terminal-cursor";
+            cursor.setAttribute("aria-hidden", "true");
+            terminalScreen.append(cursor);
+          }
+        };
+
+const runTerminalIntro = () => {
+  if (!terminalScreen) return;
+
+  let content = `${terminalPromptTop}\n${terminalPromptBottom}`;
+  renderTerminal(content, true);
+
+  // 🔹 TYPE FIRST COMMAND (whoami)
+  let typed1 = "";
+  const typeFirstCommand = () => {
+    typed1 += terminalCommand[typed1.length];
+    renderTerminal(`${terminalPromptTop}\n${terminalPromptBottom}${typed1}`, true);
+
+    if (typed1.length < terminalCommand.length) {
+      setTimeout(typeFirstCommand, 100);
+    } else {
+      setTimeout(() => {
+        content =
+          `${terminalPromptTop}\n${terminalPromptBottom}${terminalCommand}\n${terminalOutput}\n` +
+          `${terminalPromptTop}\n${terminalPromptBottom}`;
+        
+        renderTerminal(content, true);
+
+        // 🔹 START SECOND COMMAND
+        setTimeout(typeSecondCommand, 500);
+      }, 300);
+    }
+  };
+
+  // 🔹 TYPE SECOND COMMAND (cat introduction.txt)
+  let typed2 = "";
+  const typeSecondCommand = () => {
+    typed2 += terminal2Command[typed2.length];
+
+    renderTerminal(
+      `${terminalPromptTop}\n${terminalPromptBottom}${terminalCommand}\n${terminalOutput}\n` +
+      `${terminalPromptTop}\n${terminalPromptBottom}${typed2}`,
+      true
+    );
+
+    if (typed2.length < terminal2Command.length) {
+      setTimeout(typeSecondCommand, 80);
+    } else {
+      setTimeout(() => {
+        renderTerminal(
+          `${terminalPromptTop}\n${terminalPromptBottom}${terminalCommand}\n${terminalOutput}\n` +
+          `${terminalPromptTop}\n${terminalPromptBottom}${terminal2Command}\n${terminal2Output}\n` +
+          `${terminalPromptTop}\n${terminalPromptBottom}`,
+          true
+        );
+      }, 300);
+    }
+  };
+
+  setTimeout(typeFirstCommand, 500);
+};
+
+        const technicalData = [
+          {
+            title: "TOOLS DETECTED !!!",
+            items: [
+              { label: "> Nmap", value: 90 },
+              { label: "> Wireshark", value: 80 },
+              { label: "> Burp Suite", value: 75 },
+              { label: "> Splunk", value: 90 },
+              { label: "> Metasploit", value: 90 },
+              { label: "> Snort", value: 90 },
+              { label: "> OWASP ZAP", value: 75 },
+              
+            ],
+          },
+          {
+            title: "FRAMEWORK DETECTED !!!",
+            items: [
+              { label: "> METRE ATT&CK", value: 85 },
+              { label: "> Cyber Kill Chain", value: 50 },
+            ],
+          },
+          {
+            title: "PROGRAMMING LANGUAGE DETECTED !!!",
+            items: [{ label: "> Python", value: 85 }],
+            items: [{ label: "> Bash Scripting", value: 85 }],
+          },
+          {
+            title: "OPERATING SYSTEM DETECTED !!!",
+            items: [
+              { label: "> KALI LINUX", value: 85 },
+              { label: "> WINDOWS", value: 85 },
+            ],
+          },
+        ];
+
+        const nonTechnicalData = [
+          {
+            title: "Soft-Skills DETECTED !!!",
+            items: [
+              { label: "> Communication", value: 90 },
+              { label: "> Anaylysis", value: 90 },
+              { label: "> Teamwork & Collaboration", value: 90 },
+              { label: "> Decision Making", value: 90 },
+              { label: "> Leadership", value: 90 },
+              { label: "> Public Speaking", value: 90 },
+            ],
+          },
+        {
+            title: "Courses DETECTED !!!",
+            items: [
+              { label: "> Vulnerability Analysis & __Penetration Testing", value: 90 },
+              { label: "> Bio-Metrics Security", value: 90 },
+              { label: "> Cloud Security", value: 90 },
+              { label: "> Reverse Engineering & __Malware Analysis ", value: 90 },             
+            ],
+          }
+        ];
+
+        const animateValues = () => {
+          const scannerValues = document.querySelectorAll(".scanner-value");
+
+          scannerValues.forEach((valueNode, index) => {
+            const target = Number(valueNode.dataset.target || 0);
+            const meterFill = valueNode.previousElementSibling?.querySelector(".scanner-meter-fill");
+            let current = 0;
+
+            const tick = () => {
+              current += 1;
+              valueNode.textContent = `${current}%`;
+              if (meterFill) {
+                meterFill.style.width = `${current}%`;
+              }
+
+              if (current < target) {
+                window.setTimeout(tick, 18 + index * 2);
+              }
+            };
+
+            window.setTimeout(tick, 140 + index * 120);
+          });
+        };
+
+        const renderGroups = (groups) => {
+          scannerGroups.innerHTML = groups
+            .map(
+              (group) => `
+                <div class="scanner-group">
+                  <h3 class="scanner-heading">${group.title}</h3>
+                  ${group.items
+                    .map(
+                      (item) => `
+                        <div class="scanner-row">
+                          <span class="scanner-label">${item.label}</span>
+                          <div class="scanner-meter">
+                            <span class="scanner-meter-fill"></span>
+                          </div>
+                          <span class="scanner-value" data-target="${item.value}">0%</span>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>
+              `
+            )
+            .join("");
+
+          animateValues();
+        };
+
+        const setActiveFilter = (viewName) => {
+          filterButtons.forEach((button) => {
+            button.classList.toggle("is-active", button.dataset.view === viewName);
+          });
+        };
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const viewName = button.dataset.view;
+            setActiveFilter(viewName);
+            renderGroups(viewName === "non-technical" ? nonTechnicalData : technicalData);
+          });
+        });
+
+        searchButton.addEventListener("click", () => {
+          setActiveFilter("");
+          scannerGroups.innerHTML = '<p class="scanner-message">:)its all about me</p>';
+        });
+
+        certificateLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            certificateLinks.forEach((item) => item.classList.remove("is-active"));
+            link.classList.add("is-active");
+
+            if (!certificatePreview) {
+              return;
+            }
+
+            const previewType = link.dataset.previewType;
+            const fileLabel = link.dataset.fileLabel || "";
+
+            certificatePreview.classList.remove("show-pdf", "show-dummy");
+
+            if (previewType === "pdf") {
+              if (certificatePdfViewer && link.dataset.previewSrc) {
+                certificatePdfViewer.src = link.dataset.previewSrc;
+              }
+              certificatePreview.classList.add("show-pdf");
+              return;
+            }
+
+            if (certificateDummyPath) {
+              certificateDummyPath.textContent = fileLabel;
+            }
+            certificatePreview.classList.add("show-dummy");
+          });
+        });
+        const activeCert = document.querySelector(".certificate-link.is-active");
+          if (activeCert) {
+          activeCert.click();
+          }
+        runTerminalIntro();
+        renderGroups(technicalData);
+      </script>
+    </body>
+  </html>

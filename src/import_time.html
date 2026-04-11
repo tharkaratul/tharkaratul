@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background: #111; color: #eee; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        pre { line-height: 1.2; font-weight: bold; }
+        .fire { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<pre id="dragon-container"></pre>
+
+<script>
+const dragonBase = `
+   (  )   /\\   _                 (
+    \\ |  (  \\ ( \\.(               )                      _____
+  \\  \\ \\  \`  \`   ) \\             (  ___                 / _   \\_
+ (_\`    \\+   . x  ( .\\            \\/   \\____-----------/ (o)   \\_
+- .-               \\+  ;          (  O                           \\____
+                          )        \\_____________  \`              \\  /
+(__                +- .( -'.- <. - _  VVVVVVV VV V\\                 \\/
+(_____            ._._: <_ - <- _  (--  _AAAAAAA__A_/                  |
+  .    /./.+-  . .- /  +--  - .     \\______________//_              \\_______
+  (__ ' /x  / x _/ (                                  \\___'          \\     /
+ , x / ( '  . / .  /                                      |           \\   /
+    /  /  _/ /    +                                      /              \\/
+   '  (__/                                             /                  
+`;
+
+const fires = ["~", "~~", "~~~", "~~~~", "~~~~~", "~~~~", "~~~", "~~"];
+const colors = ["#ff4500", "#ffd700", "#ff0000", "#ffa500"];
+const container = document.getElementById('dragon-container');
+
+let frame = 0;
+
+function animate() {
+    let lines = dragonBase.split("\n");
+    let mouthLineIndex = 6; 
+    let color = colors[frame % colors.length];
+    let fireShape = fires[frame % fires.length];
+
+    if (lines[mouthLineIndex]) {
+        let line = lines[mouthLineIndex];
+        // In HTML, we use a span to apply color instead of ANSI codes
+        let coloredFire = `<span style="color: ${color}">${fireShape}</span>`;
+        lines[mouthLineIndex] = line.substring(0, 65) + coloredFire + line.substring(65 + fireShape.length);
+    }
+
+    container.innerHTML = lines.join("\n");
+    frame++;
+    setTimeout(animate, 100);
+}
+
+animate();
+</script>
+</body>
+</html>
