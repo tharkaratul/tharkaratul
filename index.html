@@ -1111,7 +1111,7 @@ const runTerminalIntro = () => {
           await typeKaliCommand("python interact.py", labTerminalKaliTyping);
 
           // Wait a few seconds then auto-type the hint nudge
-          await labSleep(2800);
+          await labSleep(800);
           const hintText = " -- click enter in terminal";
           for (let i = 0; i < hintText.length; i++) {
             if (labTerminalKaliTyping) {
@@ -1254,6 +1254,7 @@ const runTerminalIntro = () => {
             <div class="scanner-placeholder">
               <p class="scanner-placeholder-title">Select a Skill Category</p>
               <div class="scanner-placeholder-loader" aria-hidden="true">
+              
                 <div class="scanner-placeholder-core">
                   <div class="scanner-placeholder-dots">
                     <span></span>
@@ -1261,6 +1262,7 @@ const runTerminalIntro = () => {
                     <span></span>
                   </div>
                 </div>
+              
               </div>
               <p class="scanner-placeholder-status">${statusText}</p>
               <p class="scanner-placeholder-waiting">${waitingText}</p>
