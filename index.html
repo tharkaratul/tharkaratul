@@ -2,7 +2,7 @@
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=0.1" />
+      <meta name="viewport" content="width=1500, initial-scale=1.0" />
       <link href='https://fonts.googleapis.com/css?family=Jost' rel='stylesheet'>
       <link href='https://fonts.googleapis.com/css?family=Kodchasan' rel='stylesheet'>
       <link href="https://googleapis.com" rel="stylesheet">
@@ -175,12 +175,13 @@
             <h2 class="skills-title">SKILLS SCANNER</h2>
             <img src="./src/Line 2.svg" class="scanner-line"/>
             <div class="skills-buttons" aria-label="Skills scanner filters">
-              <button class="skills-filter-button is-active" type="button" data-view="technical">
+              <button class="skills-filter-button" type="button" data-view="technical">
                 <img src="./src/Group 15.svg" alt="" aria-hidden="true" />
               </button>
               <button class="skills-filter-button" type="button" data-view="non-technical">
                 <img src="./src/Group 16.svg" alt="" aria-hidden="true" />
               </button>
+              
             </div>
             <section class="skills-scanner-content" aria-label="Technical skills scan results">
               <img
@@ -418,7 +419,7 @@
               </li>
               <li class="reveal-up" data-reveal>
                 <img src="./src/google-icon.svg"href="https://forms.gle/e1np7A6iPM3LC48H9" class="google-icon"/>
-                <a class="google.text" href="https://forms.gle/e1np7A6iPM3LC48H9" >Google Forum</a></li>
+                <a class="google.text" href="https://forms.gle/e1np7A6iPM3LC48H9" >Google form</a></li>
             </ul>
           </div>
         </section>
@@ -430,6 +431,7 @@
         const certificatePdfViewer = document.querySelector(".certificate-pdf-viewer");
         const certificateDummyPath = document.getElementById("certificate-dummy-path");
         const certificateLinks = document.querySelectorAll(".certificate-link");
+        const scannerContent = document.querySelector(".skills-scanner-content");
         const scannerGroups = document.getElementById("scanner-groups");
         const filterButtons = document.querySelectorAll(".skills-filter-button");
         const searchButton = document.querySelector(".skills-search");
@@ -1108,6 +1110,20 @@ const runTerminalIntro = () => {
           // Type "python interact.py" with animation
           await typeKaliCommand("python interact.py", labTerminalKaliTyping);
 
+          // Wait a few seconds then auto-type the hint nudge
+          await labSleep(2800);
+          const hintText = " -- click enter in terminal";
+          for (let i = 0; i < hintText.length; i++) {
+            if (labTerminalKaliTyping) {
+              labTerminalKaliTyping.textContent += hintText[i];
+            }
+            await labSleep(55);
+          }
+          // Add a dim hint class so it looks like a ghost suggestion
+          if (labTerminalKaliTyping) {
+            labTerminalKaliTyping.classList.add("typing-hint");
+          }
+
           // Wait for user to press Enter (listen on document)
           await new Promise((resolve) => {
             const onEnter = (event) => {
@@ -1228,7 +1244,36 @@ const runTerminalIntro = () => {
           });
         };
 
+        const renderScannerPlaceholder = (statusText = "⟳ Scanning Available Modules...", waitingText = "Waiting For User Input...") => {
+          if (!scannerGroups || !scannerContent) {
+            return;
+          }
+
+          scannerContent.classList.add("is-idle");
+          scannerGroups.innerHTML = `
+            <div class="scanner-placeholder">
+              <p class="scanner-placeholder-title">Select a Skill Category</p>
+              <div class="scanner-placeholder-loader" aria-hidden="true">
+                <div class="scanner-placeholder-core">
+                  <div class="scanner-placeholder-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <p class="scanner-placeholder-status">${statusText}</p>
+              <p class="scanner-placeholder-waiting">${waitingText}</p>
+            </div>
+          `;
+        };
+
         const renderGroups = (groups) => {
+          if (!scannerGroups || !scannerContent) {
+            return;
+          }
+
+          scannerContent.classList.remove("is-idle");
           scannerGroups.innerHTML = groups
             .map(
               (group, groupIndex) => `
@@ -1253,6 +1298,33 @@ const runTerminalIntro = () => {
             .join("");
 
           animateValues();
+        };
+
+        const runSkillsButtonDemo = async () => {
+          if (!filterButtons.length) {
+            return;
+          }
+
+          const demoSequence = [
+            filterButtons.find((button) => button.dataset.view === "technical"),
+            filterButtons.find((button) => button.dataset.view === "non-technical"),
+          ].filter(Boolean);
+
+          const playDemoPress = async (button) => {
+            button.classList.remove("is-demo-press");
+            void button.offsetWidth;
+            button.classList.add("is-demo-press");
+            await labSleep(420);
+            button.classList.remove("is-demo-press");
+            await labSleep(140);
+          };
+
+          await labSleep(1600);
+
+          for (const button of demoSequence) {
+            await playDemoPress(button);
+            await labSleep(500);
+          }
         };
 
         const updateScrollProgress = () => {
@@ -1711,17 +1783,31 @@ const runTerminalIntro = () => {
         };
 
         filterButtons.forEach((button) => {
+          const releasePress = () => button.classList.remove("is-pressed");
+
+          button.addEventListener("pointerdown", () => {
+            button.classList.add("is-pressed");
+          });
+          button.addEventListener("pointerup", releasePress);
+          button.addEventListener("pointerleave", releasePress);
+          button.addEventListener("pointercancel", releasePress);
+
           button.addEventListener("click", () => {
             const viewName = button.dataset.view;
             setActiveFilter(viewName);
             renderGroups(viewName === "non-technical" ? nonTechnicalData : technicalData);
+            // Dismiss the hint popup on first click
+            const hint = document.getElementById("skills-click-hint");
+            if (hint) {
+              hint.classList.add("is-dismissed");
+            }
           });
         });
 
         if (searchButton) {
           searchButton.addEventListener("click", () => {
             setActiveFilter("");
-            scannerGroups.innerHTML = '<p class="scanner-message">:)its all about me</p>';
+            renderScannerPlaceholder("⟳ Scanning Available Modules...", "Waiting For User Input...");
           });
         }
 
@@ -1758,7 +1844,8 @@ const runTerminalIntro = () => {
           activeCert.click();
           }
         runInteractiveTerminalIntro();
-        renderGroups(technicalData);
+        renderScannerPlaceholder();
+        runSkillsButtonDemo();
         initPageMotion();
         initResumeBubble();
 

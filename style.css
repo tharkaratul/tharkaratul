@@ -588,7 +588,7 @@ html {
 }
 
 .container {
-  width: min(1920px, 100vw);
+  width: min(1920px,100vw);
   margin: 0 auto;
   padding-left: 24px;
   padding-right: 20px;
@@ -1230,10 +1230,17 @@ html {
   height: 100%;
   padding: 0;
   border: 0;
+  border-radius: 999px;
   background: transparent;
   cursor: pointer;
   font: inherit;
-  transition: transform 220ms ease, filter 220ms ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.14);
+  transition:
+    transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 160ms ease;
+  will-change: transform;
 }
 
 .scanner-line{
@@ -1247,15 +1254,50 @@ html {
   width: auto;
   height: 36px ;
   display: block;
+  transition:
+    transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 120ms ease;
 }
 
 .skills-filter-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.15));
+  transform: translateY(-1px) scale(1.015);
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+}
+
+.skills-filter-button:hover img {
+  filter: brightness(1.02);
+}
+
+.skills-filter-button.is-pressed {
+  transform: translateY(4px) scale(0.995);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.skills-filter-button.is-demo-press {
+  transform: translateY(4px) scale(0.995);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition-duration: 120ms;
+}
+
+.skills-filter-button.is-pressed img {
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+
+.skills-filter-button.is-demo-press img {
+  transform: translateY(1px);
+  filter: brightness(0.99);
+  transition-duration: 120ms;
 }
 
 .skills-filter-button.is-active {
-  filter: border right  ;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.12);
+}
+
+.skills-filter-button.is-active img {
+  filter: saturate(1.06) brightness(0.98);
 }
 
 .skills-scanner-content {
@@ -1267,6 +1309,11 @@ html {
   z-index: 1;
   padding: 20px 30px 24px 36px;
   overflow: hidden;
+}
+
+.skills-scanner-content.is-idle {
+  display: grid;
+  place-items: center;
 }
 
 .skills-scanner-bg {
@@ -1292,12 +1339,109 @@ html {
   animation: ascii-drift 10s ease-in-out infinite;
 }
 
+.skills-scanner-content.is-idle .skills-scanner-ascii {
+  display: none;
+}
+
 .scanner-groups {
   position: relative;
   z-index: 1;
   bottom: 12px;
   display: grid;
   gap: 5px;
+}
+
+.skills-scanner-content.is-idle .scanner-groups {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  place-items: center;
+}
+
+.scanner-placeholder {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  width: min(100%, 320px);
+  text-align: center;
+  color: #111;
+}
+
+.scanner-placeholder-title {
+  margin: 0;
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(1rem, 1.2vw, 1.22rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scanner-placeholder-loader {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+}
+
+.scanner-placeholder-loader::before,
+.scanner-placeholder-loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.scanner-placeholder-loader::before {
+  border: 1px solid rgba(20, 20, 20, 0.18);
+}
+
+.scanner-placeholder-loader::after {
+  inset: 8px;
+  border-top: 2px solid rgba(25, 25, 25, 0.72);
+  border-right: 2px solid rgba(25, 25, 25, 0.28);
+  border-bottom: 2px solid rgba(25, 25, 25, 0.14);
+  border-left: 2px solid rgba(25, 25, 25, 0.48);
+  animation: scanner-loader-spin 1.45s linear infinite;
+}
+
+.scanner-placeholder-core {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.scanner-placeholder-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.scanner-placeholder-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.65);
+  animation: scanner-dot-pulse 1.2s ease-in-out infinite;
+}
+
+.scanner-placeholder-dots span:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.scanner-placeholder-dots span:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+.scanner-placeholder-status,
+.scanner-placeholder-waiting {
+  margin: 0;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.scanner-placeholder-waiting {
+  color: rgba(17, 17, 17, 0.72);
 }
 
 .scanner-group {
@@ -2250,6 +2394,29 @@ html {
   100% {
     opacity: 0;
     transform: scale(1.45);
+  }
+}
+
+@keyframes scanner-loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scanner-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
   }
 }
 
