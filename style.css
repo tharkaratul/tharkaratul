@@ -1219,7 +1219,7 @@ html {
 }
 .skills-search:hover{
   transform: translateY(-2px) scale(1.02);
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.18));
+  
 }
 .skills-filter-button {
   position: relative;
@@ -1234,7 +1234,7 @@ html {
   background: transparent;
   cursor: pointer;
   font: inherit;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.14);
+  
   transition:
     transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 120ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -1262,7 +1262,6 @@ html {
 
 .skills-filter-button:hover {
   transform: translateY(-1px) scale(1.015);
-  filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
 }
 
 .skills-filter-button:hover img {
@@ -1271,12 +1270,10 @@ html {
 
 .skills-filter-button.is-pressed {
   transform: translateY(4px) scale(0.995);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .skills-filter-button.is-demo-press {
   transform: translateY(4px) scale(0.995);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition-duration: 120ms;
 }
 
@@ -1291,10 +1288,7 @@ html {
   transition-duration: 120ms;
 }
 
-.skills-filter-button.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.12);
-}
+
 
 .skills-filter-button.is-active img {
   filter: saturate(1.06) brightness(0.98);
