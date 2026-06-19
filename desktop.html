@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1500, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Jost' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Kodchasan' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Anta' rel='stylesheet'>
+    <title>Atul Tharkar | Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Major+Mono+Display&family=Share+Tech+Mono&family=Teko:wght@500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-bar" id="scroll-progress-bar"></span>
+    </div>
+    <div class="page-ambient" aria-hidden="true">
+      <div class="cursor-spotlight" id="cursor-spotlight"></div>
+      <div class="floating-particles" id="floating-particles"></div>
+    </div>
+    <div class="resume-bubble-layer" aria-live="polite">
+      <button class="resume-bubble" id="resume-bubble" type="button" aria-label="Download resume">
+        <span class="rbl-glass-base" aria-hidden="true"></span>
+        <canvas class="rbl-circuit-canvas" id="rbl-circuit-canvas" aria-hidden="true"></canvas>
+        <svg class="rbl-hud-ring" id="rbl-hud-ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="rbl-ring-outer" cx="100" cy="100" r="94"/>
+          <g class="rbl-ticks" id="rbl-ticks"></g>
+          <circle class="rbl-ring-scan" cx="100" cy="100" r="88"/>
+          <circle class="rbl-ring-inner" cx="100" cy="100" r="78"/>
+          <path class="rbl-bracket" d="M100,8 L100,18"/>
+          <path class="rbl-bracket" d="M100,182 L100,192"/>
+          <path class="rbl-bracket" d="M8,100 L18,100"/>
+          <path class="rbl-bracket" d="M182,100 L192,100"/>
+          <g class="rbl-shield" transform="translate(100,28)">
+            <path d="M0,-8 L6,-4 L6,2 Q6,8 0,11 Q-6,8 -6,2 L-6,-4 Z"/>
+          </g>
+          <g class="rbl-lock" transform="translate(100,168)">
+            <rect x="-5" y="-3" width="10" height="8" rx="1"/>
+            <path d="M-3,-3 Q-3,-9 0,-9 Q3,-9 3,-3"/>
+            <circle cx="0" cy="1" r="1.5" fill="none" stroke-width="1"/>
+          </g>
+          <text class="rbl-hud-label" x="22" y="72">SEC</text>
+          <text class="rbl-hud-label" x="22" y="132">LVL</text>
+          <text class="rbl-hud-label rbl-hud-label-right" x="178" y="72">HUD</text>
+          <text class="rbl-hud-label rbl-hud-label-right" x="178" y="132">v2.4</text>
+          <circle class="rbl-status-dot rbl-dot-a" cx="38" cy="100" r="2.5"/>
+          <circle class="rbl-status-dot rbl-dot-b" cx="162" cy="100" r="2.5"/>
+        </svg>
+        <span class="rbl-sheen" aria-hidden="true"></span>
+        <span class="rbl-core" aria-hidden="true"></span>
+        <span class="rbl-label" data-default="RESUME" data-hover="DOWNLOAD" aria-hidden="true">RESUME</span>
+        <span class="rbl-sublabel" aria-hidden="true">[ CLICK TO ACCESS ]</span>
+        <span class="rbl-orbit-wrap" id="rbl-orbit-particles" aria-hidden="true"></span>
+        <span class="rbl-ambient" aria-hidden="true"></span>
+        <span class="rbl-ripple" id="rbl-ripple" aria-hidden="true"></span>
+      </button>
+      <div class="resume-terminal-popup" id="resume-terminal-popup" aria-hidden="true">
+        <div class="resume-terminal-popup-head">resume-daemon</div>
+        <div class="resume-terminal-popup-body">Downloading resume.pdf...</div>
+        <div class="resume-terminal-popup-bar">███████████ 100%</div>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container top-bar">
+        <img src="./src/Group 7.svg" alt="" aria-hidden="true" class="header-frame-line" />
+        <a href="#home" class="brand-wrap">
+          <img src="./src/avatar.png" alt="Atul Tharkar" class="avatar" />
+          <span class="brand-text">Atul Tharkar</span>
+          <span class="tagline">// CYBERSECURITY ENTHUSIAST</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <li><a href="#about">_ABOUT</a></li>
+            <li><a href="#projects">_PROJECTS</a></li>
+            <li><a href="#skills">_SKILLS</a></li>
+            <li><a href="#contact">_CONTACT</a></li>
+          </ul>
+        </nav>
+        <a href="https://github.com/tharkaratul?tab=repositories" class="github-pill" aria-label="GitHub profile">
+          <img src="./src/GitHub_Invertocat_White.svg" alt="GitHub" class="github-image"/>
+        </a>
+      </div>
+    </header>
+
+    <main id="home" class="container">
+      <section class="hero-grid reveal-up" data-reveal data-parallax data-parallax-speed="0.03">
+        <div class="panel_terminal reveal-up motion-card" id="about" data-reveal data-tilt>
+          <div class="terminal-window" aria-label="Animated terminal introduction">
+            <img src="./src/Group 14.svg" alt="" class="terminal_panel"/>
+            <div class="terminal-shell" id="terminal-shell">
+              <div class="terminal-noise" aria-hidden="true"></div>
+              <div class="terminal-scanlines" aria-hidden="true"></div>
+              <div class="terminal-matrix" id="terminal-matrix" aria-hidden="true"></div>
+              <div class="terminal-output" id="terminal-output"></div>
+              <div class="terminal-kali-display" id="terminal-kali-display" style="display:none;">
+                <div class="terminal-kali-display-top">┌──(atul㉿atul)-[~]</div>
+                <div class="terminal-kali-display-bottom">
+                  <span>└─$</span>
+                  <span class="terminal-kali-typing" id="terminal-kali-typing"></span>
+                </div>
+              </div>
+              <form class="terminal-input-row is-hidden" id="terminal-form" autocomplete="off">
+                <label class="terminal-input-prompt" for="terminal-input">
+                  <span class="terminal-input-entry terminal-prompt-kali" id="terminal-prompt-kali">
+                    <span class="terminal-input-prompt-kali-top">┌──(atul㉿atul)-[~]</span>
+                    <span class="terminal-input-prompt-kali-bottom">└─$</span>
+                    <input class="terminal-input" id="terminal-input" name="terminal-input" type="text"
+                      autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"/>
+                  </span>
+                  <span class="terminal-input-entry terminal-prompt-cmd is-hidden" id="terminal-prompt-cmd">
+                    <span class="terminal-input-prompt-bottom">Command :</span>
+                    <input class="terminal-input terminal-input-cmd" id="terminal-input-cmd" name="terminal-input-cmd" type="text"
+                      autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"/>
+                  </span>
+                </label>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-skills reveal-up motion-card" id="skills" data-reveal data-tilt>
+          <img src="./src/Rectangle 3.svg" alt="Skills scanner panel" />
+          <h2 class="skills-title">SKILLS SCANNER</h2>
+          <img src="./src/Line 2.svg" class="scanner-line"/>
+          <div class="skills-buttons" aria-label="Skills scanner filters">
+            <button class="skills-filter-button" type="button" data-view="technical">
+              <img src="./src/Group 15.svg" alt="" aria-hidden="true" />
+            </button>
+            <button class="skills-filter-button" type="button" data-view="non-technical">
+              <img src="./src/Group 16.svg" alt="" aria-hidden="true" />
+            </button>
+          </div>
+          <section class="skills-scanner-content" aria-label="Technical skills scan results">
+            <img src="./src/Rectangle 7.svg" alt="" aria-hidden="true" class="skills-scanner-bg"/>
+            <pre class="skills-scanner-ascii">  ______ _     _ _ _           ______
+ / _____) |   (_) | |         / _____)
+( (____ | |  _ _| | |  ___   ( (____   ____ _____ ____  ____  _____  ____
+ \____ \| |_/ ) | | | /___)   \____ \ / ___|____ |  _ \|  _ \| ___ |/ ___)
+ _____) )  _ (| | | ||___ |   _____) | (___/ ___ | | | | | | | ____| |
+(______/|_| \_)_|\_)_|___/   (______/ \____)_____|_| |_|_| |_|_____)_|</pre>
+            <div class="scanner-groups" id="scanner-groups"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-title-wrap reveal-up" data-reveal data-parallax data-parallax-speed="0.022">
+        <div class="projects-title" aria-label="Projects title" data-reveal>
+          <img src="./src/projects-bg.svg" alt="" class="projects-bg" />
+          <img src="./src/projects-text.svg" alt="Projects" class="projects-text" />
+        </div>
+        <div class="Github_block">
+          <a class="github-ascii-card reveal-up motion-card"
+            href="https://github.com/tharkaratul?tab=repositories"
+            target="_blank" rel="noreferrer" aria-label="Open GitHub profile" data-reveal data-tilt>
+            <pre class="github-ascii">
+    /$$$$$$  /$$   /$$     /$$   /$$           /$$            / $$\ / $$\
+   /$$__  $$|__/  | $$    | $$  | $$          | $$             \ $$\ \ $$\
+  | $$  \__/ /$$ /$$$$$$  | $$  | $$ /$$   /$$| $$$$$$$         \ $$\ \ $$\
+  | $$ /$$$$| $$|_  $$_/  | $$$$$$$$| $$  | $$| $$__  $$ /$$$$$$ \ $$\ \ $$\
+  | $$|_  $$| $$  | $$    | $$__  $$| $$  | $$| $$  \ $$|______/ / $$/ / $$/
+  | $$  \ $$| $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$        / $$/ / $$/
+  |  $$$$$$/| $$  |  $$$$/| $$  | $$|  $$$$$$/| $$$$$$$/       / $$/ / $$/
+  \______/ |__/   \___/  |__/  |__/ \______/ |_______/        |__/  |__/</pre>
+          </a>
+        </div>
+      </section>
+
+      <section class="cards-grid reveal-up" data-reveal>
+        <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt>
+          <img src="./src/Group 5.svg" alt="Web-Vulnerability-Scanner" class="project-card-image" />
+          <a class="project-view-link" href="https://github.com/tharkaratul/Web-Vulnerability-Scanner" target="_blank" rel="noreferrer">View</a>
+        </article>
+        <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt data-reveal-delay="0.08">
+          <img src="./src/Group 6.svg" alt="IP Look-Up project panel" class="project-card-image"/>
+          <a class="project-view-link" href="https://github.com/tharkaratul/IP-Location-Look-Up" target="_blank" rel="noreferrer">View</a>
+        </article>
+        <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt data-reveal-delay="0.16">
+          <img src="./src/Group_11.svg" alt="SOC Dashboard project panel" class="project-card-image" />
+          <a class="project-view-link" href="https://github.com/tharkaratul/Splunk-SSH_Dashboard" target="_blank" rel="noreferrer">View</a>
+        </article>
+      </section>
+
+      <section class="certificates-section reveal-up" aria-labelledby="certificates-title" data-reveal data-parallax data-parallax-speed="0.018">
+        <img src="./src/Group 12.svg" alt="" aria-hidden="true" class="certificates-frame" />
+        <div class="certificates-copy">
+          <img src="./src/Group 20.svg" alt="" class="certificate-head"/>
+          <ul class="certificates-list">
+            <li class="reveal-up" data-reveal>
+              <button class="certificate-link is-active" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/cehv12.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="cehv12.pdf">
+                Ethical Hacking - LearnkartS
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.05">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/Coursera 34S3XPJH5AR4.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="Coursera 34S3XPJH5AR4.pdf">
+                Ethical Hacking with Kali Linux
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.1">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/certiport.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="certiport.pdf">
+                Cisco Certified Support Technician Cybersecurity (CCST Cybersecurity) - Cisco
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.15">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/NetworkingBasicsUpdate.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="NetworkingBasicsUpdate.pdf">
+                Networking Basics - Cisco
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.2">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/CyberThreatManagementUpdate20250905-31-41xlsn.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="CyberThreatManagement.pdf">
+                Cyber Threat Management - Cisco
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.25">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/google certificate.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="google certificate.pdf">
+                Foundations of Cybersecurity - Google
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.3">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/SIEM.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="SIEM.pdf">
+                Introduction to SIEM (Splunk)
+              </button>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.35">
+              <button class="certificate-link" type="button" data-preview-type="pdf"
+                data-preview-src="./certificate/Hands-On.pdf#toolbar=0&navpanes=0&scrollbar=0" data-file-label="Hands-On.pdf">
+                Hands-on Introduction to Linux Commands and Shell Scripting - IBM
+              </button>
+            </li>
+          </ul>
+        </div>
+        <aside class="certificate-preview motion-card glow-border" data-tilt data-reveal>
+          <iframe class="certificate-pdf-viewer" title="Certificate PDF preview"></iframe>
+          <div class="certificate-dummy-view">
+            <p class="certificate-dummy-title">Preview available</p>
+            <p class="certificate-dummy-path" id="certificate-dummy-path"></p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="achievements-contact-section reveal-up" aria-label="Achievements and contact" data-reveal data-parallax data-parallax-speed="0.014">
+        <img src="./src/Group 9.svg" alt="" aria-hidden="true" class="achievements-frame" />
+        <div class="achievements-column">
+          <img src="./src/Rectangle 13.svg" class="achievement-card"/>
+          <h2 class="Achievements-title" data-reveal-delay="0.16">Achievements</h2>
+          <ul class="achievements-list">
+            <li class="reveal-up" data-reveal>
+              <span class="achievement-lead">Best Project Award At MIT ADT IdeaSpark'24</span> For Innovative Project Development And
+              Creative Problem-Solving Among Competing Student Teams.
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.08">
+              <span class="achievement-lead">2nd Place, Badminton 47th And 50th Foundation Day</span>, Dr. Balasaheb Sawant Konkan
+              Krushi Vidyapeeth, Dapoli
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.16">
+              <span class="achievement-lead">Disciplinary Co-Head, MIT ADT ACES Club:</span> Led Event Discipline, Managed Teams, And
+              Ensured Seamless Execution Of Large-Scale College Activities.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contact-section reveal-up" id="contact" aria-label="Contact" data-reveal>
+        <img src="./src/Group 23.svg" alt="" aria-hidden="true" class="contact-section-bg" />
+        <div class="contact-section-content">
+          <h2 class="contact-section-title">CONTACT</h2>
+          <ul class="contact-section-list">
+            <li class="reveal-up" data-reveal><a class="contact-name">Atul Tharkar</a></li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.06">
+              <img src="./src/whatsapp-icon.png" class="whatsapp-icon">
+              Mobile/Whatsapp No : <a href="https://wa.me/9765939243">+91-9765939243</a>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.12">
+              E-mail : <img src="./src/mail-icon.png" class="mail-icon">
+              <a href="mailto:atultharkar2004@gmail.com">atultharkar2004@gmail.com</a>
+            </li>
+            <li class="reveal-up" data-reveal data-reveal-delay="0.18">
+              <img src="./src/github.png" class="github">
+              GitHub: <a href="https://github.com/tharkaratul?tab=repositories" target="_blank" rel="noreferrer">https://github.com/tharkaratul</a>
+            </li>
+            <li class="reveal-up" data-reveal>
+              <img src="./src/google-icon.svg" class="google-icon"/>
+              <a href="https://forms.gle/e1np7A6iPM3LC48H9">Google form</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      /* ── DOM refs ────────────────────────────────────────────────── */
+      const certificatePreview    = document.querySelector(".certificate-preview");
+      const certificatePdfViewer  = document.querySelector(".certificate-pdf-viewer");
+      const certificateDummyPath  = document.getElementById("certificate-dummy-path");
+      const certificateLinks      = document.querySelectorAll(".certificate-link");
+      const scannerContent        = document.querySelector(".skills-scanner-content");
+      const scannerGroups         = document.getElementById("scanner-groups");
+      const filterButtons         = document.querySelectorAll(".skills-filter-button");
+      const scrollProgressBar     = document.getElementById("scroll-progress-bar");
+      const cursorSpotlight       = document.getElementById("cursor-spotlight");
+      const floatingParticles     = document.getElementById("floating-particles");
+      const resumeBubble          = document.getElementById("resume-bubble");
+      const resumeBubbleText      = document.querySelector(".rbl-label");
+      const resumeBubbleRipple    = document.getElementById("rbl-ripple");
+      const resumeTerminalPopup   = document.getElementById("resume-terminal-popup");
+      const labTerminalShell      = document.getElementById("terminal-shell");
+      const labTerminalOutput     = document.getElementById("terminal-output");
+      const labTerminalForm       = document.getElementById("terminal-form");
+      const labTerminalInput      = document.getElementById("terminal-input");
+      const labTerminalMatrix     = document.getElementById("terminal-matrix");
+      const labTerminalPromptKali = document.getElementById("terminal-prompt-kali");
+      const labTerminalPromptCmd  = document.getElementById("terminal-prompt-cmd");
+      const labTerminalInputCmd   = document.getElementById("terminal-input-cmd");
+      const labTerminalKaliDisplay= document.getElementById("terminal-kali-display");
+      const labTerminalKaliTyping = document.getElementById("terminal-kali-typing");
+
+      /* ── Terminal helpers ────────────────────────────────────────── */
+      const labPromptTop    = "\u250c\u2500\u2500(atul\u3351atul)-[~]";
+      const labPromptBottom = "\u2514\u2500$";
+      const labTerminalState = { busy:true, history:[], historyIndex:-1, pendingAction:null, matrixTimer:null, hasLoaded:false };
+      const labSleep = ms => new Promise(r => setTimeout(r, ms));
+
+      const typeKaliCommand = async (text, el) => {
+        if (!el) return;
+        el.textContent = "";
+        for (let i = 0; i < text.length; i++) { el.textContent += text[i]; await labSleep(80); }
+      };
+
+      const escL = (v = "") => v.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+      const scrollL = (s=true) => labTerminalOutput?.scrollTo({ top:labTerminalOutput.scrollHeight, behavior:s?"smooth":"auto" });
+
+      const focusL = () => requestAnimationFrame(() => {
+        if (labTerminalInputCmd && !labTerminalInputCmd.disabled) { labTerminalInputCmd.focus({preventScroll:true}); return; }
+        if (labTerminalInput && !labTerminalInput.disabled) labTerminalInput.focus({preventScroll:true});
+      });
+
+      const appendLNode = (node, s=true) => {
+        if (!labTerminalOutput) return node;
+        if (labTerminalForm && labTerminalForm.parentElement === labTerminalOutput)
+          labTerminalOutput.insertBefore(node, labTerminalForm);
+        else labTerminalOutput.appendChild(node);
+        scrollL(s); return node;
+      };
+
+      const appendLL = (text, cls="") => { const d=document.createElement("div"); d.className=`terminal-line${cls?" "+cls:""}`; d.textContent=text; return appendLNode(d); };
+      const appendLB = (text, cls="") => { const p=document.createElement("pre"); p.className=`terminal-block${cls?" "+cls:""}`; p.textContent=text; return appendLNode(p); };
+
+      const buildLPrompt = (cmd="") => {
+        const r=document.createElement("div"); r.className="terminal-prompt-line terminal-prompt-stack";
+        r.innerHTML=`<span class="terminal-prompt">${escL(labPromptTop)}</span><span><span class="terminal-prompt">${escL(labPromptBottom)}</span>${cmd?` <span class="terminal-command">${escL(cmd)}</span>`:""}</span>`;
+        return r;
+      };
+      const appendLE  = cmd => appendLNode(buildLPrompt(cmd));
+      const appendLCE = cmd => { const r=document.createElement("div"); r.className="terminal-prompt-line terminal-cmd-echo"; r.innerHTML=`<span class="terminal-cmd-echo-label">Command :</span><span class="terminal-cmd-echo-value">${escL(cmd)}</span>`; return appendLNode(r); };
+      const appendLIP = (cmd,p) => { const r=document.createElement("div"); r.className="terminal-prompt-line"; r.innerHTML=`<span class="terminal-prompt">${escL(p)}</span><span class="terminal-command">${escL(cmd)}</span>`; return appendLNode(r); };
+
+      const typeLL = async (text, cls="", spd=16) => {
+        const d=document.createElement("div"); d.className=`terminal-line${cls?" "+cls:""}`;
+        appendLNode(d,false);
+        for (let i=0;i<text.length;i++){d.textContent+=text[i];scrollL(false);await labSleep(spd);}
+        scrollL(); return d;
+      };
+
+      const typeLPE = async (cmd, spd=28) => {
+        const r=buildLPrompt(); r.querySelectorAll(".terminal-prompt")[1].insertAdjacentHTML("afterend",' <span class="terminal-command"></span>');
+        appendLNode(r,false);
+        const cn=r.querySelector(".terminal-command");
+        for(let i=0;i<cmd.length;i++){cn.textContent+=cmd[i];scrollL(false);await labSleep(spd);}
+        scrollL();
+      };
+
+      const setLA = (enabled, ph="", mode="cmd") => {
+        if(!labTerminalInput||!labTerminalForm) return;
+        labTerminalState.busy=!enabled;
+        labTerminalForm.classList.toggle("is-hidden",!enabled&&!labTerminalState.hasLoaded);
+        if(!enabled){labTerminalInput.disabled=true;labTerminalInput.blur();if(labTerminalInputCmd){labTerminalInputCmd.disabled=true;labTerminalInputCmd.blur();}return;}
+        labTerminalState.hasLoaded=true; labTerminalForm.classList.remove("is-hidden");
+        if(mode==="kali"){
+          labTerminalPromptKali?.classList.remove("is-hidden"); labTerminalPromptCmd?.classList.add("is-hidden");
+          labTerminalInput.disabled=false; labTerminalInput.placeholder=ph; labTerminalInput.value="";
+          if(labTerminalInputCmd) labTerminalInputCmd.disabled=true;
+          if(labTerminalOutput) labTerminalOutput.appendChild(labTerminalForm);
+          scrollL(false); requestAnimationFrame(()=>labTerminalInput.focus({preventScroll:true}));
+        } else {
+          labTerminalPromptKali?.classList.add("is-hidden"); labTerminalPromptCmd?.classList.remove("is-hidden");
+          const ai=labTerminalInputCmd||labTerminalInput; ai.disabled=false; ai.placeholder=ph; ai.value="";
+          labTerminalInput.disabled=true;
+          if(labTerminalOutput) labTerminalOutput.appendChild(labTerminalForm);
+          scrollL(false); requestAnimationFrame(()=>ai.focus({preventScroll:true}));
+        }
+      };
+
+      const addLD = () => appendLL("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━","terminal-divider");
+      const rndF  = a => a[Math.floor(Math.random()*a.length)];
+      const rndI  = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+      const buildIP = () => [rndI(23,223),rndI(11,252),rndI(7,249),rndI(3,244)].join(".");
+      const buildDate = off => { const d=new Date(Date.UTC(2026,rndI(0,11),rndI(1,28),rndI(0,23),rndI(0,59),rndI(0,59))); d.setUTCDate(d.getUTCDate()+off); return d.toUTCString(); };
+
+      const geos = [{country:"Germany",code:"DE",region:"Bavaria",city:"Munich",lat:"48.1351",lon:"11.5820"},{country:"Singapore",code:"SG",region:"Central Region",city:"Singapore",lat:"1.3521",lon:"103.8198"},{country:"United States",code:"US",region:"Virginia",city:"Ashburn",lat:"39.0438",lon:"-77.4874"},{country:"Netherlands",code:"NL",region:"North Holland",city:"Amsterdam",lat:"52.3676",lon:"4.9041"},{country:"India",code:"IN",region:"Maharashtra",city:"Mumbai",lat:"19.0760",lon:"72.8777"}];
+      const hosts = ["Cloudflare Inc.","Amazon Data Services","DigitalOcean LLC","Akamai International","Hetzner Online GmbH"];
+      const sslIs = ["Let's Encrypt","DigiCert TLS RSA SHA256","Sectigo RSA Domain Validation","GlobalSign Secure Server CA","Google Trust Services"];
+      const payloads = ["?","\\x27UNION SELECT","../","//*","' OR '1'='1","../../../etc/passwd","<script>alert(1)<\\/script>","${7*7}"];
+      const crawlPaths = ["/blog/red-team-notes","/products/api/v1/status","/assets/js/dashboard.js","/login?redirect=%2Fadmin","/careers/security-analyst","/docs/exposure-checklist","/api/internal/heartbeat","/admin/backup-2026.zip","/reports/q2-findings","/support/ticket/incident-response"];
+
+      const showBanner = async () => {
+        addLD(); await typeLL("Interactive Cyber Lab Loaded","terminal-success",12); await typeLL("Type 'help' to begin","terminal-accent",12); addLD();
+        await typeLL("Available Commands:","terminal-muted",12);
+        for (const c of ["help","whoami","skills","projects","social","clear","lookup","scanner","crawler","matrix","sudo"]) await typeLL(`- ${c}`,"terminal-muted",10);
+      };
+
+      const runLookup = async t => {
+        const ip=buildIP(),geo=rndF(geos),iss=rndF(sslIs),ho=rndF(hosts),vf=buildDate(0),vu=buildDate(rndI(60,120));
+        await labSleep(220);
+        await typeLL("You Only Got 500 Chances To Search ...!!!!!","terminal-warning",12);
+        await typeLL(`Resolving target: ${t}`,"terminal-accent",12);
+        await typeLL("IP Geolocation Result","terminal-success",12);
+        await typeLL("-----------------------------------------------------","terminal-divider",2);
+        for (const l of [`IP Address : ${ip}`,`Country    : ${geo.country}`,`Country Code: ${geo.code}`,`State/Region: ${geo.region}`,`City       : ${geo.city}`,"-----------------------------------------------------",`Latitude :- ${geo.lat}`,`Longitude :- ${geo.lon}`,`Hosting Company :- ${ho}`,`Issuer Name: ${iss}`,"-----------------------------------------------------",`Valid from: ${vf}`,`Valid until: ${vu}`]) {
+          await typeLL(l,l.includes("----")?"terminal-divider":"terminal-muted",8); await labSleep(60);
+        }
+      };
+
+      const runScanner = async fp => {
+        if(fp) await typeLL(`Loaded payload file: ${fp}`,"terminal-accent",12);
+        let n404=0;
+        for(let r=0;r<rndI(4,6);r++){
+          const p=rndF(payloads),sc=rndF([200,200,200,302,403,500,404]);
+          if(sc===404)n404++;
+          await typeLL("Loading....","terminal-muted",10); await labSleep(180);
+          await typeLL(`status_code - ${sc} | Payload - ${p}`,sc>=400?"terminal-warning":"terminal-success",8);
+          await typeLL(`Response from page | - <Response [${sc}]>`,sc>=400?"terminal-error":"terminal-muted",8);
+          await labSleep(140);
+        }
+        await typeLL(`Total 404 Status Code are ${n404}`,"terminal-accent",12);
+      };
+
+      const runCrawler = async () => {
+        await typeLL("Creating project Task","terminal-accent",12);
+        await typeLL("| Status_code | URL |","terminal-divider",8);
+        await typeLL("| 200 | https://target.com |","terminal-success",8);
+        for(const n of [2,3,4]){await typeLL(`Active Crawlers ${n}`,"terminal-warning",10);await labSleep(120);}
+        await typeLL(`${rndI(57,93)} links in the queue`,"terminal-accent",10);
+        for(let i=0;i<12;i++){
+          const p=rndF(crawlPaths),pr=Math.random()>0.22?"https":"http",sc=rndF([200,200,200,301,302,403]);
+          await typeLL(`[${sc}] ${pr}://target.com${p}`,sc>=400?"terminal-warning":"terminal-muted",8); await labSleep(110);
+        }
+      };
+
+      const doMatrix = () => {
+        if(!labTerminalMatrix) return;
+        labTerminalMatrix.innerHTML="";
+        for(let i=0;i<8;i++){const c=document.createElement("pre");c.className="terminal-matrix-column";c.style.animationDelay=`${i*0.12}s`;c.textContent=Array.from({length:26},()=>rndF(["0","1","7","A","F","#","$","%"])).join("\n");labTerminalMatrix.appendChild(c);}
+        labTerminalMatrix.classList.add("is-active");
+        clearTimeout(labTerminalState.matrixTimer);
+        labTerminalState.matrixTimer=setTimeout(()=>labTerminalMatrix.classList.remove("is-active"),2200);
+      };
+
+      const execCmd = async raw => {
+        const cmd=raw.trim().toLowerCase(); if(!cmd) return;
+        const H={
+          help: async()=>showBanner(),
+          ls: async()=>typeLL("about.txt  certs/  projects/  recon/  social.json  tools/","terminal-muted",8),
+          whoami: async()=>{await typeLL("Cyber Security Enthusiast | Problem Solver","terminal-success",12);await typeLL("Focused on building cybersecurity projects, exploring new security techniques, and continuously learning emerging technologies in cybersecurity and network security.","terminal-muted",8);},
+          skills: async()=>appendLB("Recon      : Nmap, Burp Suite, Wireshark, OWASP ZAP\nDetection  : Splunk, MITRE ATT&CK, Kill Chain\nScripting  : Python, Bash, Linux shell scripting\nSystems    : Kali Linux, Windows","terminal-muted"),
+          projects: async()=>{addLD();await typeLL("[1] IP Geolocation Lookup Tool","terminal-success",10);await typeLL("Command: lookup","terminal-accent",10);await typeLL("","terminal-muted",2);await typeLL("[2] Vulnerability Scanner","terminal-success",10);await typeLL("Command: scanner","terminal-accent",10);await typeLL("","terminal-muted",2);await typeLL("[3] Web Crawler","terminal-success",10);await typeLL("Command: crawler","terminal-accent",10);addLD();},
+          social: async()=>appendLB("GitHub   : https://github.com/tharkaratul\nLinkedIn : https://www.linkedin.com/in/atul-tharkar","terminal-muted"),
+          clear: async()=>{if(labTerminalOutput)labTerminalOutput.innerHTML="";},
+          lookup: async()=>{await typeLL("python index.py","terminal-command",12);await typeLL("Enter Website Name Or IP Address :","terminal-warning",10);labTerminalState.pendingAction={type:"lookup"};setLA(true,"example.com or 8.8.8.8","cmd");},
+          scanner: async()=>{await typeLL("python scanner.py -t https://target.com -s","terminal-command",12);await typeLL("If no file is selected, then the default payloads will be executed","terminal-warning",10);await typeLL("Enter the file path -","terminal-warning",10);labTerminalState.pendingAction={type:"scanner"};setLA(true,"leave blank to use default payloads","cmd");},
+          crawler: async()=>{await typeLL("python scanner.py -t https://target.com -c","terminal-command",12);await runCrawler();},
+          matrix: async()=>{doMatrix();await typeLL("Matrix overlay engaged. Signal stream stabilized.","terminal-accent",10);},
+          sudo: async()=>{await typeLL("[sudo] password for visitor:","terminal-warning",12);await labSleep(360);await typeLL("ACCESS DENIED","terminal-error",12);},
+        };
+        if(!H[cmd]){await typeLL(`command not found: ${cmd}`,"terminal-error",10);return;}
+        await labSleep(120); await H[cmd]();
+      };
+
+      const handleSubmit = async e => {
+        e.preventDefault(); if(labTerminalState.busy) return;
+        const ai=(labTerminalPromptCmd&&!labTerminalPromptCmd.classList.contains("is-hidden")&&labTerminalInputCmd)?labTerminalInputCmd:labTerminalInput;
+        if(!ai) return;
+        const v=ai.value,tv=v.trim();
+        if(!tv&&!labTerminalState.pendingAction) return;
+        if(tv){labTerminalState.history.push(tv);}
+        labTerminalState.historyIndex=labTerminalState.history.length;
+        const pa=labTerminalState.pendingAction; labTerminalState.pendingAction=null;
+        setLA(false,"executing...","cmd");
+        if(pa?.type==="lookup"){appendLIP(tv||"example.com","Enter Website Name Or IP Address :");await runLookup(tv||"example.com");setLA(true,"type a command...","cmd");return;}
+        if(pa?.type==="scanner"){appendLIP(tv||"[default payload set]","Enter the file path -");await runScanner(tv);setLA(true,"type a command...","cmd");return;}
+        appendLCE(tv); await execCmd(tv); setLA(true,"type a command...","cmd");
+      };
+
+      const handleHistory = e => {
+        if(labTerminalState.busy) return;
+        const ai=e.target; if(!ai) return;
+        if(e.key==="ArrowUp"){e.preventDefault();if(!labTerminalState.history.length)return;labTerminalState.historyIndex=Math.max(0,labTerminalState.historyIndex-1);ai.value=labTerminalState.history[labTerminalState.historyIndex]||"";return;}
+        if(e.key==="ArrowDown"){e.preventDefault();labTerminalState.historyIndex=Math.min(labTerminalState.history.length,labTerminalState.historyIndex+1);ai.value=labTerminalState.historyIndex>=labTerminalState.history.length?"":labTerminalState.history[labTerminalState.historyIndex]||"";return;}
+        if(e.key==="Enter"&&ai===labTerminalInputCmd){e.preventDefault();labTerminalForm?.dispatchEvent(new Event("submit",{cancelable:true}));}
+      };
+
+      const runIntro = async () => {
+        if(!labTerminalOutput) return;
+        setLA(false,"booting cyber lab...");
+        await typeLPE("whoami",32);
+        await typeLL("Cyber Security Enthusiast | Problem Solver","terminal-success",12); await labSleep(220);
+        await typeLPE("cat summary.txt",22);
+        appendLB("Aspiring Cybersecurity Analyst & Ethical Hacker with hands-on experience in penetration testing, network security, firewall management, encryption technologies, and security tool development, committed to solving real-world security challenges.","is-dim");
+        await labSleep(300);
+        if(labTerminalKaliDisplay){labTerminalKaliDisplay.style.display="block";labTerminalOutput?.appendChild(labTerminalKaliDisplay);scrollL();}
+        await typeKaliCommand("python interact.py",labTerminalKaliTyping);
+        await labSleep(800);
+        const hint=" -- click enter in terminal";
+        for(let i=0;i<hint.length;i++){if(labTerminalKaliTyping)labTerminalKaliTyping.textContent+=hint[i];await labSleep(55);}
+        if(labTerminalKaliTyping) labTerminalKaliTyping.classList.add("typing-hint");
+        await new Promise(res=>{const onE=e=>{if(e.key==="Enter"){e.preventDefault();document.removeEventListener("keydown",onE);res();}};document.addEventListener("keydown",onE);});
+        if(labTerminalKaliTyping) labTerminalKaliTyping.classList.add("typing-complete");
+        await labSleep(120); await showBanner(); setLA(true,"type a command...","cmd");
+      };
+
+      labTerminalShell?.addEventListener("click",focusL);
+      labTerminalForm?.addEventListener("submit",handleSubmit);
+      labTerminalInput?.addEventListener("keydown",handleHistory);
+      labTerminalInputCmd?.addEventListener("keydown",handleHistory);
+      document.addEventListener("keydown",e=>{
+        if(e.key!=="Enter"||labTerminalState.busy||!labTerminalForm||labTerminalForm.classList.contains("is-hidden")) return;
+        const a=document.activeElement; if(a&&labTerminalForm.contains(a)) return;
+        focusL(); requestAnimationFrame(()=>{const ai=labTerminalInputCmd&&!labTerminalInputCmd.disabled?labTerminalInputCmd:labTerminalInput;if(ai)labTerminalForm.dispatchEvent(new Event("submit",{cancelable:true,bubbles:true}));});
+      });
+
+      /* ── Skills data ─────────────────────────────────────────────── */
+      const technicalData = [
+        { title:"TOOLS DETECTED !!!", items:[{label:"> Nmap",value:80},{label:"> Wireshark",value:65},{label:"> Burp Suite",value:60},{label:"> Splunk",value:75},{label:"> Metasploit",value:50},{label:"> Snort",value:65},{label:"> OWASP ZAP",value:60}] },
+        { title:"FRAMEWORK DETECTED !!!", items:[{label:"> MITRE ATT&CK",value:70},{label:"> Cyber Kill Chain",value:60}] },
+        { title:"PROGRAMMING LANGUAGE DETECTED !!!", items:[{label:"> Python",value:70},{label:"> Bash Scripting",value:75}] },
+        { title:"OPERATING SYSTEM DETECTED !!!", items:[{label:"> KALI LINUX",value:85},{label:"> WINDOWS",value:75}] },
+      ];
+      const nonTechnicalData = [
+        { title:"Soft-Skills DETECTED !!!", items:[{label:"> Communication",value:75},{label:"> Analysis",value:70},{label:"> Teamwork & Collaboration",value:80},{label:"> Decision Making",value:85},{label:"> Leadership",value:70},{label:"> Public Speaking",value:65}] },
+        { title:"Courses DETECTED !!!", items:[{label:"> Vulnerability Analysis & Penetration Testing",value:70},{label:"> Bio-Metrics Security",value:50},{label:"> Cloud Security",value:60},{label:"> Reverse Engineering & Malware Analysis",value:55}] },
+      ];
+
+      const animateValues = () => {
+        document.querySelectorAll(".scanner-value").forEach((v,i)=>{
+          const t=Number(v.dataset.target||0), mf=v.previousElementSibling?.querySelector(".scanner-meter-fill");
+          let cur=0; const tick=()=>{cur=Math.min(cur+2,t);v.textContent=cur+"%";if(mf)mf.style.width=cur+"%";if(cur<t)setTimeout(tick,22);}; setTimeout(tick,60+i*30);
+        });
+      };
+
+      const renderScannerPlaceholder = () => {
+        if(!scannerGroups||!scannerContent) return;
+        scannerContent.classList.add("is-idle");
+        scannerGroups.innerHTML=`<div class="scanner-placeholder"><p class="scanner-placeholder-title">Select a Skill Category</p><div class="scanner-placeholder-loader" aria-hidden="true"><div class="scanner-placeholder-core"><div class="scanner-placeholder-dots"><span></span><span></span><span></span></div></div></div><p class="scanner-placeholder-status">⟳ Scanning Available Modules...</p><p class="scanner-placeholder-waiting">Waiting For User Input...</p></div>`;
+      };
+
+      const renderGroups = groups => {
+        if(!scannerGroups||!scannerContent) return;
+        scannerContent.classList.remove("is-idle");
+        scannerGroups.innerHTML=groups.map((g,gi)=>`<div class="scanner-group" style="animation-delay:${gi*90}ms"><h3 class="scanner-heading">${g.title}</h3>${g.items.map(it=>`<div class="scanner-row"><span class="scanner-label">${it.label}</span><div class="scanner-meter"><span class="scanner-meter-fill"></span></div><span class="scanner-value" data-target="${it.value}">0%</span></div>`).join("")}</div>`).join("");
+        animateValues();
+      };
+
+      /* ── Scroll / reveal / parallax / tilt / spotlight / particles ── */
+      const updateScrollProgress = () => { if(!scrollProgressBar) return; const mx=document.documentElement.scrollHeight-window.innerHeight; scrollProgressBar.style.width=Math.min(100,Math.max(0,mx>0?(window.scrollY/mx)*100:0))+"%"; };
+
+      const initReveal = () => {
+        const nodes=document.querySelectorAll("[data-reveal]");
+        nodes.forEach(n=>{const d=Number(n.dataset.revealDelay||0);n.style.setProperty("--reveal-delay",`${d*1000}ms`);});
+        const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");obs.unobserve(e.target);}});},{threshold:0.14,rootMargin:"0px 0px -12% 0px"});
+        nodes.forEach(n=>obs.observe(n));
+      };
+
+      const initParallax = () => {
+        const ns=document.querySelectorAll("[data-parallax]");
+        const up=()=>ns.forEach(n=>{const r=n.getBoundingClientRect(),sp=Number(n.dataset.parallaxSpeed||0.02);n.style.setProperty("--parallax-y",`${(r.top-window.innerHeight*0.5)*sp}px`);});
+        up(); window.addEventListener("scroll",up,{passive:true}); window.addEventListener("resize",up);
+      };
+
+      const initTilt = () => {
+        document.querySelectorAll("[data-tilt]").forEach(n=>{
+          n.addEventListener("mousemove",e=>{const r=n.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;n.style.setProperty("--tilt-rotate-x",`${(0.5-py)*8}deg`);n.style.setProperty("--tilt-rotate-y",`${(px-0.5)*8}deg`);n.style.setProperty("--lift-y","-4px");});
+          n.addEventListener("mouseleave",()=>{n.style.setProperty("--tilt-rotate-x","0deg");n.style.setProperty("--tilt-rotate-y","0deg");n.style.setProperty("--lift-y","0px");});
+        });
+      };
+
+      const initSpotlight = () => {
+        if(!cursorSpotlight) return;
+        window.addEventListener("pointermove",e=>{cursorSpotlight.style.opacity="1";cursorSpotlight.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0) translate(-50%,-50%)`;});
+        window.addEventListener("pointerleave",()=>{cursorSpotlight.style.opacity="0";});
+      };
+
+      const initParticles = () => {
+        if(!floatingParticles) return;
+        const f=document.createDocumentFragment();
+        for(let i=0;i<22;i++){const p=document.createElement("span");p.className="floating-particle";p.style.left=`${Math.random()*100}%`;p.style.setProperty("--particle-size",`${2+Math.random()*5}px`);p.style.setProperty("--particle-duration",`${11+Math.random()*14}s`);p.style.setProperty("--particle-delay",`${Math.random()*-18}s`);p.style.setProperty("--particle-drift",`${-30+Math.random()*60}px`);f.appendChild(p);}
+        floatingParticles.appendChild(f);
+      };
+
+      /* ── Resume bubble ───────────────────────────────────────────── */
+      const initResumeBubble = () => {
+        if(!resumeBubble||!resumeBubbleText) return;
+        const cc=document.getElementById("rbl-circuit-canvas");
+        if(cc){
+          const draw=()=>{
+            const S=resumeBubble.offsetWidth||160,DPR=2;
+            cc.width=S*DPR;cc.height=S*DPR;cc.style.width=S+"px";cc.style.height=S+"px";
+            const ctx=cc.getContext("2d");ctx.scale(DPR,DPR);
+            const cx=S/2,cy=S/2,R=S/2;
+            ctx.save();ctx.beginPath();ctx.arc(cx,cy,R-1,0,Math.PI*2);ctx.clip();
+            const bg=ctx.createRadialGradient(cx,cy*.7,0,cx,cy,R);bg.addColorStop(0,"rgba(0,12,28,0.92)");bg.addColorStop(.5,"rgba(0,8,20,0.96)");bg.addColorStop(1,"rgba(0,3,10,1)");ctx.fillStyle=bg;ctx.fillRect(0,0,S,S);
+            let seed=7;const rand=()=>{seed=(seed*1664525+1013904223)&0xffffffff;return(seed>>>0)/0xffffffff;};
+            ctx.strokeStyle="rgba(56,189,248,0.18)";ctx.lineWidth=0.7;
+            const nodes=[];const grid=S*.12;
+            for(let gx=grid;gx<S-grid;gx+=grid)for(let gy=grid;gy<S-grid;gy+=grid){const jx=gx+(rand()-.5)*grid*.6,jy=gy+(rand()-.5)*grid*.6;if(Math.hypot(jx-cx,jy-cy)<R*.88)nodes.push([jx,jy]);}
+            nodes.forEach(([nx,ny],i)=>{if(rand()>.55)return;const cands=nodes.filter(([ox,oy],j)=>{if(j===i)return false;const d=Math.hypot(ox-nx,oy-ny);return d>grid*.8&&d<grid*2.2;});if(!cands.length)return;const[tx,ty]=cands[Math.floor(rand()*cands.length)];ctx.beginPath();if(rand()>.5){ctx.moveTo(nx,ny);ctx.lineTo(tx,ny);ctx.lineTo(tx,ty);}else{ctx.moveTo(nx,ny);ctx.lineTo(nx,ty);ctx.lineTo(tx,ty);}ctx.stroke();});
+            nodes.forEach(([nx,ny])=>{if(rand()>.6)return;ctx.fillStyle="rgba(56,189,248,0.35)";ctx.beginPath();ctx.arc(nx,ny,rand()*1.4+.6,0,Math.PI*2);ctx.fill();});
+            ctx.restore();
+          };
+          if(resumeBubble.offsetWidth>0)draw();else requestAnimationFrame(draw);
+          window.addEventListener("resize",draw,{passive:true});
+        }
+        const tg=document.getElementById("rbl-ticks");
+        if(tg){const cx=100,cy=100,r=94;for(let i=0;i<60;i++){const a=(i/60)*Math.PI*2-Math.PI/2,mj=i%5===0,l=mj?8:4,x1=cx+Math.cos(a)*r,y1=cy+Math.sin(a)*r,x2=cx+Math.cos(a)*(r-l),y2=cy+Math.sin(a)*(r-l);const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",x1);ln.setAttribute("y1",y1);ln.setAttribute("x2",x2);ln.setAttribute("y2",y2);ln.setAttribute("stroke",mj?"rgba(56,189,248,0.7)":"rgba(56,189,248,0.3)");ln.setAttribute("stroke-width",mj?"1.2":"0.7");tg.appendChild(ln);}}
+        const oc=document.getElementById("rbl-orbit-particles"),ops=[];
+        if(oc){for(let i=0;i<6;i++){const p=document.createElement("span");p.className="rbl-orbit-particle";oc.appendChild(p);ops.push({el:p,angle:(i/6)*Math.PI*2,speed:.004+Math.random()*.003,radius:.58+Math.random()*.1,size:2+Math.random()*2});}}
+        const NAV_H=118;const gBS=()=>resumeBubble.offsetWidth||120;
+        const gCB=()=>{const s=gBS(),pad=14,ce=document.querySelector(".contact-section")||document.getElementById("contact");if(ce){const r=ce.getBoundingClientRect();return{minX:r.left+pad,maxX:r.right-s-pad,minY:r.top+pad,maxY:r.bottom-s-pad};}return{minX:pad,maxX:window.innerWidth-s-pad,minY:NAV_H+8,maxY:window.innerHeight-s-pad};};
+        let bounds=gCB();const ib=gCB();
+        const st={x:ib.minX+(ib.maxX-ib.minX)*.72,y:ib.minY+(ib.maxY-ib.minY)*.4,vx:.28,vy:.22,tvx:.28,tvy:.22,dragging:false,dragOffX:0,dragOffY:0,inertiaX:0,inertiaY:0,cursorX:window.innerWidth*.5,cursorY:window.innerHeight*.5,cursorActive:false,hovered:false,speed:0,prevX:0,prevY:0};
+        const applyT=()=>{resumeBubble.style.transform=`translate3d(${st.x}px,${st.y}px,0)`;if(resumeTerminalPopup){const s2=gBS(),pw=resumeTerminalPopup.offsetWidth||240;const left=st.x-pw-14>12?st.x-pw-14:Math.min(window.innerWidth-pw-12,st.x+s2+14);resumeTerminalPopup.style.left=left+"px";resumeTerminalPopup.style.top=Math.max(NAV_H+8,Math.min(window.innerHeight-110,st.y+s2*.18))+"px";}};
+        const animOrb=()=>{const h=gBS()/2;ops.forEach(p=>{p.angle+=p.speed*(st.dragging?2.5:1);p.el.style.transform=`translate(${Math.cos(p.angle)*h*p.radius}px,${Math.sin(p.angle)*h*p.radius}px)`;p.el.style.width=p.size+"px";p.el.style.height=p.size+"px";});};
+        const tick=()=>{bounds=gCB();st.speed=Math.hypot(st.x-st.prevX,st.y-st.prevY);st.prevX=st.x;st.prevY=st.y;
+          if(!st.dragging){if(Math.abs(st.inertiaX)>.08||Math.abs(st.inertiaY)>.08){st.x+=st.inertiaX;st.y+=st.inertiaY;st.inertiaX*=.91;st.inertiaY*=.91;}else{const t=performance.now();st.tvx=Math.max(-.6,Math.min(.6,st.tvx+Math.sin(t*.00019+1.2)*.005));st.tvy=Math.max(-.6,Math.min(.6,st.tvy+Math.cos(t*.00015+.7)*.005));st.vx+=(st.tvx-st.vx)*.014;st.vy+=(st.tvy-st.vy)*.014;if(st.cursorActive){const h=gBS()/2,dx=st.cursorX-(st.x+h),dy=st.cursorY-(st.y+h),dist=Math.hypot(dx,dy);if(dist<200&&dist>1){const pull=(1-dist/200)*.012;st.vx+=(dx/dist)*pull;st.vy+=(dy/dist)*pull;}}st.x+=st.vx;st.y+=st.vy;}
+          if(st.x<bounds.minX){st.x=bounds.minX;st.tvx=Math.abs(st.tvx);st.vx*=-.85;st.inertiaX=0;}if(st.x>bounds.maxX){st.x=bounds.maxX;st.tvx=-Math.abs(st.tvx);st.vx*=-.85;st.inertiaX=0;}if(st.y<bounds.minY){st.y=bounds.minY;st.tvy=Math.abs(st.tvy);st.vy*=-.85;st.inertiaY=0;}if(st.y>bounds.maxY){st.y=bounds.maxY;st.tvy=-Math.abs(st.tvy);st.vy*=-.85;st.inertiaY=0;}}
+          applyT();animOrb();requestAnimationFrame(tick);};
+        bounds=gCB();applyT();requestAnimationFrame(tick);
+        let ldx=0,ldy=0,ldt=0,vhx=[],vhy=[];
+        resumeBubble.addEventListener("pointerdown",e=>{if(e.button!==0)return;e.preventDefault();resumeBubble.setPointerCapture(e.pointerId);st.dragging=true;st.inertiaX=0;st.inertiaY=0;st.dragOffX=e.clientX-st.x;st.dragOffY=e.clientY-st.y;ldx=e.clientX;ldy=e.clientY;ldt=performance.now();vhx=[];vhy=[];resumeBubble.classList.add("is-dragging");});
+        resumeBubble.addEventListener("pointermove",e=>{if(!st.dragging)return;const now=performance.now(),dt=Math.max(1,now-ldt);vhx.push((e.clientX-ldx)/dt);vhy.push((e.clientY-ldy)/dt);if(vhx.length>5){vhx.shift();vhy.shift();}ldx=e.clientX;ldy=e.clientY;ldt=now;const b=gCB();st.x=Math.max(b.minX,Math.min(b.maxX,e.clientX-st.dragOffX));st.y=Math.max(b.minY,Math.min(b.maxY,e.clientY-st.dragOffY));});
+        const endDrag=()=>{if(!st.dragging)return;st.dragging=false;resumeBubble.classList.remove("is-dragging");const ax=vhx.length?vhx.reduce((a,b)=>a+b,0)/vhx.length:0,ay=vhy.length?vhy.reduce((a,b)=>a+b,0)/vhy.length:0,sc=18;st.inertiaX=Math.max(-22,Math.min(22,ax*sc));st.inertiaY=Math.max(-22,Math.min(22,ay*sc));st.vx=st.inertiaX*.04;st.vy=st.inertiaY*.04;st.tvx=st.vx;st.tvy=st.vy;};
+        resumeBubble.addEventListener("pointerup",endDrag);resumeBubble.addEventListener("pointercancel",endDrag);
+        resumeBubble.addEventListener("mouseenter",()=>{if(st.dragging)return;st.hovered=true;resumeBubbleText.textContent=resumeBubbleText.dataset.hover||"DOWNLOAD";});
+        resumeBubble.addEventListener("mouseleave",()=>{st.hovered=false;resumeBubbleText.textContent=resumeBubbleText.dataset.default||"RESUME";});
+        let pdX=0,pdY=0;
+        resumeBubble.addEventListener("pointerdown",e=>{pdX=e.clientX;pdY=e.clientY;},{capture:true});
+        resumeBubble.addEventListener("click",e=>{
+          if(Math.hypot(e.clientX-pdX,e.clientY-pdY)>8)return;
+          if(resumeBubbleRipple){resumeBubbleRipple.classList.remove("is-active");void resumeBubbleRipple.offsetWidth;resumeBubbleRipple.classList.add("is-active");}
+          if(resumeTerminalPopup){const s2=gBS(),pw=resumeTerminalPopup.offsetWidth||240,left=st.x-pw-14>12?st.x-pw-14:Math.min(window.innerWidth-pw-12,st.x+s2+14);resumeTerminalPopup.style.left=left+"px";resumeTerminalPopup.style.top=Math.max(NAV_H+8,st.y+s2*.18)+"px";resumeTerminalPopup.classList.add("is-visible");resumeTerminalPopup.setAttribute("aria-hidden","false");setTimeout(()=>{resumeTerminalPopup.classList.remove("is-visible");resumeTerminalPopup.setAttribute("aria-hidden","true");},1800);}
+          const a=document.createElement("a");a.href="./src/Atul_Resume_.pdf";a.download="Atul_Resume_.pdf";document.body.appendChild(a);a.click();a.remove();
+        });
+        window.addEventListener("pointermove",e=>{st.cursorActive=true;st.cursorX=e.clientX;st.cursorY=e.clientY;},{passive:true});
+        window.addEventListener("pointerleave",()=>{st.cursorActive=false;},{passive:true});
+        window.addEventListener("resize",()=>{bounds=gCB();st.x=Math.max(bounds.minX,Math.min(bounds.maxX,st.x));st.y=Math.max(bounds.minY,Math.min(bounds.maxY,st.y));},{passive:true});
+      };
+
+      /* ── Filter buttons ──────────────────────────────────────────── */
+      const setActiveFilter = v => filterButtons.forEach(b=>b.classList.toggle("is-active",b.dataset.view===v));
+      filterButtons.forEach(b=>{
+        const rp=()=>b.classList.remove("is-pressed");
+        b.addEventListener("pointerdown",()=>b.classList.add("is-pressed"));
+        b.addEventListener("pointerup",rp);b.addEventListener("pointerleave",rp);b.addEventListener("pointercancel",rp);
+        b.addEventListener("click",()=>{const v=b.dataset.view;setActiveFilter(v);renderGroups(v==="non-technical"?nonTechnicalData:technicalData);document.getElementById("skills-click-hint")?.classList.add("is-dismissed");});
+      });
+
+      /* ── Certificate links ───────────────────────────────────────── */
+      certificateLinks.forEach(link=>{
+        link.addEventListener("click",()=>{
+          certificateLinks.forEach(l=>l.classList.remove("is-active")); link.classList.add("is-active");
+          if(!certificatePreview) return;
+          certificatePreview.classList.remove("show-pdf","show-dummy");
+          if(link.dataset.previewType==="pdf"){if(certificatePdfViewer&&link.dataset.previewSrc)certificatePdfViewer.src=link.dataset.previewSrc;certificatePreview.classList.add("show-pdf");return;}
+          if(certificateDummyPath)certificateDummyPath.textContent=link.dataset.fileLabel||"";
+          certificatePreview.classList.add("show-dummy");
+        });
+      });
+      document.querySelector(".certificate-link.is-active")?.click();
+
+      /* ── Drag-to-scroll project cards ────────────────────────────── */
+      (function(){const g=document.querySelector(".cards-grid");if(!g)return;let isD=false,sX=0,sL=0;g.addEventListener("mousedown",e=>{isD=true;g.classList.add("is-dragging");sX=e.pageX-g.offsetLeft;sL=g.scrollLeft;});g.addEventListener("mouseleave",()=>{isD=false;g.classList.remove("is-dragging");});g.addEventListener("mouseup",()=>{isD=false;g.classList.remove("is-dragging");});g.addEventListener("mousemove",e=>{if(!isD)return;e.preventDefault();g.scrollLeft=sL-(e.pageX-g.offsetLeft-sX)*1.4;});}());
+
+      /* ── Boot ────────────────────────────────────────────────────── */
+      document.body.classList.add("page-ready");
+      updateScrollProgress();
+      initReveal();
+      initParallax();
+      initTilt();
+      initSpotlight();
+      initParticles();
+      window.addEventListener("scroll",updateScrollProgress,{passive:true});
+      window.addEventListener("resize",updateScrollProgress);
+      renderScannerPlaceholder();
+      runIntro();
+      initResumeBubble();
+    </script>
+  </body>
+</html>

@@ -1,1876 +1,574 @@
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=1500, initial-scale=1.0" />
-      <link href='https://fonts.googleapis.com/css?family=Jost' rel='stylesheet'>
-      <link href='https://fonts.googleapis.com/css?family=Kodchasan' rel='stylesheet'>
-      <link href="https://googleapis.com" rel="stylesheet">
-      <link href='https://fonts.googleapis.com/css?family=Anta' rel='stylesheet'>
-      <title>Atul Tharkar | Portfolio</title>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Major+Mono+Display&family=Share+Tech+Mono&family=Teko:wght@500;600;700&display=swap"
-      />
-      <link rel="stylesheet" href="./style.css" />
-    </head>
-    <body>
-      <div class="scroll-progress" aria-hidden="true">
-        <span class="scroll-progress-bar" id="scroll-progress-bar"></span>
-      </div>
-      <div class="page-ambient" aria-hidden="true">
-        <div class="cursor-spotlight" id="cursor-spotlight"></div>
-        <div class="floating-particles" id="floating-particles"></div>
-      </div>
-      <div class="resume-bubble-layer" aria-live="polite">
-        <button class="resume-bubble" id="resume-bubble" type="button" aria-label="Download resume">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <!-- Viewport: neutral — just needs to show the loading screen briefly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Atul Tharkar | Portfolio</title>
 
-          <!-- Layer 0: deep glass base -->
-          <span class="rbl-glass-base" aria-hidden="true"></span>
+    <style>
+      /* ── Loading screen ─────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-          <!-- Layer 1: circuit board pattern (canvas) -->
-          <canvas class="rbl-circuit-canvas" id="rbl-circuit-canvas" aria-hidden="true"></canvas>
+      :root {
+        --green:  #59ff66;
+        --cyan:   #38bdf8;
+        --bg:     #000;
+        --mono:   "Courier New", Consolas, monospace;
+      }
 
-          <!-- Layer 2: segmented HUD ring (SVG) -->
-          <svg class="rbl-hud-ring" id="rbl-hud-ring" viewBox="0 0 200 200" aria-hidden="true">
-            <!-- outer dashed scanner ring -->
-            <circle class="rbl-ring-outer" cx="100" cy="100" r="94"/>
-            <!-- tick marks -->
-            <g class="rbl-ticks" id="rbl-ticks"></g>
-            <!-- rotating arc segment -->
-            <circle class="rbl-ring-scan" cx="100" cy="100" r="88"/>
-            <!-- inner accent ring -->
-            <circle class="rbl-ring-inner" cx="100" cy="100" r="78"/>
-            <!-- corner brackets -->
-            <path class="rbl-bracket" d="M100,8 L100,18"/>
-            <path class="rbl-bracket" d="M100,182 L100,192"/>
-            <path class="rbl-bracket" d="M8,100 L18,100"/>
-            <path class="rbl-bracket" d="M182,100 L192,100"/>
-            <!-- shield icon top -->
-            <g class="rbl-shield" transform="translate(100,28)">
-              <path d="M0,-8 L6,-4 L6,2 Q6,8 0,11 Q-6,8 -6,2 L-6,-4 Z"/>
-            </g>
-            <!-- lock icon bottom -->
-            <g class="rbl-lock" transform="translate(100,168)">
-              <rect x="-5" y="-3" width="10" height="8" rx="1"/>
-              <path d="M-3,-3 Q-3,-9 0,-9 Q3,-9 3,-3"/>
-              <circle cx="0" cy="1" r="1.5" fill="none" stroke-width="1"/>
-            </g>
-            <!-- data readout labels -->
-            <text class="rbl-hud-label" x="22" y="72">SEC</text>
-            <text class="rbl-hud-label" x="22" y="132">LVL</text>
-            <text class="rbl-hud-label rbl-hud-label-right" x="178" y="72">HUD</text>
-            <text class="rbl-hud-label rbl-hud-label-right" x="178" y="132">v2.4</text>
-            <!-- status dots -->
-            <circle class="rbl-status-dot rbl-dot-a" cx="38" cy="100" r="2.5"/>
-            <circle class="rbl-status-dot rbl-dot-b" cx="162" cy="100" r="2.5"/>
-          </svg>
+      html, body {
+        width: 100%; height: 100%;
+        background: var(--bg);
+        color: var(--green);
+        font-family: var(--mono);
+        overflow: hidden;
+      }
 
-          <!-- Layer 3: glass highlight sheen -->
-          <span class="rbl-sheen" aria-hidden="true"></span>
+      /* Full-screen centered loader */
+      #pf-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background: #000;
+        z-index: 9999;
+      }
 
-          <!-- Layer 4: center dark matte core -->
-          <span class="rbl-core" aria-hidden="true"></span>
-
-          <!-- Layer 5: center text -->
-          <span class="rbl-label" data-default="RESUME" data-hover="DOWNLOAD" aria-hidden="true">RESUME</span>
-          <span class="rbl-sublabel" aria-hidden="true">[ CLICK TO ACCESS ]</span>
-
-          <!-- Layer 6: orbit particles -->
-          <span class="rbl-orbit-wrap" id="rbl-orbit-particles" aria-hidden="true"></span>
-
-          <!-- Layer 7: outer ambient glow (behind button via z-index trick) -->
-          <span class="rbl-ambient" aria-hidden="true"></span>
-
-          <!-- Layer 7: click ripple -->
-          <span class="rbl-ripple" id="rbl-ripple" aria-hidden="true"></span>
-
-        </button>
-        <div class="resume-terminal-popup" id="resume-terminal-popup" aria-hidden="true">
-          <div class="resume-terminal-popup-head">resume-daemon</div>
-          <div class="resume-terminal-popup-body">Downloading resume.pdf...</div>
-          <div class="resume-terminal-popup-bar">███████████ 100%</div>
-        </div>
-      </div>
-      <header class="site-header">
-        <div class="container top-bar">
-          <img src="./src/Group 7.svg" alt="" aria-hidden="true" class="header-frame-line" />
-          <a href="#home" class="brand-wrap">
-            <img src="./src/avatar.png" alt="Atul Tharkar" class="avatar" />
-            <span class="brand-text">Atul Tharkar</span>
-            <span class="tagline">// CYBERSECURITY ENTHUSIAST</span>
-          </a>
-          <nav aria-label="Main navigation">
-            <ul class="nav-links">
-              <li><a href="#about">_ABOUT</a></li>
-              <li><a href="#projects">_PROJECTS</a></li>
-              <li><a href="#skills">_SKILLS</a></li>
-              <li><a href="#contact">_CONTACT</a></li>
-            </ul>
-          </nav>
-          <a href="https://github.com/tharkaratul?tab=repositories" class="github-pill" href="#" aria-label="GitHub profile" >
-            <img src="./src/GitHub_Invertocat_White.svg" alt="GitHub" class="github-image"/>
-          </a>
-        </div>
-      </header>
-
-      <main id="home" class="container">
-        <section class="hero-grid reveal-up" data-reveal data-parallax data-parallax-speed="0.03">
-          <div class="panel_terminal reveal-up motion-card" id="about" data-reveal data-tilt>
-            <div class="terminal-window" aria-label="Animated terminal introduction">
-              <img src="./src/Group 14.svg" alt="" class="terminal_panel"/>
-              <div class="terminal-shell" id="terminal-shell">
-                <div class="terminal-noise" aria-hidden="true"></div>
-                <div class="terminal-scanlines" aria-hidden="true"></div>
-                <div class="terminal-matrix" id="terminal-matrix" aria-hidden="true"></div>
-                <div class="terminal-output" id="terminal-output"></div>
-                <!-- Static Kali prompt display (left-aligned, stays after Enter) -->
-                <div class="terminal-kali-display" id="terminal-kali-display" style="display:none;">
-                  <div class="terminal-kali-display-top">┌──(atul㉿atul)-[~]</div>
-                  <div class="terminal-kali-display-bottom">
-                    <span>└─$</span>
-                    <span class="terminal-kali-typing" id="terminal-kali-typing"></span>
-                  </div>
-                </div>
-
-                <form class="terminal-input-row is-hidden" id="terminal-form" autocomplete="off">
-                  <label class="terminal-input-prompt" for="terminal-input">
-                    <!-- Mode A: kali-style prompt shown before user has pressed Enter -->
-                    <span class="terminal-input-entry terminal-prompt-kali" id="terminal-prompt-kali">
-                      <span class="terminal-input-prompt-kali-top">┌──(atul㉿atul)-[~]</span>
-                      <span class="terminal-input-prompt-kali-bottom">└─$</span>
-                      <input
-                        class="terminal-input"
-                        id="terminal-input"
-                        name="terminal-input"
-                        type="text"
-                        autocapitalize="off"
-                        autocomplete="off"
-                        autocorrect="off"
-                        spellcheck="false"
-                      />
-                    </span>
-                    <!-- Mode B: simple "Command :" prompt shown after first Enter -->
-                    <span class="terminal-input-entry terminal-prompt-cmd is-hidden" id="terminal-prompt-cmd">
-                      <span class="terminal-input-prompt-bottom">Command :</span>
-                      <input
-                        class="terminal-input terminal-input-cmd"
-                        id="terminal-input-cmd"
-                        name="terminal-input-cmd"
-                        type="text"
-                        autocapitalize="off"
-                        autocomplete="off"
-                        autocorrect="off"
-                        spellcheck="false"
-                      />
-                    </span>
-                  </label>
-                </form>
-              </div>
-            </div>
-          </div>
-          
-          <div class="panel panel-skills reveal-up motion-card" id="skills" data-reveal data-tilt>
-            <img src="./src/Rectangle 3.svg" alt="Skills scanner panel" />
-            <h2 class="skills-title">SKILLS SCANNER</h2>
-            <img src="./src/Line 2.svg" class="scanner-line"/>
-            <div class="skills-buttons" aria-label="Skills scanner filters">
-              <button class="skills-filter-button" type="button" data-view="technical">
-                <img src="./src/Group 15.svg" alt="" aria-hidden="true" />
-              </button>
-              <button class="skills-filter-button" type="button" data-view="non-technical">
-                <img src="./src/Group 16.svg" alt="" aria-hidden="true" />
-              </button>
-              
-            </div>
-            <section class="skills-scanner-content" aria-label="Technical skills scan results">
-              <img
-                src="./src/Rectangle 7.svg"
-                alt=""
-                aria-hidden="true"
-                class="skills-scanner-bg"
-              />
-              <pre class="skills-scanner-ascii">  ______ _     _ _ _           ______                                     
- / _____) |   (_) | |         / _____)                                    
-( (____ | |  _ _| | |  ___   ( (____   ____ _____ ____  ____  _____  ____ 
- \____ \| |_/ ) | | | /___)   \____ \ / ___|____ |  _ \|  _ \| ___ |/ ___)
- _____) )  _ (| | | ||___ |   _____) | (___/ ___ | | | | | | | ____| |    
-(______/|_| \_)_|\_)_|___/   (______/ \____)_____|_| |_|_| |_|_____)_|    
-                                                                          </pre>
-              <div class="scanner-groups" id="scanner-groups"></div>
-            </section>
-          </div>
-        </section>
-
-        <section id="projects" class="projects-title-wrap reveal-up" data-reveal data-parallax data-parallax-speed="0.022">
-          <div class="projects-title" aria-label="Projects title" data-reveal>
-            <img src="./src/projects-bg.svg" alt="" class="projects-bg" />
-            <img src="./src/projects-text.svg" alt="Projects" class="projects-text" />
-          </div>
-          <div class="Github_block">
-          <a
-            class="github-ascii-card reveal-up motion-card"
-            href="https://github.com/tharkaratul?tab=repositories"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open GitHub profile"
-            data-reveal
-            data-tilt
-          >
-            <pre class="github-ascii">
-    /$$$$$$  /$$   /$$     /$$   /$$           /$$            / $$\ / $$\
-   /$$__  $$|__/  | $$    | $$  | $$          | $$             \ $$\ \ $$\
-  | $$  \__/ /$$ /$$$$$$  | $$  | $$ /$$   /$$| $$$$$$$         \ $$\ \ $$\
-  | $$ /$$$$| $$|_  $$_/  | $$$$$$$$| $$  | $$| $$__  $$ /$$$$$$ \ $$\ \ $$\
-  | $$|_  $$| $$  | $$    | $$__  $$| $$  | $$| $$  \ $$|______/ / $$/ / $$/
-  | $$  \ $$| $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$        / $$/ / $$/
-  |  $$$$$$/| $$  |  $$$$/| $$  | $$|  $$$$$$/| $$$$$$$/       / $$/ / $$/
-  \______/ |__/   \___/  |__/  |__/ \______/ |_______/        |__/  |__/</pre>
-            
-          </a>
-          </div>
-        </section>
-
-        <section class="cards-grid reveal-up" id="" data-reveal>
-          <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt>
-            <img src="./src/Group 5.svg" alt="Web-Vulnerability-Scanner" class="project-card-image" />
-            <a class="project-view-link" href="https://github.com/tharkaratul/Web-Vulnerability-Scanner" target="_blank" rel="noreferrer">View</a>
-          </article>
-          <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt data-reveal-delay="0.08">
-            <img
-              src="./src/Group 6.svg"
-              alt="IP Look-Up project panel panel"
-              class="project-card-image"
-            />
-            <a class="project-view-link" href="https://github.com/tharkaratul/IP-Location-Look-Up" target="_blank" rel="noreferrer">View</a>
-          </article>
-          <article class="project-card reveal-up motion-card glow-border" data-reveal data-tilt data-reveal-delay="0.16">
-            <img src="./src/Group_11.svg" alt="SOC Dashboard project panel" class="project-card-image" />
-            <a class="project-view-link" href="https://github.com/tharkaratul/Splunk-SSH_Dashboard" target="_blank" rel="noreferrer">View</a>
-          </article>
-          <!--<article class="project-card project-card--text reveal-up motion-card glow-border" data-reveal data-tilt data-reveal-delay="0.24">
-            <div class="card-head">IP&nbsp;&nbsp;Look-Up</div>
-            <div class="card-divider" aria-hidden="true"></div>
-            <div class="card-body">
-              Developed a Python-based tool that provides network intelligence, including resolving domain names into IP addresses and retrieving location information like country, city, latitude, longitude, ISP, and ASN. Integrated external IP intelligence services and added features like private IP detection, DNS resolution, and more.
-            </div>
-            <a class="project-view-link" href="https://github.com/tharkaratul/IP-Location-Look-Up" target="_blank" rel="noreferrer">View</a>
-          </article>-->
-        </section>
-
-        <section class="certificates-section reveal-up" aria-labelledby="certificates-title" data-reveal data-parallax data-parallax-speed="0.018">
-          <img src="./src/Group 12.svg" alt="" aria-hidden="true" class="certificates-frame" />
-          <div class="certificates-copy">
-            <img src="./src/Group 20.svg" alt="" class="certificate-head"/>
-            <ul class="certificates-list">
-              <li class="reveal-up" data-reveal>
-                <button
-                  class="certificate-link is-active"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/cehv12.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="cehv12.pdf"
-                >
-                  Ethical Hacking - LearnkartS
-                </button>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.05">
-                <button
-                  class="certificate-link "
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/Coursera 34S3XPJH5AR4.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="Coursera 34S3XPJH5AR4.pdf"
-                >
-                  Ethical Hacking with Kali Linux
-                </button>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.1">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/certiport.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
-                >
-                  Cisco Certified Support Technician Cybersecurity (CCST Cybersecurity) - Cisco
-                </button>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.15">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/NetworkingBasicsUpdate.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="C:\\dummy\\certificates\\networking-basics-cisco.pdf"
-                >
-                  Networking Basics - Cisco
-                </button>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.2">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/CyberThreatManagementUpdate20250905-31-41xlsn.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
-                >
-                  Cyber Threat Management - Cisco
-                </button>
-              </li>  
-              <li class="reveal-up" data-reveal data-reveal-delay="0.25">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/google certificate.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
-                >
-                  Foundations of Cybersecurity - Google
-                </button>
-              </li>              
-              <li class="reveal-up" data-reveal data-reveal-delay="0.3">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/SIEM.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="C:\\dummy\\certificates\\ccst-cybersecurity-cisco.pdf"
-                >
-                  Introduction to SIEM (Splunk)
-                </button>
-              </li>              
-
-
-              <li class="reveal-up" data-reveal data-reveal-delay="0.35">
-                <button
-                  class="certificate-link"
-                  type="button"
-                  data-preview-type="pdf"
-                  data-preview-src="./certificate/Hands-On.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  data-file-label="Hands-On.pdf"
-                >
-                  Hands-on Introduction to Linux Commands and Shell Scripting - IBM
-                </button> 
-              </li>
-            </ul>
-          </div>
-        <aside class="certificate-preview motion-card glow-border" data-tilt data-reveal>
-          <iframe
-            class="certificate-pdf-viewer"
-            title="Certificate PDF preview"
-          ></iframe>
-          <div class ="certificate-dummy-view">
-            <p class="certificate-dummy-title">Preview uvailable</p>
-            <p class="certificate-dummy-path" id="certificate-dummy-path"></p>
-          </div>
-        </aside>
-        </section>
-
-        <section class="achievements-contact-section reveal-up" aria-label="Achievements and contact" data-reveal data-parallax data-parallax-speed="0.014">
-          <img src="./src/Group 9.svg" alt="" aria-hidden="true" class="achievements-frame" />
-          <div class="achievements-column">
-            <img src="./src/Rectangle 13.svg" class="achievement-card"/>
-            <h2 class="Achievements-title"  data-reveal-delay="0.16">Achievements</h2>
-            <ul class="achievements-list">
-              <li class="reveal-up" data-reveal>
-                <span class="achievement-lead">Best Project Award At MIT ADT IdeaSpark'24</span> For Innovative Project Development And
-                Creative Problem-Solving Among Competing Student Teams.
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.08">
-                <span class="achievement-lead">2nd Place, Badminton 47th And 50th Foundation Day</span>, Dr. Balasaheb Sawant Konkan
-                Krushi Vidyapeeth, Dapoli
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.16">
-                <span class="achievement-lead">Disciplinary Co-Head, MIT ADT ACES Club:</span> Led Event Discipline, Managed Teams, And
-                Ensured Seamless Execution Of Large-Scale College Activities.
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- ── Contact Section ──────────────────────────────────────────── -->
-        <section class="contact-section reveal-up" id="contact" aria-label="Contact" data-reveal>
-          <!-- SVG card: dark rounded bg + cybersecurity shield image on right -->
-          <img src="./src/Group 23.svg" alt="" aria-hidden="true" class="contact-section-bg" />
-
-          <!-- Left: text content -->
-          <div class="contact-section-content">
-            <h2 class="contact-section-title">CONTACT</h2>
-            <ul class="contact-section-list">
-              <li class="reveal-up" data-reveal "><a class="contact-name">Atul Tharkar</a></li>
-              
-              <li class="reveal-up" data-reveal data-reveal-delay="0.06">
-                <img src="./src/whatsapp-icon.png" class="whatsapp-icon">
-                Mobile/Whatsapp No : 
-                <a href="https://wa.me/9765939243">+91-9765939243</a>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.12">
-                E-mail :
-                <img src="./src/mail-icon.png" class="mail-icon">
-                <a href="mailto:atultharkar2004@gmail.com">atultharkar2004@gmail.com</a>
-              </li>
-              <li class="reveal-up" data-reveal data-reveal-delay="0.18">
-                <img src="./src/github.png" class="github">
-                GitHub:
-                <a href="https://github.com/tharkaratul?tab=repositories" target="_blank" rel="noreferrer">
-                  https://github.com/tharkaratul
-                </a>
-              </li>
-              <li class="reveal-up" data-reveal>
-                <img src="./src/google-icon.svg"href="https://forms.gle/e1np7A6iPM3LC48H9" class="google-icon"/>
-                <a class="google.text" href="https://forms.gle/e1np7A6iPM3LC48H9" >Google form</a></li>
-            </ul>
-          </div>
-        </section>
-      </main>
-
-      <script>
-        const terminalScreen = document.getElementById("terminal-screen");
-        const certificatePreview = document.querySelector(".certificate-preview");
-        const certificatePdfViewer = document.querySelector(".certificate-pdf-viewer");
-        const certificateDummyPath = document.getElementById("certificate-dummy-path");
-        const certificateLinks = document.querySelectorAll(".certificate-link");
-        const scannerContent = document.querySelector(".skills-scanner-content");
-        const scannerGroups = document.getElementById("scanner-groups");
-        const filterButtons = document.querySelectorAll(".skills-filter-button");
-        const searchButton = document.querySelector(".skills-search");
-        const scrollProgressBar = document.getElementById("scroll-progress-bar");
-        const cursorSpotlight = document.getElementById("cursor-spotlight");
-        const floatingParticles = document.getElementById("floating-particles");
-        const resumeBubble = document.getElementById("resume-bubble");
-        const resumeBubbleText = document.querySelector(".rbl-label");
-        const resumeBubbleRipple = document.getElementById("rbl-ripple");
-        const resumeTerminalPopup = document.getElementById("resume-terminal-popup");
-        const labTerminalShell = document.getElementById("terminal-shell");
-        const labTerminalOutput = document.getElementById("terminal-output");
-        const labTerminalForm = document.getElementById("terminal-form");
-        const labTerminalInput = document.getElementById("terminal-input");
-        const labTerminalMatrix = document.getElementById("terminal-matrix");
-        const labTerminalPromptKali = document.getElementById("terminal-prompt-kali");
-        const labTerminalPromptCmd  = document.getElementById("terminal-prompt-cmd");
-        const labTerminalInputCmd   = document.getElementById("terminal-input-cmd");
-        const labTerminalKaliDisplay = document.getElementById("terminal-kali-display");
-        const labTerminalKaliTyping = document.getElementById("terminal-kali-typing");
-
-        const terminalPromptTop = "┌──(atul㉿atul)-[~]";
-        const terminalPromptBottom = "└─$ ";
-        const terminalCommand = "whoami";
-        const terminalOutput = "Cyber Security Enthusiast | Problem Solver";
-        const terminal2Command ="cat intrduction.txt";
-        const terminal2Output = "I am a final-year Computer Science student specializing in Cybersecurity with practical experience in penetration testing, vulnerability assessment, and security monitoring. I have worked with tools like Splunk and Wireshark for log analysis and network traffic inspection, and have experience identifying indicators of compromise through CTF challenges and hands-on projects.I am particularly interested in applying my knowledge of identifying vulnerabilities, analyzing security events, and understanding attack methodologies to contribute to improving overall security posture. I am eager to work in dynamic cybersecurity environments where I can continuously learn, adapt, and strengthen my practical skills.";
-        const escapeTerminalHtml = (value) =>
-          value
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;");
-        const buildPromptLine = (command = "") =>
-          `${escapeTerminalHtml(terminalPromptTop)}\n${escapeTerminalHtml(terminalPromptBottom)}${
-            command ? `<span class="terminal-command">${escapeTerminalHtml(command)}</span>` : ""
-          }`;
-
-        const renderTerminal = (content, showCursor = false) => {
-          if (!terminalScreen) {
-            return;
-          }
-
-          terminalScreen.innerHTML = content;
-          if (showCursor) {
-            const cursor = document.createElement("span");
-            cursor.className = "terminal-cursor";
-            cursor.setAttribute("aria-hidden", "true");
-            terminalScreen.append(cursor);
-          }
-        };
-
-const runTerminalIntro = () => {
-  if (!terminalScreen) return;
-
-  let content = buildPromptLine();
-  renderTerminal(content, true);
-
-  // 🔹 TYPE FIRST COMMAND (whoami)
-  let typed1 = "";
-  const typeFirstCommand = () => {
-    typed1 += terminalCommand[typed1.length];
-    renderTerminal(buildPromptLine(typed1), true);
-
-    if (typed1.length < terminalCommand.length) {
-      setTimeout(typeFirstCommand, 100);
-    } else {
-      setTimeout(() => {
-        content =
-          `${buildPromptLine(terminalCommand)}\n${escapeTerminalHtml(terminalOutput)}\n` +
-          `${buildPromptLine()}`;
-        
-        renderTerminal(content, true);
-
-        // 🔹 START SECOND COMMAND
-        setTimeout(typeSecondCommand, 500);
-      }, 300);
-    }
-  };
-
-  // 🔹 TYPE SECOND COMMAND (cat introduction.txt)
-  let typed2 = "";
-  const typeSecondCommand = () => {
-    typed2 += terminal2Command[typed2.length];
-
-    renderTerminal(
-      `${buildPromptLine(terminalCommand)}\n${escapeTerminalHtml(terminalOutput)}\n` +
-      `${buildPromptLine(typed2)}`,
-      true
-    );
-
-    if (typed2.length < terminal2Command.length) {
-      setTimeout(typeSecondCommand, 80);
-    } else {
-      setTimeout(() => {
-        renderTerminal(
-          `${buildPromptLine(terminalCommand)}\n${escapeTerminalHtml(terminalOutput)}\n` +
-          `${buildPromptLine(terminal2Command)}\n${escapeTerminalHtml(terminal2Output)}\n` +
-          `${buildPromptLine()}`,
-          true
+      /* Scanline overlay for cyberpunk feel */
+      #pf-loader::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.018) 0,
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px,
+          transparent 4px
         );
-      }, 300);
-    }
-  };
+        pointer-events: none;
+        z-index: 1;
+      }
 
-  setTimeout(typeFirstCommand, 500);
-};
+      .pf-logo {
+        position: relative;
+        z-index: 2;
+        font-size: clamp(11px, 2vw, 15px);
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        text-shadow: 0 0 14px rgba(56,189,248,0.6);
+        animation: pf-pulse 2s ease-in-out infinite;
+      }
 
-        const labPromptTop = "\u250c\u2500\u2500(atul㉿atul)-[~]";
-        const labPromptBottom = "\u2514\u2500$";
-        const labVisitorPrompt = "┌──(atul㉿atul)-[~]";
-        const labTerminalState = {
-          busy: true,
-          history: [],
-          historyIndex: -1,
-          pendingAction: null,
-          matrixTimer: null,
-          hasLoaded: false,
-        };
-        const labSleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-        
-        // Typing animation for Kali display
-        const typeKaliCommand = async (text, element) => {
-          if (!element) return;
-          element.textContent = "";
-          for (let i = 0; i < text.length; i++) {
-            element.textContent += text[i];
-            await labSleep(80);
-          }
-          // cursor keeps blinking after typing — removed typing-complete here
-        };
-        
-        const escapeLabTerminalHtml = (value = "") =>
-          value
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;");
-        const scrollLabTerminal = (smooth = true) => {
-          if (!labTerminalOutput) {
-            return;
-          }
+      .pf-status {
+        position: relative;
+        z-index: 2;
+        font-size: clamp(10px, 1.6vw, 13px);
+        letter-spacing: 0.14em;
+        color: rgba(89,255,102,0.85);
+        min-height: 18px;
+      }
 
-          labTerminalOutput.scrollTo({
-            top: labTerminalOutput.scrollHeight,
-            behavior: smooth ? "smooth" : "auto",
-          });
-        };
-        const focusLabTerminalInput = () => {
-          // Focus whichever input is currently active
-          if (labTerminalInputCmd && !labTerminalInputCmd.disabled) {
-            labTerminalInputCmd.focus({ preventScroll: true });
-            return;
-          }
-          if (labTerminalInput && !labTerminalInput.disabled) {
-            labTerminalInput.focus({ preventScroll: true });
-          }
-        };
-        const appendLabTerminalNode = (node, smooth = true) => {
-          if (!labTerminalOutput) {
-            return node;
-          }
+      /* HUD spinner ring */
+      .pf-ring-wrap {
+        position: relative;
+        z-index: 2;
+        width: 72px;
+        height: 72px;
+      }
+      .pf-ring {
+        width: 100%; height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(56,189,248,0.12);
+        border-top-color: var(--cyan);
+        border-right-color: rgba(56,189,248,0.45);
+        animation: pf-spin 1.1s linear infinite;
+        box-shadow: 0 0 18px rgba(56,189,248,0.25), inset 0 0 12px rgba(56,189,248,0.06);
+      }
+      .pf-ring-inner {
+        position: absolute;
+        inset: 12px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(89,255,102,0.12);
+        border-bottom-color: rgba(89,255,102,0.6);
+        animation: pf-spin 1.8s linear infinite reverse;
+      }
+      .pf-ring-dot {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--cyan);
+        transform: translate(-50%,-50%);
+        box-shadow: 0 0 8px var(--cyan);
+        animation: pf-pulse 1.4s ease-in-out infinite;
+      }
 
-          if (labTerminalForm && labTerminalForm.parentElement === labTerminalOutput) {
-            labTerminalOutput.insertBefore(node, labTerminalForm);
-          } else {
-            labTerminalOutput.appendChild(node);
-          }
-          scrollLabTerminal(smooth);
-          return node;
-        };
-        const appendLabTerminalLine = (text, className = "") => {
-          const line = document.createElement("div");
-          line.className = `terminal-line${className ? ` ${className}` : ""}`;
-          line.textContent = text;
-          return appendLabTerminalNode(line);
-        };
-        const appendLabTerminalBlock = (text, className = "") => {
-          const block = document.createElement("pre");
-          block.className = `terminal-block${className ? ` ${className}` : ""}`;
-          block.textContent = text;
-          return appendLabTerminalNode(block);
-        };
-        const buildLabPromptStack = (command = "") => {
-          const row = document.createElement("div");
-          row.className = "terminal-prompt-line terminal-prompt-stack";
-          row.innerHTML = `<span class="terminal-prompt">${escapeLabTerminalHtml(
-            labPromptTop
-          )}</span><span><span class="terminal-prompt">${escapeLabTerminalHtml(
-            labPromptBottom
-          )}</span>${command ? ` <span class="terminal-command">${escapeLabTerminalHtml(command)}</span>` : ""}</span>`;
-          return row;
-        };
-        const appendLabPromptEcho = (command) => appendLabTerminalNode(buildLabPromptStack(command));
-        const appendLabCmdEcho = (command) => {
-          const row = document.createElement("div");
-          row.className = "terminal-prompt-line terminal-cmd-echo";
-          row.innerHTML = `<span class="terminal-cmd-echo-label">Command :</span><span class="terminal-cmd-echo-value">${escapeLabTerminalHtml(command)}</span>`;
-          return appendLabTerminalNode(row);
-        };
-        const appendLabInlinePromptEcho = (command, promptText) => {
-          const row = document.createElement("div");
-          row.className = "terminal-prompt-line";
-          row.innerHTML = `<span class="terminal-prompt">${escapeLabTerminalHtml(
-            promptText
-          )}</span><span class="terminal-command">${escapeLabTerminalHtml(command)}</span>`;
-          return appendLabTerminalNode(row);
-        };
-        const typeLabTerminalLine = async (text, className = "", speed = 16) => {
-          const line = document.createElement("div");
-          line.className = `terminal-line${className ? ` ${className}` : ""}`;
-          appendLabTerminalNode(line, false);
+      /* Signal bars — show confidence visually */
+      .pf-signals {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: min(280px, 72vw);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
+      .pf-signals.is-visible { opacity: 1; }
 
-          for (let index = 0; index < text.length; index += 1) {
-            line.textContent += text[index];
-            scrollLabTerminal(false);
-            await labSleep(speed);
-          }
+      .pf-sig-row {
+        display: grid;
+        grid-template-columns: 90px 1fr 36px;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255,255,255,0.55);
+      }
+      .pf-sig-bar-track {
+        height: 4px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .pf-sig-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--cyan), var(--green));
+        border-radius: 2px;
+        transition: width 480ms cubic-bezier(0.22,1,0.36,1);
+      }
+      .pf-sig-val {
+        text-align: right;
+        color: var(--green);
+      }
 
-          scrollLabTerminal();
-          return line;
-        };
-        const typeLabPromptEcho = async (command, speed = 28) => {
-          const row = buildLabPromptStack();
-          row.querySelectorAll(".terminal-prompt")[1].insertAdjacentHTML(
-            "afterend",
-            ' <span class="terminal-command"></span>'
-          );
-          appendLabTerminalNode(row, false);
+      /* Result badge */
+      .pf-result {
+        position: relative;
+        z-index: 2;
+        font-size: clamp(10px, 1.5vw, 12px);
+        letter-spacing: 0.18em;
+        color: rgba(56,189,248,0.7);
+        text-transform: uppercase;
+        min-height: 16px;
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
+      .pf-result.is-visible { opacity: 1; }
 
-          const commandNode = row.querySelector(".terminal-command");
-          for (let index = 0; index < command.length; index += 1) {
-            commandNode.textContent += command[index];
-            scrollLabTerminal(false);
-            await labSleep(speed);
-          }
+      @keyframes pf-spin  { to { transform: rotate(360deg);  } }
+      @keyframes pf-pulse {
+        0%, 100% { opacity: 0.85; }
+        50%       { opacity: 1; filter: brightness(1.2); }
+      }
+    </style>
+  </head>
+  <body>
 
-          scrollLabTerminal();
-        };
-        const setLabTerminalAvailability = (enabled, placeholder = "", mode = "cmd") => {
-          if (!labTerminalInput || !labTerminalForm) {
-            return;
-          }
+    <!-- ── Loading screen ───────────────────────────────────────────────── -->
+    <div id="pf-loader" role="status" aria-live="polite" aria-label="Detecting device">
+      <span class="pf-logo">[ CYBER PORTFOLIO ]</span>
 
-          labTerminalState.busy = !enabled;
-          labTerminalForm.classList.toggle("is-hidden", !enabled && !labTerminalState.hasLoaded);
+      <div class="pf-ring-wrap" aria-hidden="true">
+        <div class="pf-ring"></div>
+        <div class="pf-ring-inner"></div>
+        <div class="pf-ring-dot"></div>
+      </div>
 
-          if (!enabled) {
-            labTerminalInput.disabled = true;
-            labTerminalInput.blur();
-            if (labTerminalInputCmd) { labTerminalInputCmd.disabled = true; labTerminalInputCmd.blur(); }
-            return;
-          }
+      <p class="pf-status" id="pf-status">Initialising detection...</p>
 
-          labTerminalState.hasLoaded = true;
-          labTerminalForm.classList.remove("is-hidden");
+      <!-- Signal confidence bars — filled by JS -->
+      <div class="pf-signals" id="pf-signals" aria-hidden="true">
+        <div class="pf-sig-row">
+          <span>User-Agent</span>
+          <div class="pf-sig-bar-track"><div class="pf-sig-bar-fill" id="sig-ua"></div></div>
+          <span class="pf-sig-val" id="sigv-ua">–</span>
+        </div>
+        <div class="pf-sig-row">
+          <span>Platform</span>
+          <div class="pf-sig-bar-track"><div class="pf-sig-bar-fill" id="sig-pl"></div></div>
+          <span class="pf-sig-val" id="sigv-pl">–</span>
+        </div>
+        <div class="pf-sig-row">
+          <span>Touch</span>
+          <div class="pf-sig-bar-track"><div class="pf-sig-bar-fill" id="sig-tc"></div></div>
+          <span class="pf-sig-val" id="sigv-tc">–</span>
+        </div>
+        <div class="pf-sig-row">
+          <span>Screen</span>
+          <div class="pf-sig-bar-track"><div class="pf-sig-bar-fill" id="sig-sc"></div></div>
+          <span class="pf-sig-val" id="sigv-sc">–</span>
+        </div>
+      </div>
 
-          if (mode === "kali") {
-            // Show kali prompt, hide command prompt
-            if (labTerminalPromptKali) labTerminalPromptKali.classList.remove("is-hidden");
-            if (labTerminalPromptCmd)  labTerminalPromptCmd.classList.add("is-hidden");
-            labTerminalInput.disabled = false;
-            labTerminalInput.placeholder = placeholder;
-            labTerminalInput.value = "";
-            if (labTerminalInputCmd) { labTerminalInputCmd.disabled = true; }
-            if (labTerminalOutput) labTerminalOutput.appendChild(labTerminalForm);
-            scrollLabTerminal(false);
-            labTerminalInput.focus({ preventScroll: true });
-          } else {
-            // Show command prompt, hide kali prompt
-            if (labTerminalPromptKali) labTerminalPromptKali.classList.add("is-hidden");
-            if (labTerminalPromptCmd)  labTerminalPromptCmd.classList.remove("is-hidden");
-            const activeInput = labTerminalInputCmd || labTerminalInput;
-            activeInput.disabled = false;
-            activeInput.placeholder = placeholder;
-            activeInput.value = "";
-            labTerminalInput.disabled = true;
-            if (labTerminalOutput) labTerminalOutput.appendChild(labTerminalForm);
-            scrollLabTerminal(false);
-            activeInput.focus({ preventScroll: true });
-          }
-        };
-        const addLabDivider = () =>
-          appendLabTerminalLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "terminal-divider");
-        const labRandomFrom = (items) => items[Math.floor(Math.random() * items.length)];
-        const labRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-        const buildLabIp = () =>
-          [labRandomInt(23, 223), labRandomInt(11, 252), labRandomInt(7, 249), labRandomInt(3, 244)].join(
-            "."
-          );
-        const buildLabDate = (offsetDays = 0) => {
-          const date = new Date(
-            Date.UTC(
-              2026,
-              labRandomInt(0, 11),
-              labRandomInt(1, 28),
-              labRandomInt(0, 23),
-              labRandomInt(0, 59),
-              labRandomInt(0, 59)
-            )
-          );
-          date.setUTCDate(date.getUTCDate() + offsetDays);
-          return date.toUTCString();
-        };
-        const labGeoProfiles = [
-          { country: "Germany", code: "DE", region: "Bavaria", city: "Munich", lat: "48.1351", lon: "11.5820" },
-          { country: "Singapore", code: "SG", region: "Central Region", city: "Singapore", lat: "1.3521", lon: "103.8198" },
-          { country: "United States", code: "US", region: "Virginia", city: "Ashburn", lat: "39.0438", lon: "-77.4874" },
-          { country: "Netherlands", code: "NL", region: "North Holland", city: "Amsterdam", lat: "52.3676", lon: "4.9041" },
-          { country: "India", code: "IN", region: "Maharashtra", city: "Mumbai", lat: "19.0760", lon: "72.8777" },
-        ];
-        const labHostingCompanies = [
-          "Cloudflare Inc.",
-          "Amazon Data Services",
-          "DigitalOcean LLC",
-          "Akamai International",
-          "Hetzner Online GmbH",
-        ];
-        const labSslIssuers = [
-          "Let's Encrypt",
-          "DigiCert TLS RSA SHA256",
-          "Sectigo RSA Domain Validation",
-          "GlobalSign Secure Server CA",
-          "Google Trust Services",
-        ];
-        const labScannerPayloads = [
-          "?",
-          "\\x27UNION SELECT",
-          "../",
-          "//*",
-          "' OR '1'='1",
-          "../../../etc/passwd",
-          "<script>alert(1)<\\/script>",
-          "${7*7}",
-        ];
-        const labCrawlerPaths = [
-          "/blog/red-team-notes",
-          "/products/api/v1/status",
-          "/assets/js/dashboard.js",
-          "/login?redirect=%2Fadmin",
-          "/careers/security-analyst",
-          "/docs/exposure-checklist",
-          "/api/internal/heartbeat",
-          "/admin/backup-2026.zip",
-          "/reports/q2-findings",
-          "/support/ticket/incident-response",
-        ];
-        const showLabBanner = async () => {
-          addLabDivider();
-          await typeLabTerminalLine("Interactive Cyber Lab Loaded", "terminal-success", 12);
-          await typeLabTerminalLine("Type 'help' to begin", "terminal-accent", 12);
-          addLabDivider();
-          await typeLabTerminalLine("Available Commands:", "terminal-muted", 12);
-          for (const command of [
-            "help",
-            "whoami",
-            "skills",
-            "projects",
-            "social",
-            "clear",
-            "lookup",
-            "scanner",
-            "crawler",
-            "matrix",
-            "sudo",
-          ]) {
-            await typeLabTerminalLine(`- ${command}`, "terminal-muted", 10);
-          }
-        };
-        const runLabLookupSimulation = async (target) => {
-          const ip = buildLabIp();
-          const geo = labRandomFrom(labGeoProfiles);
-          const issuer = labRandomFrom(labSslIssuers);
-          const host = labRandomFrom(labHostingCompanies);
-          const validFrom = buildLabDate(0);
-          const validUntil = buildLabDate(labRandomInt(60, 120));
+      <p class="pf-result" id="pf-result"></p>
+    </div>
 
-          await labSleep(220);
-          await typeLabTerminalLine("You Only Got 500 Chances To Search ...!!!!!", "terminal-warning", 12);
-          await typeLabTerminalLine(`Resolving target: ${target}`, "terminal-accent", 12);
-          await typeLabTerminalLine("IP Geolocation Result", "terminal-success", 12);
-          await typeLabTerminalLine("-----------------------------------------------------", "terminal-divider", 2);
+    <script>
+    /* ===================================================================
+       DEVICE DETECTION & ROUTING ENGINE
+       ===================================================================
+       Architecture:
+         detectDevice()  → returns { type, scores, signals, confidence }
+         routeTo(type)   → sets sessionStorage flag, redirects
+         run()           → orchestrates detection + loading screen + redirect
+    =================================================================== */
+    (function () {
+      "use strict";
 
-          for (const line of [
-            `IP Address : ${ip}`,
-            `Country    : ${geo.country}`,
-            `Country Code: ${geo.code}`,
-            `State/Region: ${geo.region}`,
-            `City       : ${geo.city}`,
-            "-----------------------------------------------------",
-            `Latitude :- ${geo.lat}`,
-            `Longitude :- ${geo.lon}`,
-            `Hosting Company :- ${host}`,
-            `Issuer Name: ${issuer}`,
-            "-----------------------------------------------------",
-            `Valid from: ${validFrom}`,
-            `Valid until: ${validUntil}`,
-          ]) {
-            await typeLabTerminalLine(
-              line,
-              line.includes("----") ? "terminal-divider" : "terminal-muted",
-              8
-            );
-            await labSleep(60);
-          }
-        };
-        const runLabScannerSimulation = async (filePath) => {
-          if (filePath) {
-            await typeLabTerminalLine(`Loaded payload file: ${filePath}`, "terminal-accent", 12);
-          }
+      /* ── Configuration ──────────────────────────────────────────────── */
+      const CFG = {
+        /* Redirect targets — relative to this file's location (repo root) */
+        mobileUrl:  "mobile-2/index.html",
+        desktopUrl: "desktop.html",
 
-          let notFoundCount = 0;
-          for (let round = 0; round < labRandomInt(4, 6); round += 1) {
-            const payload = labRandomFrom(labScannerPayloads);
-            const statusCode = labRandomFrom([200, 200, 200, 302, 403, 500, 404]);
-            if (statusCode === 404) {
-              notFoundCount += 1;
-            }
+        /* sessionStorage key — prevents redirect loops.
+           When set, this page will NOT redirect again.                  */
+        loopKey: "pf_routed",
 
-            await typeLabTerminalLine("Loading....", "terminal-muted", 10);
-            await labSleep(180);
-            await typeLabTerminalLine(
-              `status_code - ${statusCode} | Payload - ${payload}`,
-              statusCode >= 400 ? "terminal-warning" : "terminal-success",
-              8
-            );
-            await typeLabTerminalLine(
-              `Response from page | - <Response [${statusCode}]>`,
-              statusCode >= 400 ? "terminal-error" : "terminal-muted",
-              8
-            );
-            await labSleep(140);
-          }
+        /* Minimum physics score (0-100) to classify as mobile           */
+        mobileThreshold: 52,
 
-          await typeLabTerminalLine(`Total 404 Status Code are ${notFoundCount}`, "terminal-accent", 12);
-        };
-        const runLabCrawlerSimulation = async () => {
-          await typeLabTerminalLine("Creating project Task", "terminal-accent", 12);
-          await typeLabTerminalLine("| Status_code | URL |", "terminal-divider", 8);
-          await typeLabTerminalLine("| 200 | https://target.com |", "terminal-success", 8);
+        /* How long to show the loading screen before navigating (ms)    */
+        displayMs: 900,
 
-          for (const crawlerCount of [2, 3, 4]) {
-            await typeLabTerminalLine(`Active Crawlers ${crawlerCount}`, "terminal-warning", 10);
-            await labSleep(120);
-          }
+        /* Screen width breakpoint below which screen score favours mobile */
+        narrowPx: 500,
 
-          await typeLabTerminalLine(`${labRandomInt(57, 93)} links in the queue`, "terminal-accent", 10);
-          for (let index = 0; index < 12; index += 1) {
-            const path = labRandomFrom(labCrawlerPaths);
-            const protocol = Math.random() > 0.22 ? "https" : "http";
-            const statusCode = labRandomFrom([200, 200, 200, 301, 302, 403]);
-            await typeLabTerminalLine(
-              `[${statusCode}] ${protocol}://target.com${path}`,
-              statusCode >= 400 ? "terminal-warning" : "terminal-muted",
-              8
-            );
-            await labSleep(110);
-          }
-        };
-        const activateLabMatrixEffect = () => {
-          if (!labTerminalMatrix) {
-            return;
-          }
+        /* DPR above which small screens likely are phones (Retina, OLED) */
+        hiDprThreshold: 1.8,
+      };
 
-          labTerminalMatrix.innerHTML = "";
-          for (let index = 0; index < 8; index += 1) {
-            const column = document.createElement("pre");
-            column.className = "terminal-matrix-column";
-            column.style.animationDelay = `${index * 0.12}s`;
-            column.textContent = Array.from({ length: 26 }, () =>
-              labRandomFrom(["0", "1", "7", "A", "F", "#", "$", "%"])
-            ).join("\n");
-            labTerminalMatrix.appendChild(column);
-          }
+      /* ── DOM refs ────────────────────────────────────────────────────── */
+      const statusEl   = document.getElementById("pf-status");
+      const signalsEl  = document.getElementById("pf-signals");
+      const resultEl   = document.getElementById("pf-result");
 
-          labTerminalMatrix.classList.add("is-active");
-          window.clearTimeout(labTerminalState.matrixTimer);
-          labTerminalState.matrixTimer = window.setTimeout(() => {
-            labTerminalMatrix.classList.remove("is-active");
-          }, 2200);
-        };
-        const executeLabCommand = async (rawCommand) => {
-          const command = rawCommand.trim().toLowerCase();
-          if (!command) {
-            return;
-          }
+      const sigBars = {
+        ua: document.getElementById("sig-ua"),
+        pl: document.getElementById("sig-pl"),
+        tc: document.getElementById("sig-tc"),
+        sc: document.getElementById("sig-sc"),
+      };
+      const sigVals = {
+        ua: document.getElementById("sigv-ua"),
+        pl: document.getElementById("sigv-pl"),
+        tc: document.getElementById("sigv-tc"),
+        sc: document.getElementById("sigv-sc"),
+      };
 
-          const handlers = {
-            help: async () => showLabBanner(),
-            ls: async () =>
-              typeLabTerminalLine(
-                "about.txt  certs/  projects/  recon/  social.json  tools/",
-                "terminal-muted",
-                8
-              ),
-            whoami: async () => {
-              await typeLabTerminalLine("Cyber Security Enthusiast | Problem Solver", "terminal-success", 12);
-              await typeLabTerminalLine(
-                "Focused on building cybersecurity projects, exploring new security techniques, and continuously learning emerging technologies in cybersecurity and network security.",
-                "terminal-muted",
-                8
-              );
-            },
-            skills: async () =>
-              appendLabTerminalBlock(
-                "Recon      : Nmap, Burp Suite, Wireshark, OWASP ZAP\nDetection  : Splunk, MITRE ATT&CK, Kill Chain\nScripting  : Python, Bash,Linux shell scripting \nSystems    : Kali Linux, Windows",
-                "terminal-muted"
-              ),
-            projects: async () => {
-              addLabDivider();
-              await typeLabTerminalLine("[1] IP Geolocation Lookup Tool", "terminal-success", 10);
-              await typeLabTerminalLine("Command: lookup", "terminal-accent", 10);
-              await typeLabTerminalLine("", "terminal-muted", 2);
-              await typeLabTerminalLine("[2] Vulnerability Scanner", "terminal-success", 10);
-              await typeLabTerminalLine("Command: scanner", "terminal-accent", 10);
-              await typeLabTerminalLine("", "terminal-muted", 2);
-              await typeLabTerminalLine("[3] Web Crawler", "terminal-success", 10);
-              await typeLabTerminalLine("Command: crawler", "terminal-accent", 10);
-              addLabDivider();
-            },
-            social: async () =>
-              appendLabTerminalBlock(
-                "GitHub   : https://github.com/tharkaratul\nLinkedIn : https://www.linkedin.com/in/atul-tharkar",
-                "terminal-muted"
-              ),
-            clear: async () => {
-              if (labTerminalOutput) {
-                labTerminalOutput.innerHTML = "";
-              }
-            },
-            neofetch: async () =>
-              appendLabTerminalBlock(
-                "       .-,      visitor@portfolio\n      /  ))     -----------------\n     /  //      OS: Kali Linux Portfolio Edition\n    /  //       Host: Cyber Lab Workstation\n   /  //        Kernel: 6.11.0-redteam\n  /  //         Shell: zsh 5.9\n /  //          WM: Hacker Console\n/.-'           Uptime: 1337 minutes\n\\  \\           Packages: 128\n \\  \\          Terminal: Offensive Sim\n  \\  \\         CPU: Intel Core i7 (8) @ 4.60GHz\n   \\  \\        GPU: RTX CyberVision\n    \\  \\       Memory: 6144MiB / 16384MiB",
-                "terminal-muted"
-              ),
-            lookup: async () => {
-              await typeLabTerminalLine("python index.py", "terminal-command", 12);
-              await typeLabTerminalLine("Enter Website Name Or IP Address :", "terminal-warning", 10);
-              labTerminalState.pendingAction = { type: "lookup" };
-              setLabTerminalAvailability(true, "example.com or 8.8.8.8", "cmd");
-            },
-            scanner: async () => {
-              await typeLabTerminalLine("python scanner.py -t https://target.com -s", "terminal-command", 12);
-              await typeLabTerminalLine(
-                "If no file is selected, then the default payloads will be executed",
-                "terminal-warning",
-                10
-              );
-              await typeLabTerminalLine("Enter the file path -", "terminal-warning", 10);
-              labTerminalState.pendingAction = { type: "scanner" };
-              setLabTerminalAvailability(true, "leave blank to use default payloads", "cmd");
-            },
-            crawler: async () => {
-              await typeLabTerminalLine("python scanner.py -t https://target.com -c", "terminal-command", 12);
-              await runLabCrawlerSimulation();
-            },
-            matrix: async () => {
-              activateLabMatrixEffect();
-              await typeLabTerminalLine("Matrix overlay engaged. Signal stream stabilized.", "terminal-accent", 10);
-            },
-            sudo: async () => {
-              await typeLabTerminalLine("[sudo] password for visitor:", "terminal-warning", 12);
-              await labSleep(360);
-              await typeLabTerminalLine("ACCESS DENIED", "terminal-error", 12);
-            },
-          };
+      /* ── Helpers ─────────────────────────────────────────────────────── */
+      const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
 
-          if (!handlers[command]) {
-            await typeLabTerminalLine(`command not found: ${command}`, "terminal-error", 10);
-            return;
-          }
+      const updateBar = (key, score) => {
+        /* score is 0-100 where 100 = maximum confidence of "mobile"     */
+        if (sigBars[key])  sigBars[key].style.width  = score + "%";
+        if (sigVals[key])  sigVals[key].textContent  = score;
+      };
 
-          await labSleep(120);
-          await handlers[command]();
-        };
-        const handleLabTerminalSubmit = async (event) => {
-          event.preventDefault();
-          if (labTerminalState.busy) {
-            return;
-          }
+      /* ── Signal 1: User-Agent Analysis ──────────────────────────────── */
+      /*
+         UA strings are not perfectly reliable (can be spoofed) but remain
+         the strongest single signal for phone detection.
 
-          // Read from whichever input is currently active
-          const activeInput = (labTerminalPromptCmd && !labTerminalPromptCmd.classList.contains("is-hidden") && labTerminalInputCmd)
-            ? labTerminalInputCmd
-            : labTerminalInput;
-          if (!activeInput) return;
+         Phone patterns     → score 100 (strong mobile signal)
+         Tablet patterns    → score 30  (tablet is "not phone")
+         Desktop OS         → score 0   (no mobile signal at all)
+         Touch laptop hints → score 10  (light signal, overridden by platform)
 
-          const value = activeInput.value;
-          const trimmedValue = value.trim();
-          if (!trimmedValue && !labTerminalState.pendingAction) {
-            return;
-          }
+         The function returns a 0–100 score where:
+           100 = definitely a phone UA
+           0   = definitely not a phone UA
+      */
+      function getUAScore(ua) {
+        const u = ua.toLowerCase();
 
-          if (trimmedValue) {
-            labTerminalState.history.push(trimmedValue);
-          }
-          labTerminalState.historyIndex = labTerminalState.history.length;
-
-          const pendingAction = labTerminalState.pendingAction;
-          labTerminalState.pendingAction = null;
-          setLabTerminalAvailability(false, "executing...", "cmd");
-
-          if (pendingAction?.type === "lookup") {
-            appendLabInlinePromptEcho(trimmedValue || "example.com", "Enter Website Name Or IP Address :");
-            await runLabLookupSimulation(trimmedValue || "example.com");
-            setLabTerminalAvailability(true, "type a command...", "cmd");
-            return;
-          }
-
-          if (pendingAction?.type === "scanner") {
-            appendLabInlinePromptEcho(trimmedValue || "[default payload set]", "Enter the file path -");
-            await runLabScannerSimulation(trimmedValue);
-            setLabTerminalAvailability(true, "type a command...", "cmd");
-            return;
-          }
-
-          appendLabCmdEcho(trimmedValue);
-          await executeLabCommand(trimmedValue);
-          setLabTerminalAvailability(true, "type a command...", "cmd");
-        };
-        const handleLabTerminalHistory = (event) => {
-          if (labTerminalState.busy) return;
-
-          // Use whichever input fired the event
-          const activeInput = event.target;
-          if (!activeInput) return;
-
-          if (event.key === "ArrowUp") {
-            event.preventDefault();
-            if (!labTerminalState.history.length) return;
-            labTerminalState.historyIndex = Math.max(0, labTerminalState.historyIndex - 1);
-            activeInput.value = labTerminalState.history[labTerminalState.historyIndex] || "";
-            return;
-          }
-
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            if (!labTerminalState.history.length) return;
-            labTerminalState.historyIndex = Math.min(
-              labTerminalState.history.length,
-              labTerminalState.historyIndex + 1
-            );
-            activeInput.value =
-              labTerminalState.historyIndex >= labTerminalState.history.length
-                ? ""
-                : labTerminalState.history[labTerminalState.historyIndex] || "";
-          }
-
-          // Trigger submit on Enter for the cmd input (form submit handles it for kali input too)
-          if (event.key === "Enter" && activeInput === labTerminalInputCmd) {
-            event.preventDefault();
-            if (labTerminalForm) labTerminalForm.dispatchEvent(new Event("submit", { cancelable: true }));
-          }
-        };
-        const runInteractiveTerminalIntro = async () => {
-          if (!labTerminalOutput) {
-            return;
-          }
-
-          setLabTerminalAvailability(false, "booting cyber lab...");
-          await typeLabPromptEcho("whoami", 32);
-          await typeLabTerminalLine("Cyber Security Enthusiast | Problem Solver", "terminal-success", 12);
-          await labSleep(220);
-          await typeLabPromptEcho("cat summary.txt", 22);
-          appendLabTerminalBlock(
-            "Computer Science undergraduate specializing in Cybersecurity with hands-on experience in networking, ethical hacking, SOC operations, encryption and decryption techniques. Familiar with security methodologies and frameworks including the MITRE ATT&CK Framework and Cyber Kill Chain Framework, with a strong interest in offensive security, threat analysis, and network security. Passionate about building practical security solutions and continuously learning emerging technologies in cybersecurity.",
-            "is-dim"
-          );
-          await labSleep(300);
-
-          // ── Show Kali prompt (left-aligned, in output flow) with typing animation ──
-          if (labTerminalKaliDisplay) {
-            labTerminalKaliDisplay.style.display = "block";
-            if (labTerminalOutput) labTerminalOutput.appendChild(labTerminalKaliDisplay);
-            scrollLabTerminal();
-          }
-
-          // Type "python interact.py" with animation
-          await typeKaliCommand("python interact.py", labTerminalKaliTyping);
-
-          // Wait a few seconds then auto-type the hint nudge
-          await labSleep(800);
-          const hintText = " -- click enter in terminal";
-          for (let i = 0; i < hintText.length; i++) {
-            if (labTerminalKaliTyping) {
-              labTerminalKaliTyping.textContent += hintText[i];
-            }
-            await labSleep(55);
-          }
-          // Add a dim hint class so it looks like a ghost suggestion
-          if (labTerminalKaliTyping) {
-            labTerminalKaliTyping.classList.add("typing-hint");
-          }
-
-          // Wait for user to press Enter (listen on document)
-          await new Promise((resolve) => {
-            const onEnter = (event) => {
-              if (event.key === "Enter") {
-                event.preventDefault();
-                document.removeEventListener("keydown", onEnter);
-                resolve();
-              }
-            };
-            document.addEventListener("keydown", onEnter);
-          });
-
-          // Stop the blinking cursor on the typed command
-          if (labTerminalKaliTyping) {
-            labTerminalKaliTyping.classList.add("typing-complete");
-          }
-
-          await labSleep(120);
-
-          // Output the banner below the prompt (prompt stays in place)
-          await showLabBanner();
-
-          // Show Command : prompt for further input
-          setLabTerminalAvailability(true, "type a command...", "cmd");
-        };
-        if (labTerminalShell) {
-          labTerminalShell.addEventListener("click", focusLabTerminalInput);
-        }
-        if (labTerminalForm) {
-          labTerminalForm.addEventListener("submit", handleLabTerminalSubmit);
-        }
-        if (labTerminalInput) {
-          labTerminalInput.addEventListener("keydown", handleLabTerminalHistory);
-        }
-        if (labTerminalInputCmd) {
-          labTerminalInputCmd.addEventListener("keydown", handleLabTerminalHistory);
+        /* ── Strong phone indicators ─────────────────────────── */
+        /* Android without "tablet" keyword — typically a phone  */
+        if (/android/.test(u) && !/tablet/.test(u)) {
+          /* Extra check: Samsung Galaxy S/A/Note series are phones */
+          if (/mobile/.test(u) || /samsung/.test(u)) return 100;
+          /* Android with large screen hint is probably a tablet  */
+          if (/sm-t|gt-p|gt-n|sch-i|shv-e/.test(u))  return 20;
+          return 85; /* Generic Android — assume phone             */
         }
 
-        const technicalData = [
-          {
-            title: "TOOLS DETECTED !!!",
-            items: [
-              { label: "> Nmap", value: 80 },
-              { label: "> Wireshark", value: 65 },
-              { label: "> Burp Suite", value: 60 },
-              { label: "> Splunk", value: 75 },
-              { label: "> Metasploit", value: 50 },
-              { label: "> Snort", value: 65 },
-              { label: "> OWASP ZAP", value: 60 },
-              
-            ],
-          },
-          {
-            title: "FRAMEWORK DETECTED !!!",
-            items: [
-              { label: "> METRE ATT&CK", value: 70 },
-              { label: "> Cyber Kill Chain", value: 60 },
-            ],
-          },
-          {
-            title: "PROGRAMMING LANGUAGE DETECTED !!!",
-            items: [{ label: "> Python", value: 70 }],
-            items: [{ label: "> Bash Scripting", value: 75 }],
-          },
-          {
-            title: "OPERATING SYSTEM DETECTED !!!",
-            items: [
-              { label: "> KALI LINUX", value: 85 },
-              { label: "> WINDOWS", value: 75 },
-            ],
-          },
-        ];
+        /* iPhone — always a phone                               */
+        if (/iphone/.test(u))                         return 100;
 
-        const nonTechnicalData = [
-          {
-            title: "Soft-Skills DETECTED !!!",
-            items: [
-              { label: "> Communication", value: 75 },
-              { label: "> Anaylysis", value: 70 },
-              { label: "> Teamwork & Collaboration", value: 80 },
-              { label: "> Decision Making", value: 85 },
-              { label: "> Leadership", value: 70 },
-              { label: "> Public Speaking", value: 65 },
-            ],
-          },
-        {
-            title: "Courses DETECTED !!!",
-            items: [
-              { label: "> Vulnerability Analysis & __Penetration Testing", value: 70 },
-              { label: "> Bio-Metrics Security", value: 50 },
-              { label: "> Cloud Security", value: 60 },
-              { label: "> Reverse Engineering & __Malware Analysis ", value: 55 },             
-            ],
-          }
-        ];
+        /* Foldable phones (Galaxy Fold, Motorola Razr, etc.)    */
+        if (/fold|flip|razr/.test(u))                 return 90;
 
-        const animateValues = () => {
-          const scannerValues = document.querySelectorAll(".scanner-value");
+        /* Windows Phone (legacy, rare)                          */
+        if (/windows phone/.test(u))                  return 100;
 
-          scannerValues.forEach((valueNode, index) => {
-            const target = Number(valueNode.dataset.target || 0);
-            const meterFill = valueNode.previousElementSibling?.querySelector(".scanner-meter-fill");
-            let current = 0;
+        /* Feature phones / older mobile browsers                */
+        if (/blackberry|bb10|meego|palm|symbian/.test(u)) return 100;
 
-            const tick = () => {
-              current = Math.min(current + 2, target);
-              valueNode.textContent = `${current}%`;
-              if (meterFill) {
-                meterFill.style.width = `${current}%`;
-              }
+        /* Generic "Mobile" keyword without any tablet/desktop OS */
+        if (/mobile/.test(u) && !/tablet/.test(u))    return 80;
 
-              if (current < target) {
-                window.setTimeout(tick, 22);
-              }
-            };
+        /* ── Tablet indicators — NOT phones ─────────────────── */
+        /* iPad                                                  */
+        if (/ipad/.test(u))                           return 15;
 
-            window.setTimeout(tick, 60 + index * 30);
-          });
-        };
+        /* Android tablet (explicit keywords)                    */
+        if (/android.*tablet|tablet.*android/.test(u)) return 15;
 
-        const renderScannerPlaceholder = (statusText = "⟳ Scanning Available Modules...", waitingText = "Waiting For User Input...") => {
-          if (!scannerGroups || !scannerContent) {
-            return;
-          }
+        /* Kindle / Fire tablet                                  */
+        if (/kindle|silk|kftt|kfjwi|kfjwa|kfot/.test(u)) return 10;
 
-          scannerContent.classList.add("is-idle");
-          scannerGroups.innerHTML = `
-            <div class="scanner-placeholder">
-              <p class="scanner-placeholder-title">Select a Skill Category</p>
-              <div class="scanner-placeholder-loader" aria-hidden="true">
-              
-                <div class="scanner-placeholder-core">
-                  <div class="scanner-placeholder-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-              
-              </div>
-              <p class="scanner-placeholder-status">${statusText}</p>
-              <p class="scanner-placeholder-waiting">${waitingText}</p>
-            </div>
-          `;
-        };
+        /* ── Desktop OS indicators ───────────────────────────── */
+        /* Windows desktop (not Windows Phone)                   */
+        if (/windows nt/.test(u) && !/windows phone/.test(u)) return 0;
 
-        const renderGroups = (groups) => {
-          if (!scannerGroups || !scannerContent) {
-            return;
-          }
+        /* macOS desktop (not iOS)                               */
+        if (/macintosh|mac os x/.test(u) && !/iphone|ipad/.test(u)) return 0;
 
-          scannerContent.classList.remove("is-idle");
-          scannerGroups.innerHTML = groups
-            .map(
-              (group, groupIndex) => `
-                <div class="scanner-group" style="animation-delay: ${groupIndex * 90}ms">
-                  <h3 class="scanner-heading">${group.title}</h3>
-                  ${group.items
-                    .map(
-                      (item) => `
-                        <div class="scanner-row">
-                          <span class="scanner-label">${item.label}</span>
-                          <div class="scanner-meter">
-                            <span class="scanner-meter-fill"></span>
-                          </div>
-                          <span class="scanner-value" data-target="${item.value}">0%</span>
-                        </div>
-                      `
-                    )
-                    .join("")}
-                </div>
-              `
-            )
-            .join("");
+        /* Linux desktop                                         */
+        if (/linux/.test(u) && !/android/.test(u))    return 0;
 
-          animateValues();
-        };
+        /* ChromeOS                                              */
+        if (/cros/.test(u))                           return 5;
 
-        const runSkillsButtonDemo = async () => {
-          if (!filterButtons.length) {
-            return;
-          }
+        /* ── Default — unknown UA ────────────────────────────── */
+        return 35; /* Unknown → slight mobile lean for safety    */
+      }
 
-          const demoSequence = [
-            filterButtons.find((button) => button.dataset.view === "technical"),
-            filterButtons.find((button) => button.dataset.view === "non-technical"),
-          ].filter(Boolean);
+      function getPlatformScore() {
+        const uad = navigator.userAgentData;
 
-          const playDemoPress = async (button) => {
-            button.classList.remove("is-demo-press");
-            void button.offsetWidth;
-            button.classList.add("is-demo-press");
-            await labSleep(420);
-            button.classList.remove("is-demo-press");
-            await labSleep(140);
-          };
+        /* API not available */
+        if (!uad) return null;
 
-          await labSleep(1600);
+        const plat = (uad.platform || "").toLowerCase();
 
-          for (const button of demoSequence) {
-            await playDemoPress(button);
-            await labSleep(500);
-          }
-        };
-
-        const updateScrollProgress = () => {
-          if (!scrollProgressBar) {
-            return;
-          }
-
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-          scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
-        };
-
-        const initRevealAnimations = () => {
-          const revealNodes = document.querySelectorAll("[data-reveal]");
-
-          revealNodes.forEach((node) => {
-            const delay = Number(node.dataset.revealDelay || 0);
-            node.style.setProperty("--reveal-delay", `${delay * 1000}ms`);
-          });
-
-          const revealObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("is-visible");
-                  revealObserver.unobserve(entry.target);
-                }
-              });
-            },
-            {
-              threshold: 0.14,
-              rootMargin: "0px 0px -12% 0px",
-            }
-          );
-
-          revealNodes.forEach((node) => revealObserver.observe(node));
-        };
-
-        const initParallax = () => {
-          const parallaxNodes = document.querySelectorAll("[data-parallax]");
-
-          const updateParallax = () => {
-            const viewportHeight = window.innerHeight;
-
-            parallaxNodes.forEach((node) => {
-              const rect = node.getBoundingClientRect();
-              const speed = Number(node.dataset.parallaxSpeed || 0.02);
-              const offset = (rect.top - viewportHeight * 0.5) * speed;
-              node.style.setProperty("--parallax-y", `${offset}px`);
-            });
-          };
-
-          updateParallax();
-          window.addEventListener("scroll", updateParallax, { passive: true });
-          window.addEventListener("resize", updateParallax);
-        };
-
-        const initTilt = () => {
-          const tiltNodes = document.querySelectorAll("[data-tilt]");
-
-          tiltNodes.forEach((node) => {
-            node.addEventListener("mousemove", (event) => {
-              const rect = node.getBoundingClientRect();
-              const px = (event.clientX - rect.left) / rect.width;
-              const py = (event.clientY - rect.top) / rect.height;
-              const rotateY = (px - 0.5) * 8;
-              const rotateX = (0.5 - py) * 8;
-              node.style.setProperty("--tilt-rotate-x", `${rotateX}deg`);
-              node.style.setProperty("--tilt-rotate-y", `${rotateY}deg`);
-              node.style.setProperty("--lift-y", "-4px");
-            });
-
-            node.addEventListener("mouseleave", () => {
-              node.style.setProperty("--tilt-rotate-x", "0deg");
-              node.style.setProperty("--tilt-rotate-y", "0deg");
-              node.style.setProperty("--lift-y", "0px");
-            });
-          });
-        };
-
-        const initSpotlight = () => {
-          if (!cursorSpotlight) {
-            return;
-          }
-
-          window.addEventListener("pointermove", (event) => {
-            cursorSpotlight.style.opacity = "1";
-            cursorSpotlight.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-          });
-
-          window.addEventListener("pointerleave", () => {
-            cursorSpotlight.style.opacity = "0";
-          });
-        };
-
-        const initParticles = () => {
-          if (!floatingParticles) {
-            return;
-          }
-
-          const fragment = document.createDocumentFragment();
-
-          for (let index = 0; index < 22; index += 1) {
-            const particle = document.createElement("span");
-            particle.className = "floating-particle";
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.setProperty("--particle-size", `${2 + Math.random() * 5}px`);
-            particle.style.setProperty("--particle-duration", `${11 + Math.random() * 14}s`);
-            particle.style.setProperty("--particle-delay", `${Math.random() * -18}s`);
-            particle.style.setProperty("--particle-drift", `${-30 + Math.random() * 60}px`);
-            fragment.appendChild(particle);
-          }
-
-          floatingParticles.appendChild(fragment);
-        };
-
-        const initPageMotion = () => {
-          document.body.classList.add("page-ready");
-          updateScrollProgress();
-          initRevealAnimations();
-          initParallax();
-          initTilt();
-          initSpotlight();
-          initParticles();
-          window.addEventListener("scroll", updateScrollProgress, { passive: true });
-          window.addEventListener("resize", updateScrollProgress);
-        };
-
-        const initResumeBubble = () => {
-          if (!resumeBubble || !resumeBubbleText) return;
-
-          // ── 1. Draw circuit-board pattern on canvas ─────────────────────────
-          const circuitCanvas = document.getElementById("rbl-circuit-canvas");
-          if (circuitCanvas) {
-            const drawCircuit = () => {
-              const S = resumeBubble.offsetWidth || 160;
-              const DPR = 2;
-              circuitCanvas.width  = S * DPR;
-              circuitCanvas.height = S * DPR;
-              circuitCanvas.style.width  = S + "px";
-              circuitCanvas.style.height = S + "px";
-              const ctx = circuitCanvas.getContext("2d");
-              ctx.scale(DPR, DPR);
-              const cx = S / 2, cy = S / 2, R = S / 2;
-
-              // clip to circle
-              ctx.save();
-              ctx.beginPath(); ctx.arc(cx, cy, R - 1, 0, Math.PI * 2); ctx.clip();
-
-              // deep dark glass base
-              const bg = ctx.createRadialGradient(cx, cy * 0.7, 0, cx, cy, R);
-              bg.addColorStop(0,   "rgba(0,12,28,0.92)");
-              bg.addColorStop(0.5, "rgba(0,8,20,0.96)");
-              bg.addColorStop(1,   "rgba(0,3,10,1)");
-              ctx.fillStyle = bg; ctx.fillRect(0, 0, S, S);
-
-              // seeded RNG
-              let seed = 7;
-              const rand = () => { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 0xffffffff; };
-
-              // circuit traces — neon blue, very thin
-              const traceColor = "rgba(56,189,248,0.18)";
-              const nodeColor  = "rgba(56,189,248,0.35)";
-              ctx.strokeStyle = traceColor;
-              ctx.lineWidth = 0.7;
-
-              const nodes = [];
-              // generate grid-snapped nodes inside circle
-              const grid = S * 0.12;
-              for (let gx = grid; gx < S - grid; gx += grid) {
-                for (let gy = grid; gy < S - grid; gy += grid) {
-                  const jx = gx + (rand() - 0.5) * grid * 0.6;
-                  const jy = gy + (rand() - 0.5) * grid * 0.6;
-                  if (Math.hypot(jx - cx, jy - cy) < R * 0.88) {
-                    nodes.push([jx, jy]);
-                  }
-                }
-              }
-
-              // draw L-shaped traces between nearby nodes
-              nodes.forEach(([nx, ny], i) => {
-                if (rand() > 0.55) return;
-                const candidates = nodes.filter(([ox, oy], j) => {
-                  if (j === i) return false;
-                  const d = Math.hypot(ox - nx, oy - ny);
-                  return d > grid * 0.8 && d < grid * 2.2;
-                });
-                if (!candidates.length) return;
-                const [tx, ty] = candidates[Math.floor(rand() * candidates.length)];
-                ctx.beginPath();
-                // L-shaped: go horizontal then vertical
-                if (rand() > 0.5) {
-                  ctx.moveTo(nx, ny); ctx.lineTo(tx, ny); ctx.lineTo(tx, ty);
-                } else {
-                  ctx.moveTo(nx, ny); ctx.lineTo(nx, ty); ctx.lineTo(tx, ty);
-                }
-                ctx.stroke();
-              });
-
-              // node dots
-              nodes.forEach(([nx, ny]) => {
-                if (rand() > 0.6) return;
-                ctx.fillStyle = nodeColor;
-                ctx.beginPath(); ctx.arc(nx, ny, rand() * 1.4 + 0.6, 0, Math.PI * 2); ctx.fill();
-              });
-
-              // subtle concentric rings (circuit board style)
-              [0.35, 0.55, 0.72].forEach(rf => {
-                ctx.strokeStyle = "rgba(56,189,248,0.07)";
-                ctx.lineWidth = 0.5;
-                ctx.beginPath(); ctx.arc(cx, cy, R * rf, 0, Math.PI * 2); ctx.stroke();
-              });
-
-              // radial fade — dark center, slightly lighter rim, then dark edge
-              const fade = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
-              fade.addColorStop(0,    "rgba(0,0,0,0.0)");
-              fade.addColorStop(0.38, "rgba(0,0,0,0.0)");
-              fade.addColorStop(0.72, "rgba(0,0,0,0.18)");
-              fade.addColorStop(1,    "rgba(0,0,0,0.72)");
-              ctx.fillStyle = fade; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-
-              ctx.restore();
-            };
-
-            if (resumeBubble.offsetWidth > 0) drawCircuit();
-            else requestAnimationFrame(drawCircuit);
-            window.addEventListener("resize", drawCircuit, { passive: true });
-          }
-
-          // ── 2. Build SVG tick marks ─────────────────────────────────────────
-          const tickGroup = document.getElementById("rbl-ticks");
-          if (tickGroup) {
-            const cx = 100, cy = 100, r = 94;
-            const totalTicks = 60;
-            for (let i = 0; i < totalTicks; i++) {
-              const angle = (i / totalTicks) * Math.PI * 2 - Math.PI / 2;
-              const isMajor = i % 5 === 0;
-              const len = isMajor ? 8 : 4;
-              const x1 = cx + Math.cos(angle) * r;
-              const y1 = cy + Math.sin(angle) * r;
-              const x2 = cx + Math.cos(angle) * (r - len);
-              const y2 = cy + Math.sin(angle) * (r - len);
-              const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-              line.setAttribute("x1", x1); line.setAttribute("y1", y1);
-              line.setAttribute("x2", x2); line.setAttribute("y2", y2);
-              line.setAttribute("stroke", isMajor ? "rgba(56,189,248,0.7)" : "rgba(56,189,248,0.3)");
-              line.setAttribute("stroke-width", isMajor ? "1.2" : "0.7");
-              tickGroup.appendChild(line);
-            }
-          }
-
-          // ── 3. Orbit particles ─────────────────────────────────────────────
-          const orbitContainer = document.getElementById("rbl-orbit-particles");
-          const orbitParticles = [];
-          if (orbitContainer) {
-            for (let i = 0; i < 6; i++) {
-              const p = document.createElement("span");
-              p.className = "rbl-orbit-particle";
-              orbitContainer.appendChild(p);
-              orbitParticles.push({
-                el: p,
-                angle: (i / 6) * Math.PI * 2,
-                speed: 0.004 + Math.random() * 0.003,
-                radius: 0.58 + Math.random() * 0.1,
-                size: 2 + Math.random() * 2,
-              });
-            }
-          }
-
-          // ── 4. Physics state — bubble roams inside contact section ───────
-          const NAV_H = 118;
-          const getBubbleSize = () => resumeBubble.offsetWidth || 120;
-
-          // Returns bounds in viewport-space derived from the contact section rect
-          const getContactBounds = () => {
-            const s  = getBubbleSize();
-            const pad = 14;
-            const contactEl = document.querySelector(".contact-section") || document.getElementById("contact");
-            if (contactEl) {
-              const r = contactEl.getBoundingClientRect();
-              return {
-                minX: r.left  + pad,
-                maxX: r.right  - s - pad,
-                minY: r.top   + pad,
-                maxY: r.bottom - s - pad,
-              };
-            }
-            // fallback: full viewport
-            return { minX:pad, maxX:window.innerWidth-s-pad, minY:NAV_H+8, maxY:window.innerHeight-s-pad };
-          };
-
-          let bounds = getContactBounds();
-
-          // Start bubble inside the contact section
-          const initBounds = getContactBounds();
-          const st = {
-            x: initBounds.minX + (initBounds.maxX - initBounds.minX) * 0.72,
-            y: initBounds.minY + (initBounds.maxY - initBounds.minY) * 0.4,
-            vx:0.28, vy:0.22, tvx:0.28, tvy:0.22,
-            dragging:false, dragOffX:0, dragOffY:0,
-            inertiaX:0, inertiaY:0,
-            cursorX:window.innerWidth*0.5, cursorY:window.innerHeight*0.5, cursorActive:false,
-            hovered:false, speed:0, prevX:0, prevY:0,
-          };
-
-          // ── 5. Apply transform ─────────────────────────────────────────────
-          const applyTransform = () => {
-            resumeBubble.style.transform = `translate3d(${st.x}px,${st.y}px,0)`;
-            resumeBubble.style.filter = "";
-            if (resumeTerminalPopup) {
-              const s2 = getBubbleSize();
-              const popW = resumeTerminalPopup.offsetWidth || 240;
-              const left = st.x - popW - 14 > 12 ? st.x - popW - 14
-                : Math.min(window.innerWidth - popW - 12, st.x + s2 + 14);
-              const top = Math.max(NAV_H+8, Math.min(window.innerHeight-110, st.y + s2*0.18));
-              resumeTerminalPopup.style.left = left + "px";
-              resumeTerminalPopup.style.top  = top  + "px";
-            }
-          };
-
-          // ── 6. Orbit particle animation ────────────────────────────────────
-          const animateOrbits = () => {
-            const half = getBubbleSize() / 2;
-            orbitParticles.forEach(p => {
-              p.angle += p.speed * (st.dragging ? 2.5 : 1);
-              const px = Math.cos(p.angle) * half * p.radius;
-              const py = Math.sin(p.angle) * half * p.radius;
-              p.el.style.transform = `translate(${px}px,${py}px)`;
-              p.el.style.width  = p.size + "px";
-              p.el.style.height = p.size + "px";
-            });
-          };
-
-          // ── 7. Main RAF loop ───────────────────────────────────────────────
-          const tick = () => {
-            // refresh contact-section bounds every frame (it scrolls with page)
-            bounds = getContactBounds();
-            st.speed = Math.hypot(st.x - st.prevX, st.y - st.prevY);
-            st.prevX = st.x; st.prevY = st.y;
-            if (!st.dragging) {
-              if (Math.abs(st.inertiaX) > 0.08 || Math.abs(st.inertiaY) > 0.08) {
-                st.x += st.inertiaX; st.y += st.inertiaY;
-                st.inertiaX *= 0.91; st.inertiaY *= 0.91;
-              } else {
-                const t = performance.now();
-                st.tvx = Math.max(-0.6, Math.min(0.6, st.tvx + Math.sin(t*0.00019+1.2)*0.005));
-                st.tvy = Math.max(-0.6, Math.min(0.6, st.tvy + Math.cos(t*0.00015+0.7)*0.005));
-                st.vx += (st.tvx - st.vx) * 0.014;
-                st.vy += (st.tvy - st.vy) * 0.014;
-                if (st.cursorActive) {
-                  const half = getBubbleSize()/2;
-                  const dx = st.cursorX-(st.x+half), dy = st.cursorY-(st.y+half);
-                  const dist = Math.hypot(dx,dy);
-                  if (dist < 200 && dist > 1) { const pull=(1-dist/200)*0.012; st.vx+=(dx/dist)*pull; st.vy+=(dy/dist)*pull; }
-                }
-                st.x += st.vx; st.y += st.vy;
-              }
-              if (st.x < bounds.minX) { st.x=bounds.minX; st.tvx=Math.abs(st.tvx); st.vx*=-0.85; st.inertiaX=0; }
-              if (st.x > bounds.maxX) { st.x=bounds.maxX; st.tvx=-Math.abs(st.tvx); st.vx*=-0.85; st.inertiaX=0; }
-              if (st.y < bounds.minY) { st.y=bounds.minY; st.tvy=Math.abs(st.tvy); st.vy*=-0.85; st.inertiaY=0; }
-              if (st.y > bounds.maxY) { st.y=bounds.maxY; st.tvy=-Math.abs(st.tvy); st.vy*=-0.85; st.inertiaY=0; }
-            }
-            applyTransform();
-            animateOrbits();
-            requestAnimationFrame(tick);
-          };
-          bounds = getContactBounds(); applyTransform(); requestAnimationFrame(tick);
-
-          // ── 8. Drag with pointer capture ───────────────────────────────────
-          let lastDX=0, lastDY=0, lastDT=0, velHX=[], velHY=[];
-          resumeBubble.addEventListener("pointerdown", e => {
-            if (e.button !== 0) return;
-            e.preventDefault();
-            resumeBubble.setPointerCapture(e.pointerId);
-            st.dragging=true; st.inertiaX=0; st.inertiaY=0;
-            st.dragOffX=e.clientX-st.x; st.dragOffY=e.clientY-st.y;
-            lastDX=e.clientX; lastDY=e.clientY; lastDT=performance.now();
-            velHX=[]; velHY=[];
-            resumeBubble.classList.add("is-dragging");
-          });
-          resumeBubble.addEventListener("pointermove", e => {
-            if (!st.dragging) return;
-            const now=performance.now(), dt=Math.max(1,now-lastDT);
-            velHX.push((e.clientX-lastDX)/dt); velHY.push((e.clientY-lastDY)/dt);
-            if (velHX.length>5){velHX.shift();velHY.shift();}
-            lastDX=e.clientX; lastDY=e.clientY; lastDT=now;
-            const b = getContactBounds();
-            st.x = Math.max(b.minX, Math.min(b.maxX, e.clientX - st.dragOffX));
-            st.y = Math.max(b.minY, Math.min(b.maxY, e.clientY - st.dragOffY));
-          });
-          const endDrag = () => {
-            if (!st.dragging) return;
-            st.dragging=false;
-            resumeBubble.classList.remove("is-dragging");
-            const avgVx=velHX.length?velHX.reduce((a,b)=>a+b,0)/velHX.length:0;
-            const avgVy=velHY.length?velHY.reduce((a,b)=>a+b,0)/velHY.length:0;
-            const sc=18;
-            st.inertiaX=Math.max(-22,Math.min(22,avgVx*sc));
-            st.inertiaY=Math.max(-22,Math.min(22,avgVy*sc));
-            st.vx=st.inertiaX*0.04; st.vy=st.inertiaY*0.04;
-            st.tvx=st.vx; st.tvy=st.vy;
-          };
-          resumeBubble.addEventListener("pointerup",     endDrag);
-          resumeBubble.addEventListener("pointercancel", endDrag);
-
-          // ── 9. Hover ───────────────────────────────────────────────────────
-          resumeBubble.addEventListener("mouseenter", () => {
-            if (st.dragging) return;
-            st.hovered=true;
-            resumeBubbleText.textContent = resumeBubbleText.dataset.hover || "DOWNLOAD";
-          });
-          resumeBubble.addEventListener("mouseleave", () => {
-            st.hovered=false;
-            resumeBubbleText.textContent = resumeBubbleText.dataset.default || "RESUME";
-          });
-
-          // ── 10. Click → download (only if not dragged) ────────────────────
-          let pdX=0, pdY=0;
-          resumeBubble.addEventListener("pointerdown", e => { pdX=e.clientX; pdY=e.clientY; }, {capture:true});
-          resumeBubble.addEventListener("click", e => {
-            if (Math.hypot(e.clientX-pdX, e.clientY-pdY) > 8) return;
-            if (resumeBubbleRipple) {
-              resumeBubbleRipple.classList.remove("is-active");
-              void resumeBubbleRipple.offsetWidth;
-              resumeBubbleRipple.classList.add("is-active");
-            }
-            if (resumeTerminalPopup) {
-              const s2=getBubbleSize(), popW=resumeTerminalPopup.offsetWidth||240;
-              const left=st.x-popW-14>12?st.x-popW-14:Math.min(window.innerWidth-popW-12,st.x+s2+14);
-              resumeTerminalPopup.style.left=left+"px";
-              resumeTerminalPopup.style.top=Math.max(NAV_H+8,st.y+s2*0.18)+"px";
-              resumeTerminalPopup.classList.add("is-visible");
-              resumeTerminalPopup.setAttribute("aria-hidden","false");
-              setTimeout(()=>{resumeTerminalPopup.classList.remove("is-visible");resumeTerminalPopup.setAttribute("aria-hidden","true");},1800);
-            }
-            const a=document.createElement("a"); a.href="./src/Atul_Resume_.pdf"; a.download="Atul_Resume_.pdf";
-            document.body.appendChild(a); a.click(); a.remove();
-          });
-
-          // ── 11. Cursor tracking ────────────────────────────────────────────
-          window.addEventListener("pointermove", e => { st.cursorActive=true; st.cursorX=e.clientX; st.cursorY=e.clientY; },{passive:true});
-          window.addEventListener("pointerleave", () => { st.cursorActive=false; },{passive:true});
-
-          // ── 12. Resize ─────────────────────────────────────────────────────
-          window.addEventListener("resize", () => {
-            bounds = getContactBounds();
-            st.x = Math.max(bounds.minX, Math.min(bounds.maxX, st.x));
-            st.y = Math.max(bounds.minY, Math.min(bounds.maxY, st.y));
-          },{passive:true});
-        };
-
-        const setActiveFilter = (viewName) => {
-          filterButtons.forEach((button) => {
-            button.classList.toggle("is-active", button.dataset.view === viewName);
-          });
-        };
-
-        filterButtons.forEach((button) => {
-          const releasePress = () => button.classList.remove("is-pressed");
-
-          button.addEventListener("pointerdown", () => {
-            button.classList.add("is-pressed");
-          });
-          button.addEventListener("pointerup", releasePress);
-          button.addEventListener("pointerleave", releasePress);
-          button.addEventListener("pointercancel", releasePress);
-
-          button.addEventListener("click", () => {
-            const viewName = button.dataset.view;
-            setActiveFilter(viewName);
-            renderGroups(viewName === "non-technical" ? nonTechnicalData : technicalData);
-            // Dismiss the hint popup on first click
-            const hint = document.getElementById("skills-click-hint");
-            if (hint) {
-              hint.classList.add("is-dismissed");
-            }
-          });
-        });
-
-        if (searchButton) {
-          searchButton.addEventListener("click", () => {
-            setActiveFilter("");
-            renderScannerPlaceholder("⟳ Scanning Available Modules...", "Waiting For User Input...");
-          });
+        /* userAgentData.mobile is a boolean — the most reliable signal */
+        if (typeof uad.mobile === "boolean") {
+          if (uad.mobile) return 90;  /* Browser says it's a mobile device */
+          /* Browser says NOT mobile — check platform name as tiebreak    */
+          if (/android|ios|iphone|samsung/.test(plat)) return 85;
+          if (/windows|macos|linux/.test(plat))         return 0;
+          return 10; /* Unknown platform but not mobile                   */
         }
 
-        certificateLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            certificateLinks.forEach((item) => item.classList.remove("is-active"));
-            link.classList.add("is-active");
+        /* Fallback: platform string only (no .mobile boolean)           */
+        if (/android|ios|iphone|samsung/.test(plat)) return 80;
+        if (/windows|macos|linux/.test(plat))         return 0;
+        return null; /* Can't determine — exclude this signal             */
+      }
 
-            if (!certificatePreview) {
-              return;
-            }
+      /* ── Signal 3: Touch Support ────────────────────────────────────── */
 
-            const previewType = link.dataset.previewType;
-            const fileLabel = link.dataset.fileLabel || "";
+      function getTouchScore() {
+        const maxTouch = navigator.maxTouchPoints || 0;
 
-            certificatePreview.classList.remove("show-pdf", "show-dummy");
+        /* No touch at all — definitely desktop input device              */
+        if (maxTouch === 0)  return 0;
 
-            if (previewType === "pdf") {
-              if (certificatePdfViewer && link.dataset.previewSrc) {
-                certificatePdfViewer.src = link.dataset.previewSrc;
-              }
-              certificatePreview.classList.add("show-pdf");
-              return;
-            }
+        /* 1 touch point — likely a laptop with a touchscreen             */
+        if (maxTouch === 1)  return 35;
 
-            if (certificateDummyPath) {
-              certificateDummyPath.textContent = fileLabel;
-            }
-            certificatePreview.classList.add("show-dummy");
-          });
-        });
-        const activeCert = document.querySelector(".certificate-link.is-active");
-          if (activeCert) {
-          activeCert.click();
+        /* 2 touch points — could be a simple touch device               */
+        if (maxTouch === 2)  return 50;
+
+        /* 5+ touch points — typical smartphone / tablet capacitive screen */
+        if (maxTouch >= 5)   return 72;
+
+        return 45; /* 3-4 touch points — borderline                       */
+      }
+
+      /* ── Signal 4: Screen Size + Device Pixel Ratio ─────────────────── */
+      
+      function getScreenScore() {
+        const w   = screen.width;
+        const h   = screen.height;
+        const dpr = window.devicePixelRatio || 1;
+
+        /* Physical shorter dimension — handles both orientations         */
+        const shortSide = Math.min(w, h);
+
+        /* Very narrow physical screen + high DPR = phone                */
+        if (shortSide <= 390 && dpr >= CFG.hiDprThreshold) return 95;
+        if (shortSide <= 430 && dpr >= CFG.hiDprThreshold) return 88;
+
+        /* Narrow even at low DPR                                        */
+        if (shortSide <= CFG.narrowPx)  return 78;
+        if (shortSide <= 600)           return 60;
+
+        /* Medium — could be tablet                                      */
+        if (shortSide <= 768)           return 35;
+        if (shortSide <= 900)           return 18;
+
+        /* Wide screen — clearly a desktop/laptop                        */
+        if (shortSide > 900)            return 0;
+
+        return 30; /* fallback                                            */
+      }
+
+      /* ── Confidence Combiner ─────────────────────────────────────────── */
+     
+      function combineScores(ua, pl, tc, sc) {
+        if (pl !== null) {
+          /* Full set: UA + Platform + Screen + Touch                     */
+          return Math.round(ua * 0.40 + pl * 0.30 + sc * 0.20 + tc * 0.10);
+        } else {
+          /* Platform unavailable — redistribute its 30% weight          */
+          /* UA gets +15, Screen gets +10, Touch gets +5                  */
+          return Math.round(ua * 0.55 + sc * 0.30 + tc * 0.15);
+        }
+      }
+
+      /* ── Main Detection Function ─────────────────────────────────────── */
+      function detectDevice() {
+        const ua = navigator.userAgent || "";
+
+        /* Collect raw scores                                             */
+        const uaScore      = getUAScore(ua);
+        const platformScore = getPlatformScore();       /* null if unavailable */
+        const touchScore   = getTouchScore();
+        const screenScore  = getScreenScore();
+
+        /* Combine into final 0-100 mobile confidence score             */
+        const confidence = combineScores(uaScore, platformScore, touchScore, screenScore);
+
+        /* Classify based on threshold                                   */
+        const type = confidence >= CFG.mobileThreshold ? "mobile" : "desktop";
+
+        /* Return full diagnostic object for logging & UI               */
+        return {
+          type,
+          confidence,
+          threshold: CFG.mobileThreshold,
+          scores: {
+            ua:       uaScore,
+            platform: platformScore,
+            touch:    touchScore,
+            screen:   screenScore,
+          },
+          meta: {
+            userAgent:    ua,
+            platform:     (navigator.userAgentData?.platform || navigator.platform || "unknown"),
+            screenW:      screen.width,
+            screenH:      screen.height,
+            dpr:          window.devicePixelRatio || 1,
+            maxTouch:     navigator.maxTouchPoints || 0,
+            uadAvailable: !!navigator.userAgentData,
+          },
+        };
+      }
+
+      /* ── Redirect Logic ─────────────────────────────────────────────── */
+      
+      function routeTo(type) {
+        try {
+          sessionStorage.setItem(CFG.loopKey, type);
+        } catch (_) {
+          /* Private browsing may block sessionStorage — proceed anyway  */
+        }
+
+        const url = type === "mobile" ? CFG.mobileUrl : CFG.desktopUrl;
+        window.location.replace(url);
+      }
+
+      /* ── Loop Guard ─────────────────────────────────────────────────── */
+      
+      function alreadyRouted() {
+        try {
+          return !!sessionStorage.getItem(CFG.loopKey);
+        } catch (_) {
+          return false; /* Can't read storage — assume no loop            */
+        }
+      }
+
+      /* ── Run ─────────────────────────────────────────────────────────── */
+      function run() {
+        /* ── Loop guard: skip routing if already done this session ─── */
+        if (alreadyRouted()) {
+          console.warn("[PF Router] Loop guard triggered — routing skipped.");
+          setStatus("Portfolio loaded.");
+          return;
+        }
+
+        /* ── Phase 1: Initialise UI ──────────────────────────────── */
+        setStatus("Scanning device signals...");
+
+        /* ── Phase 2: Run detection (synchronous) ────────────────── */
+        const result = detectDevice();
+
+        /* ── Phase 3: Console diagnostics ───────────────────────── */
+        console.group("[PF Router] Device Detection");
+        console.log("Device type       :", result.type.toUpperCase());
+        console.log("Mobile confidence :", result.confidence + "% (threshold: " + result.threshold + "%)");
+        console.log("Decision          :", result.confidence >= result.threshold
+          ? "REDIRECT → " + CFG.mobileUrl
+          : "REDIRECT → " + CFG.desktopUrl);
+        console.log("─── Signal Scores ───────────────────────────");
+        console.log("User-Agent score  :", result.scores.ua);
+        console.log("Platform score    :", result.scores.platform !== null ? result.scores.platform : "N/A (API unavailable)");
+        console.log("Touch score       :", result.scores.touch);
+        console.log("Screen score      :", result.scores.screen);
+        console.log("─── Device Meta ─────────────────────────────");
+        console.log("User-Agent        :", result.meta.userAgent);
+        console.log("Platform          :", result.meta.platform);
+        console.log("Screen            :", result.meta.screenW + "×" + result.meta.screenH + " @ " + result.meta.dpr + "x DPR");
+        console.log("Max touch points  :", result.meta.maxTouch);
+        console.log("userAgentData API :", result.meta.uadAvailable ? "available" : "unavailable");
+        console.groupEnd();
+
+        /* ── Phase 4: Update loading screen UI ───────────────────── */
+        setTimeout(function () {
+          /* Show signal bars */
+          if (signalsEl) signalsEl.classList.add("is-visible");
+          setStatus("Analysing signals...");
+
+          updateBar("ua", result.scores.ua);
+          updateBar("pl", result.scores.platform !== null ? result.scores.platform : 0);
+          updateBar("tc", result.scores.touch);
+          updateBar("sc", result.scores.screen);
+
+          sigVals.ua.textContent = result.scores.ua;
+          sigVals.pl.textContent = result.scores.platform !== null ? result.scores.platform : "N/A";
+          sigVals.tc.textContent = result.scores.touch;
+          sigVals.sc.textContent = result.scores.screen;
+        }, 80);
+
+        /* Show result label then redirect */
+        setTimeout(function () {
+          const label = result.type === "mobile" ? "MOBILE DETECTED" : "DESKTOP DETECTED";
+          if (resultEl) {
+            resultEl.textContent = label + " (" + result.confidence + "%)";
+            resultEl.classList.add("is-visible");
           }
-        runInteractiveTerminalIntro();
-        renderScannerPlaceholder();
-        runSkillsButtonDemo();
-        initPageMotion();
-        initResumeBubble();
+          setStatus("Routing to " + (result.type === "mobile" ? "mobile" : "desktop") + " version...");
+        }, CFG.displayMs - 200);
 
-        // ── Drag-to-scroll for project cards ──────────────────────
-        (function () {
-          const grid = document.querySelector(".cards-grid");
-          if (!grid) return;
-          let isDown = false, startX = 0, scrollLeft = 0;
-          grid.addEventListener("mousedown", (e) => {
-            isDown = true;
-            grid.classList.add("is-dragging");
-            startX = e.pageX - grid.offsetLeft;
-            scrollLeft = grid.scrollLeft;
-          });
-          grid.addEventListener("mouseleave", () => { isDown = false; grid.classList.remove("is-dragging"); });
-          grid.addEventListener("mouseup",    () => { isDown = false; grid.classList.remove("is-dragging"); });
-          grid.addEventListener("mousemove",  (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - grid.offsetLeft;
-            grid.scrollLeft = scrollLeft - (x - startX) * 1.4;
-          });
-        })();
-      </script>
-    </body>
-  </html>
+        /* ── Phase 5: Redirect ───────────────────────────────────── */
+        setTimeout(function () {
+          routeTo(result.type);
+        }, CFG.displayMs);
+      }
+
+      /* ── Boot ────────────────────────────────────────────────────────── */
+      /* Run as soon as DOM is ready (script is deferred via inline position) */
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", run);
+      } else {
+        run();
+      }
+
+    }()); /* end IIFE */
+    </script>
+
+  </body>
+</html>

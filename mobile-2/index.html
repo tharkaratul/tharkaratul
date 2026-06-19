@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Atul Tharkar mobile cybersecurity portfolio with touch terminal, skills scanner, projects, experience, certificates, achievements, and contact."
+    />
+    <title>Atul Tharkar | Mobile Portfolio 2</title>
+    <link rel="stylesheet" href="./css/mobile-2.css" />
+    <link href='https://fonts.googleapis.com/css?family=Anta' rel='stylesheet'>
+  </head>
+  <body>
+    
+    <main class="mobile-page">
+  <div class="scroll-progress" aria-hidden="true">
+        <span class="scroll-progress-bar" id="scroll-progress-bar"></span>
+      </div>
+      <div class="page-ambient" aria-hidden="true">
+        <div class="cursor-spotlight" id="cursor-spotlight"></div>
+        <div class="floating-particles" id="floating-particles"></div>
+      </div>
+      <header class="masthead reveal-up" data-reveal>
+        <div class="identity">
+          <img src="../src/avatar.png" alt="Atul Tharkar" />
+          <div class="identity__name">Atul Tharkar</div>
+          <div class="identity__slash">//</div>
+          <div class="identity__tag">Cybersecurity Enthusiast</div>
+        </div>
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </header>
+
+      <!-- ── Nav Drawer ──────────────────────────────────────────── -->
+      <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+        <div class="nav-drawer__backdrop" id="nav-drawer-backdrop"></div>
+        <nav class="nav-drawer__panel" role="dialog" aria-label="Navigation menu">
+
+          <!-- Scanline overlay -->
+          <div class="nav-drawer__scanlines" aria-hidden="true"></div>
+
+          <!-- Close button -->
+          <button class="nav-drawer__close" id="nav-drawer-close" type="button" aria-label="Close menu">✕</button>
+
+          <!-- Profile card -->
+          <div class="nav-drawer__profile">
+            <div class="nav-drawer__avatar-wrap">
+              <img src="../src/avatar.png" alt="Atul Tharkar" class="nav-drawer__avatar" />
+              <div class="nav-drawer__avatar-ring" aria-hidden="true"></div>
+            </div>
+            <div class="nav-drawer__info">
+              <div class="nav-drawer__name">Atul Tharkar</div>
+              <div class="nav-drawer__meta">
+                <span class="nav-drawer__age">AGE // 22</span>
+                <span class="nav-drawer__tag">Cybersecurity Enthusiast</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-drawer__divider" aria-hidden="true"></div>
+
+          <!-- Nav links -->
+          <ul class="nav-drawer__links" role="list">
+            <li><a href="#about"        class="nav-drawer__link" data-close-drawer>_ABOUT</a></li>
+            <li><a href="#skills"       class="nav-drawer__link" data-close-drawer>_SKILLS</a></li>
+            <li><a href="#projects"     class="nav-drawer__link" data-close-drawer>_PROJECTS</a></li>
+            <li><a href="#certificates" class="nav-drawer__link" data-close-drawer>_CERTIFICATES</a></li>
+            <li><a href="#experience"   class="nav-drawer__link" data-close-drawer>_EXPERIENCE</a></li>
+            <li><a href="#achievements" class="nav-drawer__link" data-close-drawer>_ACHIEVEMENTS</a></li>
+            <li><a href="#contact"      class="nav-drawer__link" data-close-drawer>_CONTACT</a></li>
+          </ul>
+
+          <div class="nav-drawer__divider" aria-hidden="true"></div>
+
+          <!-- Footer line -->
+          <div class="nav-drawer__footer">[ CYBER LAB v2.4 ]</div>
+        </nav>
+      </div>
+
+      <section class="terminal-section reveal-up" id="about" data-reveal>
+        <h1 class="route-title">About Me <span aria-hidden="true">--></span></h1>
+        <article class="terminal-card" id="touch-terminal" tabindex="0" aria-label="Touch terminal introduction">
+          <div class="terminal-matrix" id="terminal-matrix" aria-hidden="true"></div>
+          <div class="terminal-top">
+            <span class="terminal-badge">A_</span>
+            <strong>atul@atul</strong>
+            <span class="terminal-dots">•••</span>
+          </div>
+          <div class="terminal-output" id="terminal-output"></div>
+          <div class="terminal-kali-display" id="terminal-kali-display" style="display:none">
+            <div class="terminal-kali-display-top">┌──(atul㉿atul)-[~]</div>
+            <div class="terminal-kali-display-bottom">
+              <span>└─$</span>
+              <span class="terminal-kali-typing" id="terminal-kali-typing"></span>
+            </div>
+          </div>
+          <div class="terminal-command-slot" id="terminal-command-slot" aria-label="Terminal commands"></div>
+          <div class="terminal-tap-hint" id="terminal-hint">Tap Terminal To Continue</div>
+        </article>
+      </section>
+
+      <section class="scanner-section reveal-up" id="skills" data-reveal>
+        <h2 class="block-title block-title--light">Skills Scanner</h2>
+        <article class="scanner-panel">
+          <div class="scanner-tabs">
+            <button class="scanner-tab is-active" type="button" data-skill-view="technical">Technical</button>
+            <button class="scanner-tab" type="button" data-skill-view="nonTechnical">Soft Skills</button>
+          </div>
+          <pre class="scanner-ascii" aria-hidden="true">
+  ______ _     _ _ _           ______                                     
+ / _____) |   (_) | |         / _____)                                    
+( (____ | |  _ _| | |  ___   ( (____   ____ _____ ____  ____  _____  ____ 
+ \____ \| |_/ ) | | | /___)   \____ \ / ___|____ |  _ \|  _ \| ___ |/ ___)
+ _____) )  _ (| | | ||___ |   _____) | (___/ ___ | | | | | | | ____| |    
+(______/|_| \_)_|\_)_|___/   (______/ \____)_____|_| |_|_| |_|_____)_|    
+          </pre>
+          <div class="scanner-results" id="scanner-results"></div>
+        </article>
+      </section>
+
+      <section class="projects-section reveal-up" id="projects" data-reveal>
+        <h2 class="block-title block-title--glitch">
+          <a
+            class="github-ascii-card"
+            id="github-ascii-link"
+            href="https://github.com/tharkaratul"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open GitHub profile"
+          >
+            <pre class="github-ascii github-ascii--blink" aria-hidden="true">
+    /$$$$$$  /$$   /$$     /$$   /$$           /$$            / $$\ / $$\
+   /$$__  $$|__/  | $$    | $$  | $$          | $$             \ $$\ \ $$\
+  | $$  \__/ /$$ /$$$$$$  | $$  | $$ /$$   /$$| $$$$$$$         \ $$\ \ $$\
+  | $$ /$$$$| $$|_  $$_/  | $$$$$$$$| $$  | $$| $$__  $$ /$$$$$$ \ $$\ \ $$\
+  | $$|_  $$| $$  | $$    | $$__  $$| $$  | $$| $$  \ $$|______/ / $$/ / $$/
+  | $$  \ $$| $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$        / $$/ / $$/
+  |  $$$$$$/| $$  |  $$$$/| $$  | $$|  $$$$$$/| $$$$$$$/       / $$/ / $$/
+  \______/ |__/   \___/  |__/  |__/ \______/ |_______/        |__/  |__/</pre>
+          </a>
+          <span>
+            <img src="../src/projects-text.svg" alt="Projects" class="project-title-text" />
+          </span>
+        </h2>
+        <div class="project-scroll-wrap">
+          <div class="project-grid" id="project-grid"></div>
+        </div>
+      </section>
+
+      <section class="cert-section reveal-up" id="certificates" data-reveal>
+        <h2 class="angle-title">Certificates</h2>
+        <p class="experience-prompt" aria-hidden="true">&gt; echo "Click to open the Certificate."</p>
+        <ul class="cert-list" id="cert-list"></ul>
+      </section>
+
+      <!-- ── Certificate Preview Overlay ──────────────────────────── -->
+      <div class="cert-preview-overlay" id="cert-preview-overlay" aria-hidden="true" role="dialog" aria-label="Certificate preview">
+        <div class="cert-preview-topbar">
+          <button class="cert-preview-back" id="cert-preview-back" type="button" aria-label="Close preview">
+            <span class="cert-preview-back__arrow" aria-hidden="true">&#8592;</span>
+            <span class="cert-preview-back__label">BACK</span>
+          </button>
+          <span class="cert-preview-title" id="cert-preview-title"></span>
+          <div class="cert-preview-scanline" aria-hidden="true"></div>
+        </div>
+        <div class="cert-preview-frame-wrap">
+          <iframe
+            class="cert-preview-iframe"
+            id="cert-preview-iframe"
+            title="Certificate preview"
+            allow="fullscreen"
+          ></iframe>
+          <div class="cert-preview-corner cert-preview-corner--tl" aria-hidden="true"></div>
+          <div class="cert-preview-corner cert-preview-corner--tr" aria-hidden="true"></div>
+          <div class="cert-preview-corner cert-preview-corner--bl" aria-hidden="true"></div>
+          <div class="cert-preview-corner cert-preview-corner--br" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- ── Project Screenshot Preview ───────────────────────────── -->
+      <div class="shot-preview-overlay" id="shot-preview-overlay" aria-hidden="true" role="dialog" aria-label="Screenshot preview">
+        <div class="shot-preview-topbar">
+          <button class="shot-preview-back" id="shot-preview-back" type="button" aria-label="Close preview">
+            <span aria-hidden="true">&#8592;</span> BACK
+          </button>
+          <span class="shot-preview-title" id="shot-preview-title"></span>
+        </div>
+        <div class="shot-preview-body">
+          <img class="shot-preview-img" id="shot-preview-img" alt="" />
+        </div>
+      </div>
+
+      <section class="experience-section" id="experience">
+        <div class="experience-header">
+          <h2 class="angle-title">Experience</h2>
+          <p class="experience-prompt" aria-hidden="true">&gt; cat experience.log</p>
+        </div>
+        <ol class="experience-timeline" id="experience-list"></ol>
+      </section>
+
+      <section class="achievement-section reveal-up" id="achievements" data-reveal>
+        <img src="../src/Rectangle 13.svg" alt="" aria-hidden="true" class="achievement-section__bg" />
+        <h2>Achievement</h2>
+        <ul id="achievement-list"></ul>
+      </section>
+
+      <section class="contact-section reveal-up" id="contact" data-reveal>
+        <img src="../src/Group 23.svg" alt="" aria-hidden="true" class="contact-section__bg" />
+        <div>
+          <h2>Contact</h2>
+          <p><a class="contact-name">Atul Tharkar</a></p>
+          <ul class="contact-ul">
+            <li class="contact-row">
+              <span class="contact-row__icon" aria-hidden="true">
+                <img src="../src/whatsapp-icon.png" class="whatsapp-icon" alt="" />
+              </span>
+              <p class="contact-row__detail">
+                Mobile/Whatsapp No:
+                <a id="phone-link" href="https://wa.me/9765939243">+91-9765939243</a>
+              </p>
+            </li>
+            <li class="contact-row">
+              <span class="contact-row__icon" aria-hidden="true">
+                <img src="../src/mail-icon.png" class="mail-icon" alt="" />
+              </span>
+              <p class="contact-row__detail">
+                E-mail :
+                <a id="email-link" href="mailto:atultharkar2004@gmail.com">atultharkar2004@gmail.com</a>
+              </p>
+            </li>
+            <li class="contact-row">
+              <span class="contact-row__icon" aria-hidden="true">
+                <img src="../src/github.png" class="github" alt="" />
+              </span>
+              <p class="contact-row__detail">
+                GitHub:
+                <a href="https://github.com/tharkaratul" rel="noreferrer">github.com/tharkaratul</a>
+              </p>
+            </li>
+            <li class="contact-row">
+              <span class="contact-row__icon" aria-hidden="true">
+                <img src="../src/google-icon.svg" class="google-icon" alt="" />
+              </span>
+              <p class="contact-row__detail">
+                <a id="google-form-link" href="https://forms.gle/e1np7A6iPM3LC48H9" target="_blank" rel="noreferrer">Google form</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-resume-slot" id="contact-resume-slot">
+          <div class="resume-bubble-layer" aria-live="polite">
+            <button class="resume-bubble" id="resume-bubble" type="button" aria-label="Download resume">
+              <span class="rbl-glass-base" aria-hidden="true"></span>
+              <canvas class="rbl-circuit-canvas" id="rbl-circuit-canvas" aria-hidden="true"></canvas>
+              <svg class="rbl-hud-ring" id="rbl-hud-ring" viewBox="0 0 200 200" aria-hidden="true">
+                <circle class="rbl-ring-outer" cx="100" cy="100" r="94"/>
+                <g class="rbl-ticks" id="rbl-ticks"></g>
+                <circle class="rbl-ring-scan" cx="100" cy="100" r="88"/>
+                <circle class="rbl-ring-inner" cx="100" cy="100" r="78"/>
+                <path class="rbl-bracket" d="M100,8 L100,18"/>
+                <path class="rbl-bracket" d="M100,182 L100,192"/>
+                <path class="rbl-bracket" d="M8,100 L18,100"/>
+                <path class="rbl-bracket" d="M182,100 L192,100"/>
+                <g class="rbl-shield" transform="translate(100,28)">
+                  <path d="M0,-8 L6,-4 L6,2 Q6,8 0,11 Q-6,8 -6,2 L-6,-4 Z"/>
+                </g>
+                <g class="rbl-lock" transform="translate(100,168)">
+                  <rect x="-5" y="-3" width="10" height="8" rx="1"/>
+                  <path d="M-3,-3 Q-3,-9 0,-9 Q3,-9 3,-3"/>
+                  <circle cx="0" cy="1" r="1.5" fill="none" stroke-width="1"/>
+                </g>
+                <text class="rbl-hud-label" x="22" y="72">SEC</text>
+                <text class="rbl-hud-label" x="22" y="132">LVL</text>
+                <text class="rbl-hud-label rbl-hud-label-right" x="178" y="72">HUD</text>
+                <text class="rbl-hud-label rbl-hud-label-right" x="178" y="132">v2.4</text>
+                <circle class="rbl-status-dot rbl-dot-a" cx="38" cy="100" r="2.5"/>
+                <circle class="rbl-status-dot rbl-dot-b" cx="162" cy="100" r="2.5"/>
+              </svg>
+              <span class="rbl-sheen" aria-hidden="true"></span>
+              <span class="rbl-core" aria-hidden="true"></span>
+              <span class="rbl-label" data-default="RESUME" data-hover="DOWNLOAD" aria-hidden="true">RESUME</span>
+              <span class="rbl-sublabel" aria-hidden="true">[ TAP ]</span>
+              <span class="rbl-orbit-wrap" id="rbl-orbit-particles" aria-hidden="true"></span>
+              <span class="rbl-ambient" aria-hidden="true"></span>
+              <span class="rbl-ripple" id="rbl-ripple" aria-hidden="true"></span>
+            </button>
+            <div class="resume-terminal-popup" id="resume-terminal-popup" aria-hidden="true">
+              <div class="resume-terminal-popup-head">resume-daemon</div>
+              <div class="resume-terminal-popup-body">Downloading resume.pdf...</div>
+              <div class="resume-terminal-popup-bar">███████████ 100%</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../mobile/data/portfolio-data.js?v=3"></script>
+    <script src="./js/mobile-2.js"></script>
+  </body>
+</html>
