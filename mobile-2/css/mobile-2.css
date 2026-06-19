@@ -434,7 +434,7 @@ button {
   overflow: hidden;
   color: #222;
   background: var(--grey-2);
-  font: 700 9px/1 var(--mono);
+  font: 700 51%/1 var(--mono);
 }
 
 .scanner-results {
