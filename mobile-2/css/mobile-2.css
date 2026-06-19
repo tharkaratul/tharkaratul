@@ -188,7 +188,7 @@ button {
 .identity__tag {
   overflow: hidden;
   color: #fff;
-  font-size: var(--text-xs);
+  font-size: 0.9vw;
   font-weight: 900;
   text-transform: uppercase;
   white-space: nowrap;
@@ -434,7 +434,8 @@ button {
   overflow: hidden;
   color: #222;
   background: var(--grey-2);
-  font: 700 51%/1 var(--mono);
+  font-size: 0.57vw;
+  /*font: 700 /1 var(--mono);*/
 }
 
 .scanner-results {
