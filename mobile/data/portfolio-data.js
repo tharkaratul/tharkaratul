@@ -186,6 +186,24 @@ window.PORTFOLIO = {
 
   experience: [
     {
+      role: "Freelance Web Designer",
+      company: "Kafil Adventures",
+      location: "Remote",
+      period: "",
+      highlights: [
+        "Designed a modern and responsive website for Kafil Adventures, focusing on intuitive user experience, clean layouts, and a visually engaging interface that aligned with the brand identity.",
+      ],
+    },
+    {
+      role: "Freelance UI/Web Designer",
+      company: "Meladen Perfumes",
+      location: "Remote",
+      period: "",
+      highlights: [
+        "Designed the Meladen Perfumes website, creating a premium, aesthetically appealing interface that reflected the brand's luxury image while ensuring a seamless and responsive user experience.",
+      ],
+    },
+    {
       role: "Freelancing",
       company: "Margrets Beauty Bar",
       location: "Remote",

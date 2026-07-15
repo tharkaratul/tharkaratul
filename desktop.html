@@ -7,6 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kodchasan' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Anta' rel='stylesheet'>
     <title>Atul Tharkar | Portfolio</title>
+    <script src="./src/data/portfolio-data.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Major+Mono+Display&family=Share+Tech+Mono&family=Teko:wght@500;600;700&display=swap"
@@ -181,6 +182,17 @@
           <img src="./src/Group_11.svg" alt="SOC Dashboard project panel" class="project-card-image" />
           <a class="project-view-link" href="https://github.com/tharkaratul/Splunk-SSH_Dashboard" target="_blank" rel="noreferrer">View</a>
         </article>
+      </section>
+
+      <!-- ── Experience Section ─────────────────────────────────────────── -->
+      <section class="desktop-experience-section reveal-up" id="experience" aria-label="Experience" data-reveal>
+        <div class="desktop-experience-inner">
+          <div class="desktop-experience-header">
+            <h2 class="desktop-experience-title">Experience</h2>
+            <p class="desktop-experience-prompt" aria-hidden="true">&gt; cat experience.log</p>
+          </div>
+          <ol class="desktop-experience-timeline" id="desktop-experience-list"></ol>
+        </div>
       </section>
 
       <section class="certificates-section reveal-up" aria-labelledby="certificates-title" data-reveal data-parallax data-parallax-speed="0.018">
@@ -576,6 +588,16 @@
         nodes.forEach(n=>{const d=Number(n.dataset.revealDelay||0);n.style.setProperty("--reveal-delay",`${d*1000}ms`);});
         const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");obs.unobserve(e.target);}});},{threshold:0.14,rootMargin:"0px 0px -12% 0px"});
         nodes.forEach(n=>obs.observe(n));
+        // Immediately reveal anything already in the viewport on load
+        requestAnimationFrame(() => {
+          nodes.forEach(n => {
+            const r = n.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) {
+              n.classList.add("is-visible");
+              obs.unobserve(n);
+            }
+          });
+        });
       };
 
       const initParallax = () => {
@@ -687,6 +709,30 @@
       /* ── Drag-to-scroll project cards ────────────────────────────── */
       (function(){const g=document.querySelector(".cards-grid");if(!g)return;let isD=false,sX=0,sL=0;g.addEventListener("mousedown",e=>{isD=true;g.classList.add("is-dragging");sX=e.pageX-g.offsetLeft;sL=g.scrollLeft;});g.addEventListener("mouseleave",()=>{isD=false;g.classList.remove("is-dragging");});g.addEventListener("mouseup",()=>{isD=false;g.classList.remove("is-dragging");});g.addEventListener("mousemove",e=>{if(!isD)return;e.preventDefault();g.scrollLeft=sL-(e.pageX-g.offsetLeft-sX)*1.4;});}());
 
+      /* ── Experience renderer ──────────────────────────────────── */
+      const renderExperience = () => {
+        const list = document.getElementById("desktop-experience-list");
+        if (!list) return;
+        const experiences = (window.PORTFOLIO?.experience) || [];
+        if (!experiences.length) return;
+        const esc = v => String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+        list.innerHTML = experiences.map(exp => `
+          <li class="desk-exp-card">
+            <div class="desk-exp-top">
+              <h3 class="desk-exp-role">${esc(exp.role)}</h3>
+              <div class="desk-exp-meta">
+                <span class="desk-exp-company">${esc(exp.company)}</span>
+                <span class="desk-exp-sep" aria-hidden="true">|</span>
+                <span class="desk-exp-location">${esc(exp.location)}</span>
+              </div>
+              ${exp.period ? `<span class="desk-exp-period">${esc(exp.period)}</span>` : ""}
+            </div>
+            <ul class="desk-exp-highlights">
+              ${(exp.highlights||[]).map(h=>`<li>${esc(h)}</li>`).join("")}
+            </ul>
+          </li>`).join("");
+      };
+
       /* ── Boot ────────────────────────────────────────────────────── */
       document.body.classList.add("page-ready");
       updateScrollProgress();
@@ -700,6 +746,7 @@
       renderScannerPlaceholder();
       runIntro();
       initResumeBubble();
+      renderExperience();
     </script>
   </body>
 </html>

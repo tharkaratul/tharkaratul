@@ -850,7 +850,7 @@ function renderExperience() {
           <span class="experience-card__sep" aria-hidden="true">|</span>
           <span class="experience-card__location">${escHtml(exp.location)}</span>
         </div>
-        <span class="experience-card__period">${escHtml(exp.period)}</span>
+        ${exp.period ? `<span class="experience-card__period">${escHtml(exp.period)}</span>` : ""}
       </div>
       <ul class="experience-card__highlights">
         ${exp.highlights.map((item) => `<li>${escHtml(item)}</li>`).join("")}
